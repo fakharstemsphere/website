@@ -139,19 +139,78 @@
             box-shadow: 0 0 0 3px rgba(102,126,234,0.15);
         }
 
-        /* BOARD TABS */
-        #boardTabs .class-tab {
-            font-size: 16px;
-            padding: 11px 36px;
+        /* BOARD SELECTOR */
+        .board-selector-wrap {
+            display: flex;
+            justify-content: center;
+            margin: 30px 0 0;
         }
 
-        
+        .board-selector {
+            display: flex;
+            background: #f0f0f8;
+            border-radius: 50px;
+            padding: 6px;
+            gap: 6px;
+            box-shadow: inset 0 2px 6px rgba(0,0,0,0.08);
+        }
+
+        .board-btn {
+            padding: 12px 40px;
+            border-radius: 40px;
+            border: none;
+            background: transparent;
+            color: #888;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.35s cubic-bezier(.4,0,.2,1);
+            letter-spacing: 0.3px;
+        }
+
+        .board-btn.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #fff;
+            box-shadow: 0 6px 20px rgba(102,126,234,0.45);
+            transform: scale(1.04);
+        }
+
+        .board-btn:not(.active):hover {
+            background: rgba(102,126,234,0.10);
+            color: #667eea;
+        }
+
+        .board-btn .board-icon {
+            margin-right: 8px;
+            font-size: 18px;
+            vertical-align: middle;
+        }
+
+        /* Board content panels — fade in/out */
+        .board-content {
+            overflow: hidden;
+            transition: opacity 0.35s ease, transform 0.35s ease;
+            opacity: 0;
+            transform: translateY(10px);
+            pointer-events: none;
+            display: none;
+        }
+
+        .board-content.visible {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: auto;
+        }
+
+        /* CLASS TABS */
         .tabs-wrap {
             display: flex;
             justify-content: center;
             gap: 12px;
             flex-wrap: wrap;
-            margin: 30px 0 0;
+            margin: 20px 0 0;
         }
 
         .class-tab {
@@ -423,15 +482,71 @@
             animation: flashBounce 0.7s cubic-bezier(0.68, -0.55, 0.265, 1.55);
         }
 
+        /* ── HAMBURGER BUTTON ── */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 6px;
+            z-index: 1100;
+        }
+
+        .hamburger span {
+            display: block;
+            width: 26px;
+            height: 3px;
+            background: #667eea;
+            border-radius: 3px;
+            transition: all 0.3s ease;
+        }
+
+        .hamburger.open span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+        .hamburger.open span:nth-child(2) { opacity: 0; }
+        .hamburger.open span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+
         /* RESPONSIVE */
         @media (max-width: 768px) {
-            .nav-links { gap: 15px; font-size: 14px; }
-            .section { padding: 40px 20px; margin: 20px 10px; }
-            .section h2 { font-size: 28px; }
-            .subject-header { padding: 14px 16px; }
-            .files-area { padding: 0 12px 16px; }
+            .hamburger { display: flex; }
+
+            .nav-links {
+                display: none;
+                position: fixed;
+                top: 0; left: 0; right: 0; bottom: 0;
+                background: rgba(255,255,255,0.98);
+                backdrop-filter: blur(12px);
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 28px;
+                z-index: 1050;
+            }
+
+            .nav-links.open { display: flex; }
+            .nav-links a { font-size: 20px; font-weight: 600; }
+
+            .section { padding: 30px 16px; margin: 16px 10px; }
+            .section h2 { font-size: 26px; }
+
+            .board-selector { flex-direction: column; border-radius: 20px; }
+            .board-btn { padding: 10px 24px; font-size: 15px; }
+
+            .subject-header { padding: 14px 14px; }
+            .subject-name { font-size: 15px; }
+            .files-area { padding: 0 10px 14px; }
             .files-grid { grid-template-columns: 1fr; }
-            .class-tab { padding: 8px 20px; font-size: 14px; }
+            .class-tab { padding: 8px 16px; font-size: 13px; }
+
+            footer { margin: 16px 10px 10px; padding: 24px 16px; }
+            footer img { width: 160px !important; height: 160px !important; }
+        }
+
+        @media (max-width: 400px) {
+            .tabs-wrap { gap: 8px; }
+            .class-tab { padding: 7px 12px; font-size: 12px; }
         }
     </style>
 </head>
@@ -441,7 +556,10 @@
     <header>
         <nav class="container">
             <div class="logo">Fakhar STEM Sphere</div>
-            <ul class="nav-links">
+            <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+                <span></span><span></span><span></span>
+            </button>
+            <ul class="nav-links" id="navLinks">
                 <li><a href="index.htm#home">Home</a></li>
                 <li><a href="index.htm#courses">Courses</a></li>
                 <li><a href="index.htm#booking">Book Session</a></li>
@@ -470,26 +588,16 @@
                 <input id="searchInput" type="text" placeholder="Search subject, topic or file name…" autocomplete="off" />
             </div>
 
-            <!-- Board Selector -->
-            <div class="tabs-wrap" id="boardTabs" style="margin-bottom: 0;">
-                <button class="class-tab active" data-board="fbise" onclick="switchBoard('fbise', this)">FBISE</button>
-                <button class="class-tab" data-board="punjab" onclick="switchBoard('punjab', this)">Punjab Board</button>
-            </div>
-
-            <!-- Class Tabs — FBISE -->
-            <div id="classTabs-fbise" class="tabs-wrap" style="margin-top: 14px;">
-                <button class="class-tab active" data-class="9" data-board-group="fbise">Class 9th</button>
-                <button class="class-tab" data-class="10" data-board-group="fbise">Class 10th</button>
-                <button class="class-tab" data-class="11" data-board-group="fbise">Class 11th</button>
-                <button class="class-tab" data-class="12" data-board-group="fbise">Class 12th</button>
-            </div>
-
-            <!-- Class Tabs — Punjab Board -->
-            <div id="classTabs-punjab" class="tabs-wrap" style="margin-top: 14px; display: none;">
-                <button class="class-tab active" data-class="pb9" data-board-group="punjab">Class 9th</button>
-                <button class="class-tab" data-class="pb10" data-board-group="punjab">Class 10th</button>
-                <button class="class-tab" data-class="pb11" data-board-group="punjab">Class 11th</button>
-                <button class="class-tab" data-class="pb12" data-board-group="punjab">Class 12th</button>
+            <!-- Board Selector — pill toggle -->
+            <div class="board-selector-wrap">
+                <div class="board-selector">
+                    <button class="board-btn active" id="btn-fbise" onclick="switchBoard('fbise')">
+                        Federal Board
+                    </button>
+                    <button class="board-btn" id="btn-punjab" onclick="switchBoard('punjab')">
+                        Punjab Board
+                    </button>
+                </div>
             </div>
 
             <!-- No results -->
@@ -498,6 +606,15 @@
                 <h3>No results found</h3>
                 <p>Try a different keyword or browse by class tab above.</p>
             </div>
+
+            <!-- ══ FBISE CONTENT ══ -->
+            <div id="boardContent-fbise" class="board-content visible">
+                <div id="classTabs-fbise" class="tabs-wrap" style="margin-top: 14px;">
+                    <button class="class-tab active" data-class="9" data-board-group="fbise">Class 9th</button>
+                    <button class="class-tab" data-class="10" data-board-group="fbise">Class 10th</button>
+                    <button class="class-tab" data-class="11" data-board-group="fbise">Class 11th</button>
+                    <button class="class-tab" data-class="12" data-board-group="fbise">Class 12th</button>
+                </div>
 
             <!-- ══ FBISE PANELS ══ -->
             <div id="fbisePanels">
@@ -901,6 +1018,16 @@
             </div>
 
             </div><!-- /fbisePanels -->
+            </div><!-- /boardContent-fbise -->
+
+            <!-- ══ PUNJAB BOARD CONTENT ══ -->
+            <div id="boardContent-punjab" class="board-content">
+                <div id="classTabs-punjab" class="tabs-wrap" style="margin-top: 14px;">
+                    <button class="class-tab active" data-class="pb9" data-board-group="punjab">Class 9th</button>
+                    <button class="class-tab" data-class="pb10" data-board-group="punjab">Class 10th</button>
+                    <button class="class-tab" data-class="pb11" data-board-group="punjab">Class 11th</button>
+                    <button class="class-tab" data-class="pb12" data-board-group="punjab">Class 12th</button>
+                </div>
 
             <!-- ══ PUNJAB BOARD PANELS ══ -->
             <div id="punjabPanels" style="display:none;">
@@ -942,6 +1069,7 @@
                 </div>
 
             </div><!-- /punjabPanels -->
+            </div><!-- /boardContent-punjab -->
 
             <div class="info-note">
                 <span style="color: red; font-weight: bold;">Disclaimer:</span> The documents uploaded on this website are for <strong>educational purposes</strong> only and are intended solely to support learning.
@@ -963,21 +1091,43 @@
     </footer>
 
     <script>
+        /* ── HAMBURGER MENU ── */
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('open');
+            navLinks.classList.toggle('open');
+        });
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('open');
+                navLinks.classList.remove('open');
+            });
+        });
+
         /* ── BOARD SWITCHING ── */
-        function switchBoard(board, btn) {
-            // Update board tab styles
-            document.querySelectorAll('[data-board]').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
+        function switchBoard(board) {
+            // Update board button styles
+            document.getElementById('btn-fbise').classList.toggle('active', board === 'fbise');
+            document.getElementById('btn-punjab').classList.toggle('active', board === 'punjab');
 
-            const isFBISE = board === 'fbise';
+            // Show/hide board content blocks
+            const fbise = document.getElementById('boardContent-fbise');
+            const punjab = document.getElementById('boardContent-punjab');
 
-            // Show/hide class tab rows
-            document.getElementById('classTabs-fbise').style.display = isFBISE ? '' : 'none';
-            document.getElementById('classTabs-punjab').style.display = isFBISE ? 'none' : '';
-
-            // Show/hide panel containers
-            document.getElementById('fbisePanels').style.display = isFBISE ? '' : 'none';
-            document.getElementById('punjabPanels').style.display = isFBISE ? 'none' : '';
+            if (board === 'fbise') {
+                punjab.classList.remove('visible');
+                setTimeout(() => { fbise.classList.add('visible'); }, 50);
+                // Show fbise panels, hide punjab
+                document.getElementById('fbisePanels').style.display = '';
+                document.getElementById('punjabPanels').style.display = 'none';
+            } else {
+                fbise.classList.remove('visible');
+                setTimeout(() => { punjab.classList.add('visible'); }, 50);
+                // Show punjab panels, hide fbise
+                document.getElementById('fbisePanels').style.display = 'none';
+                document.getElementById('punjabPanels').style.display = '';
+            }
 
             // Reset to first class tab in the chosen board
             const firstTab = document.querySelector(`#classTabs-${board} .class-tab`);
