@@ -479,7 +479,7 @@
         }
 
         .popup-animation {
-            animation: flashBounce 0.7s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            animation: flashBounce 0.7s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
         }
 
         /* ── HAMBURGER BUTTON ── */
@@ -624,7 +624,7 @@
 
                 <div class="panel-heading">
                     <h3>Class 9th</h3>
-                    <span class="file-count-badge">6 files available</span>
+                    <span class="file-count-badge">8 files available</span>
                 </div>
 
                 <!-- Islamiat -->
@@ -734,12 +734,32 @@
                             </div>
                         </div>
                         <div class="subject-right">
-                            <span class="files-badge">Coming Soon</span>
+                            <span class="files-badge">2 files</span>
                             <svg class="chevron" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg>
                         </div>
                     </div>
                     <div class="files-area">
-                        <div class="coming-soon"><div class="cs-icon">🚧</div><h4>Coming Soon</h4><p>Physics notes for Class 9 are being prepared.</p></div>
+                        <div class="files-grid">
+
+                            <a href="assets/FBISE\9th_Class\Physics\Model_Paper_Physics_Class_9th_Federal_Board_2026.pdf" download class="file-card" data-tags="physics model paper 2026 fbise federal board 9">
+                                <div class="file-top">
+                                    <div class="file-ext-badge">PDF</div>
+                                    <div class="file-name">Model Paper 2026 — Federal Board</div>
+                                </div>
+                                <div class="file-desc">Official Federal Board model question paper for Physics Class 9th — Session 2025-26.</div>
+                                <div class="file-dl">⬇ Download</div>
+                            </a>
+
+                            <a href="assets/FBISE\9th_Class\Physics\Final_Assessment_Framework_Model_Question_Paper_Physics_SSC-I.pdf" download class="file-card" data-tags="physics assessment framework model paper ssc-i 9">
+                                <div class="file-top">
+                                    <div class="file-ext-badge">PDF</div>
+                                    <div class="file-name">Assessment Framework &amp; Model Paper (SSC-I)</div>
+                                </div>
+                                <div class="file-desc">Final assessment framework with official model question paper for Physics SSC-I.</div>
+                                <div class="file-dl">⬇ Download</div>
+                            </a>
+
+                        </div>
                     </div>
                 </div>
 
@@ -1218,9 +1238,10 @@
                     img.classList.remove('popup-animation');
                     void img.offsetWidth;
                     img.classList.add('popup-animation');
+                    observer.unobserve(img);
                 }
             });
-        }, { threshold: 0.1 });
+        }, { threshold: 0.1, rootMargin: '0px 0px -10% 0px' });
         observer.observe(img);
     </script>
 </body>

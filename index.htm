@@ -605,7 +605,7 @@
 	}
 
 	.popup-animation {
-  		animation: flashBounce 0.7s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  		animation: flashBounce 0.7s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
 	}
 
     </style>
@@ -890,9 +890,10 @@
       			img.classList.remove('popup-animation');
       			void img.offsetWidth;
       			img.classList.add('popup-animation');
+      			observer.unobserve(img);
     			}
   		});
-	}, { threshold: 0.1 });
+	}, { threshold: 0.1, rootMargin: '0px 0px -10% 0px' });
 
 	observer.observe(img);
     </script>
