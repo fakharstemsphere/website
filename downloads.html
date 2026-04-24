@@ -34,12 +34,12 @@
         /* ── HEADER ── */
         header {
             background: rgba(255,255,255,0.95);
-            backdrop-filter: blur(12px);
+            backdrop-filter: blur(10px);
             padding: 20px 0;
             position: sticky;
             top: 0;
-            z-index: 1000;
-            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+            z-index: 1100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
 
         nav { display: flex; justify-content: space-between; align-items: center; }
@@ -47,7 +47,7 @@
 
         .logo {
             font-size: 24px;
-            font-weight: 800;
+            font-weight: bold;
             background: var(--grad);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -55,7 +55,7 @@
         }
 
         .nav-links { display: flex; list-style: none; gap: 30px; }
-        .nav-links a { text-decoration: none; color: #333; font-weight: 600; transition: color 0.3s; font-size: 15px; }
+        .nav-links a { text-decoration: none; color: #333; font-weight: 500; transition: color 0.3s; font-size: 15px; }
         .nav-links a:hover { color: var(--primary); }
         .nav-links a.active { color: var(--primary); font-weight: 700; }
 
@@ -479,6 +479,7 @@
             padding: 40px;
             text-align: center;
             box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
         @keyframes flashBounce {
@@ -500,6 +501,8 @@
         .hamburger.open span:nth-child(2) { opacity: 0; }
         .hamburger.open span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
 
+        .nav-close-btn { display: none; }
+
         /* RESPONSIVE */
         @media (max-width: 768px) {
             .hamburger { display: flex; }
@@ -511,6 +514,19 @@
             }
             .nav-links.open { display: flex; }
             .nav-links a { font-size: 20px; font-weight: 600; }
+            .nav-close-btn {
+                display: flex;
+                position: absolute;
+                top: 20px;
+                right: 20px;
+                background: none;
+                border: none;
+                font-size: 32px;
+                color: var(--primary);
+                cursor: pointer;
+                line-height: 1;
+                z-index: 1051;
+            }
             .section { padding: 30px 16px; margin: 16px 10px; }
             .section-header h2 { font-size: 28px; }
             .board-grid, .class-grid, .subject-grid { grid-template-columns: 1fr 1fr; }
@@ -542,6 +558,7 @@
                 <span></span><span></span><span></span>
             </button>
             <ul class="nav-links" id="navLinks">
+                <button class="nav-close-btn" id="navClose" aria-label="Close menu">&#x2715;</button>
                 <li><a href="index.htm#home">Home</a></li>
                 <li><a href="index.htm#courses">Courses</a></li>
                 <li><a href="index.htm#booking">Book Session</a></li>
@@ -696,7 +713,7 @@
             classes: {
                 '9': {
                     label: 'Class 9th',
-                    badge: '16 files',
+                    badge: '18 files',
                     subjects: {
                         islamiat: {
                             name: 'Islamiat (Lazmi)',
@@ -748,8 +765,10 @@
                             name: 'Biology',
                             icon: '🌿',
                             iconBg: '#e8f5e9',
-                            badge: 'Coming Soon',
-                            files: []
+                            badge: '1 file',
+                            files: [
+                                { href: 'assets\\FBISE\\9th_Class\\Biology\\Biology_Class_9th_Federal_Model_Paper_2026.pdf', name: 'Model Paper 2026 — Federal Board', desc: 'Official Federal Board model question paper for Biology Class 9th — Session 2025-26.', tags: 'biology model paper 2026 fbise federal board 9' }
+                            ]
                         },
                         english: {
                             name: 'English',
@@ -769,8 +788,10 @@
                             name: 'Computer Science',
                             icon: '💻',
                             iconBg: '#e8eaf6',
-                            badge: 'Coming Soon',
-                            files: []
+                            badge: '1 file',
+                            files: [
+                                { href: 'assets\\FBISE\\9th_Class\\Computer_Science\\Computer_Science_Class_9th_Federal_Model_Paper_2026.pdf', name: 'Model Paper 2026 — Federal Board', desc: 'Official Federal Board model question paper for Computer Science Class 9th — Session 2025-26.', tags: 'computer science model paper 2026 fbise federal board 9' }
+                            ]
                         }
                     }
                 },
@@ -1075,15 +1096,20 @@
     ══════════════════════════════════ */
     const hamburger = document.getElementById('hamburger');
     const navLinks  = document.getElementById('navLinks');
+    const navClose  = document.getElementById('navClose');
+
+    function closeNav() {
+        hamburger.classList.remove('open');
+        navLinks.classList.remove('open');
+    }
+
     hamburger.addEventListener('click', () => {
         hamburger.classList.toggle('open');
         navLinks.classList.toggle('open');
     });
+    navClose.addEventListener('click', closeNav);
     navLinks.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', () => {
-            hamburger.classList.remove('open');
-            navLinks.classList.remove('open');
-        });
+        link.addEventListener('click', closeNav);
     });
 
     /* ══════════════════════════════════
