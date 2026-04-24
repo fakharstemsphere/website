@@ -5,359 +5,339 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Download free STEM resources including programming notes, engineering PDFs, project files, learning materials, templates, guides, and educational tools from Fakhar STEM Sphere.">
     <link rel="icon" type="image/png" sizes="32x32" href="icon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <title>Downloads — Fakhar STEM Sphere</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --primary: #667eea;
+            --primary-dark: #764ba2;
+            --grad: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --surface: rgba(255,255,255,0.97);
+            --border: #e8e8f5;
+            --text: #1a1a2e;
+            --muted: #6b7280;
+            --radius: 18px;
+            --shadow: 0 20px 60px rgba(102,126,234,0.18);
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: #333;
+            font-family: 'Plus Jakarta Sans', 'Segoe UI', sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: var(--text);
         }
 
-        .round-icon {
-            border-radius: 50%;
-            width: 32px;
-            height: 32px;
-            object-fit: cover;
-        }
+        .round-icon { border-radius: 50%; width: 32px; height: 32px; object-fit: cover; }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        /* HEADER - exact match */
+        /* ── HEADER ── */
         header {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(12px);
             padding: 20px 0;
             position: sticky;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
         }
 
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+        nav { display: flex; justify-content: space-between; align-items: center; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
 
         .logo {
             font-size: 24px;
-            font-weight: bold;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-weight: 800;
+            background: var(--grad);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
 
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 30px;
-        }
+        .nav-links { display: flex; list-style: none; gap: 30px; }
+        .nav-links a { text-decoration: none; color: #333; font-weight: 600; transition: color 0.3s; font-size: 15px; }
+        .nav-links a:hover { color: var(--primary); }
+        .nav-links a.active { color: var(--primary); font-weight: 700; }
 
-        .nav-links a {
-            text-decoration: none;
-            color: #333;
-            font-weight: 500;
-            transition: color 0.3s;
-        }
-
-        .nav-links a:hover { color: #667eea; }
-        .nav-links a.active { color: #667eea; font-weight: 700; }
-
-        /* SECTION - exact match */
+        /* ── MAIN SECTION ── */
         .section {
-            background: rgba(255, 255, 255, 0.95);
+            background: var(--surface);
             backdrop-filter: blur(10px);
             margin: 40px 20px;
-            border-radius: 20px;
+            border-radius: 24px;
             padding: 60px 40px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            box-shadow: var(--shadow);
+            min-height: 500px;
         }
 
-        .section h2 {
-            font-size: 36px;
-            margin-bottom: 10px;
-            text-align: center;
-            color: #333;
-        }
+        .section-header { text-align: center; margin-bottom: 8px; }
+        .section-header h2 { font-size: 38px; font-weight: 800; color: var(--text); }
 
-        /* FOOTER - exact match */
-        footer {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            margin: 40px 20px 20px;
-            border-radius: 20px;
-            padding: 40px;
-            text-align: center;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-        }
-
-        /* SEARCH BAR */
+        /* ── SEARCH ── */
         .search-wrap {
             position: relative;
             max-width: 520px;
             margin: 24px auto 0;
         }
-
         .search-wrap svg {
-            position: absolute;
-            left: 18px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: #aaa;
-            width: 18px;
-            height: 18px;
-            pointer-events: none;
+            position: absolute; left: 18px; top: 50%;
+            transform: translateY(-50%); color: #aaa;
+            width: 18px; height: 18px; pointer-events: none;
         }
-
         #searchInput {
             width: 100%;
             padding: 13px 20px 13px 48px;
             border: 2px solid #e0e0e0;
             border-radius: 30px;
             font-size: 15px;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Plus Jakarta Sans', sans-serif;
             color: #333;
             outline: none;
             transition: border-color 0.3s, box-shadow 0.3s;
             background: #fff;
         }
-
         #searchInput::placeholder { color: #aaa; }
         #searchInput:focus {
-            border-color: #667eea;
+            border-color: var(--primary);
             box-shadow: 0 0 0 3px rgba(102,126,234,0.15);
         }
 
-        /* BOARD SELECTOR */
-        .board-selector-wrap {
-            display: flex;
-            justify-content: center;
-            margin: 30px 0 0;
-        }
+        /* ══════════════════════════════
+           STEP NAVIGATOR
+        ══════════════════════════════ */
 
-        .board-selector {
-            display: flex;
-            background: #f0f0f8;
-            border-radius: 50px;
-            padding: 6px;
-            gap: 6px;
-            box-shadow: inset 0 2px 6px rgba(0,0,0,0.08);
-        }
-
-        .board-btn {
-            padding: 12px 40px;
-            border-radius: 40px;
-            border: none;
-            background: transparent;
-            color: #888;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.35s cubic-bezier(.4,0,.2,1);
-            letter-spacing: 0.3px;
-        }
-
-        .board-btn.active {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: #fff;
-            box-shadow: 0 6px 20px rgba(102,126,234,0.45);
-            transform: scale(1.04);
-        }
-
-        .board-btn:not(.active):hover {
-            background: rgba(102,126,234,0.10);
-            color: #667eea;
-        }
-
-        .board-btn .board-icon {
-            margin-right: 8px;
-            font-size: 18px;
-            vertical-align: middle;
-        }
-
-        /* Board content panels — fade in/out */
-        .board-content {
-            overflow: hidden;
-            transition: opacity 0.35s ease, transform 0.35s ease;
-            opacity: 0;
-            transform: translateY(10px);
-            pointer-events: none;
-            display: none;
-        }
-
-        .board-content.visible {
-            display: block;
-            opacity: 1;
-            transform: translateY(0);
-            pointer-events: auto;
-        }
-
-        /* CLASS TABS */
-        .tabs-wrap {
-            display: flex;
-            justify-content: center;
-            gap: 12px;
-            flex-wrap: wrap;
-            margin: 20px 0 0;
-        }
-
-        .class-tab {
-            padding: 10px 30px;
-            border-radius: 30px;
-            border: 2px solid #667eea;
-            background: transparent;
-            color: #667eea;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            font-size: 15px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .class-tab:hover { background: rgba(102,126,234,0.08); }
-
-        .class-tab.active {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            border-color: transparent;
-            color: #fff;
-            box-shadow: 0 5px 15px rgba(102,126,234,0.4);
-        }
-
-        /* CLASS PANELS */
-        .class-panel { display: none; }
-        .class-panel.active { display: block; }
-
-        .panel-heading {
+        /* Breadcrumb trail */
+        .breadcrumb {
             display: flex;
             align-items: center;
-            gap: 14px;
-            margin: 40px 0 20px;
+            gap: 8px;
+            margin: 36px 0 28px;
+            flex-wrap: wrap;
+        }
+        .breadcrumb-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--muted);
+            cursor: pointer;
+            padding: 6px 14px;
+            border-radius: 20px;
+            transition: all 0.2s;
+            background: transparent;
+            border: none;
+        }
+        .breadcrumb-item:hover { background: rgba(102,126,234,0.1); color: var(--primary); }
+        .breadcrumb-item.active { color: var(--primary); }
+        .breadcrumb-item.clickable:hover { text-decoration: underline; }
+        .breadcrumb-sep { color: #ccc; font-size: 16px; }
+        .breadcrumb-item .bc-icon { font-size: 16px; }
+
+        /* Step panels container */
+        .step-viewport {
+            overflow: hidden;
+            position: relative;
         }
 
-        .panel-heading h3 {
+        /* Each step panel */
+        .step-panel {
+            display: none;
+            animation: stepIn 0.42s cubic-bezier(0.22,1,0.36,1) both;
+        }
+        .step-panel.active { display: block; }
+        .step-panel.exit { animation: stepOut 0.3s ease forwards; }
+
+        @keyframes stepIn {
+            from { opacity: 0; transform: translateX(48px) scale(0.97); }
+            to   { opacity: 1; transform: translateX(0) scale(1); }
+        }
+        @keyframes stepOut {
+            from { opacity: 1; transform: translateX(0) scale(1); }
+            to   { opacity: 0; transform: translateX(-40px) scale(0.97); }
+        }
+        @keyframes stepInBack {
+            from { opacity: 0; transform: translateX(-48px) scale(0.97); }
+            to   { opacity: 1; transform: translateX(0) scale(1); }
+        }
+        .step-panel.back-in { animation: stepInBack 0.42s cubic-bezier(0.22,1,0.36,1) both; }
+
+        /* ── STEP 1: Board Selection ── */
+        .board-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+            margin-top: 8px;
+        }
+
+        .board-card {
+            border: 2px solid var(--border);
+            border-radius: 20px;
+            padding: 40px 32px;
+            cursor: pointer;
+            text-align: center;
+            transition: all 0.35s cubic-bezier(0.22,1,0.36,1);
+            background: #fff;
+            position: relative;
+            overflow: hidden;
+        }
+        .board-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: var(--grad);
+            opacity: 0;
+            transition: opacity 0.35s;
+            z-index: 0;
+        }
+        .board-card:hover { border-color: var(--primary); transform: translateY(-6px); box-shadow: 0 20px 50px rgba(102,126,234,0.25); }
+        .board-card:hover::before { opacity: 1; }
+        .board-card:hover * { position: relative; z-index: 1; color: #fff !important; }
+
+        .board-card-icon { font-size: 52px; margin-bottom: 16px; line-height: 1; }
+        .board-card-name { font-size: 22px; font-weight: 800; color: var(--text); margin-bottom: 8px; }
+        .board-card-desc { font-size: 14px; color: var(--muted); line-height: 1.5; }
+        .board-card-arrow {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px; height: 36px;
+            background: rgba(102,126,234,0.1);
+            border-radius: 50%;
+            margin-top: 20px;
+            font-size: 18px;
+            transition: all 0.3s;
+        }
+        .board-card:hover .board-card-arrow { background: rgba(255,255,255,0.25); transform: translateX(4px); }
+
+        /* ── STEP 2: Class Selection ── */
+        .step-heading {
             font-size: 26px;
-            font-weight: 700;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-weight: 800;
+            color: var(--text);
+            margin-bottom: 6px;
+        }
+        .step-subheading { font-size: 15px; color: var(--muted); margin-bottom: 32px; }
+
+        .class-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 18px;
+        }
+
+        .class-card {
+            border: 2px solid var(--border);
+            border-radius: 18px;
+            padding: 32px 24px;
+            cursor: pointer;
+            text-align: center;
+            transition: all 0.3s cubic-bezier(0.22,1,0.36,1);
+            background: #fff;
+            position: relative;
+            overflow: hidden;
+        }
+        .class-card::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            height: 4px;
+            background: var(--grad);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.35s cubic-bezier(0.22,1,0.36,1);
+        }
+        .class-card:hover { border-color: var(--primary); transform: translateY(-4px); box-shadow: 0 12px 32px rgba(102,126,234,0.2); }
+        .class-card:hover::after { transform: scaleX(1); }
+
+        .class-card-num {
+            font-size: 42px;
+            font-weight: 800;
+            background: var(--grad);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            line-height: 1;
         }
-
-        .file-count-badge {
+        .class-card-label { font-size: 16px; font-weight: 700; color: var(--text); margin-top: 8px; }
+        .class-card-badge {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 4px 12px;
             background: rgba(102,126,234,0.1);
-            color: #667eea;
+            color: var(--primary);
+            border-radius: 20px;
             font-size: 12px;
             font-weight: 600;
-            padding: 4px 12px;
-            border-radius: 20px;
-            border: 1px solid rgba(102,126,234,0.3);
         }
 
-        /* SUBJECT ACCORDION */
-        .subject-block {
-            border: 1px solid #e8e8f0;
-            border-radius: 15px;
-            margin-bottom: 14px;
-            overflow: hidden;
-            transition: border-color 0.3s, box-shadow 0.3s;
-            background: #fff;
+        /* ── STEP 3: Subject Selection ── */
+        .subject-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 18px;
         }
 
-        .subject-block:hover {
-            border-color: #667eea;
-            box-shadow: 0 4px 16px rgba(102,126,234,0.12);
-        }
-
-        .subject-block.open {
-            border-color: #667eea;
-            box-shadow: 0 4px 20px rgba(102,126,234,0.18);
-        }
-
-        .subject-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 18px 24px;
+        .subject-card {
+            border: 2px solid var(--border);
+            border-radius: 16px;
+            padding: 24px 22px;
             cursor: pointer;
-            gap: 12px;
-            user-select: none;
-        }
-
-        .subject-left {
+            transition: all 0.3s cubic-bezier(0.22,1,0.36,1);
+            background: #fff;
             display: flex;
             align-items: center;
-            gap: 14px;
+            gap: 16px;
         }
+        .subject-card:hover { border-color: var(--primary); transform: translateY(-3px); box-shadow: 0 10px 28px rgba(102,126,234,0.18); }
 
-        .subj-icon {
-            width: 44px;
-            height: 44px;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 22px;
+        .subj-card-icon {
+            width: 52px; height: 52px;
+            border-radius: 14px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 26px;
             flex-shrink: 0;
         }
-
-        .subject-name {
-            font-size: 17px;
-            font-weight: 700;
-            color: #333;
-        }
-
-        .subject-meta {
-            font-size: 13px;
-            color: #999;
-            margin-top: 2px;
-        }
-
-        .subject-right {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            flex-shrink: 0;
-        }
-
-        .files-badge {
-            background: rgba(102,126,234,0.1);
-            color: #667eea;
+        .subj-card-info { flex: 1; min-width: 0; }
+        .subj-card-name { font-size: 16px; font-weight: 700; color: var(--text); }
+        .subj-card-count {
+            margin-top: 4px;
             font-size: 12px;
             font-weight: 600;
-            padding: 4px 12px;
-            border-radius: 20px;
+            color: var(--primary);
+            background: rgba(102,126,234,0.1);
+            display: inline-block;
+            padding: 2px 10px;
+            border-radius: 10px;
         }
+        .subj-card-count.soon { color: #f59e0b; background: rgba(245,158,11,0.1); }
+        .subj-card-chevron { color: #ccc; font-size: 18px; flex-shrink: 0; transition: transform 0.3s, color 0.3s; }
+        .subject-card:hover .subj-card-chevron { transform: translateX(4px); color: var(--primary); }
 
-        .chevron {
-            width: 20px;
-            height: 20px;
-            color: #bbb;
-            transition: transform 0.3s;
+        /* ── STEP 4: Files ── */
+        .files-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 28px;
+        }
+        .files-header-icon {
+            width: 56px; height: 56px;
+            border-radius: 16px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 28px;
+        }
+        .files-header-title { font-size: 22px; font-weight: 800; color: var(--text); }
+        .files-header-sub { font-size: 14px; color: var(--muted); margin-top: 2px; }
+        .files-count-badge {
+            margin-left: auto;
+            padding: 8px 20px;
+            background: rgba(102,126,234,0.1);
+            color: var(--primary);
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 700;
             flex-shrink: 0;
         }
-
-        .subject-block.open .chevron { transform: rotate(180deg); }
-
-        /* FILES AREA */
-        .files-area {
-            display: none;
-            padding: 0 20px 22px;
-        }
-
-        .subject-block.open .files-area { display: block; }
 
         .files-grid {
             display: grid;
@@ -365,56 +345,43 @@
             gap: 16px;
         }
 
-        /* FILE CARD - matches course-card style */
         .file-card {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: var(--grad);
             padding: 22px;
             border-radius: 15px;
             color: white;
-            transition: transform 0.3s;
+            transition: transform 0.3s, box-shadow 0.3s;
             cursor: pointer;
             text-decoration: none;
             display: flex;
             flex-direction: column;
             gap: 10px;
+            animation: cardPop 0.4s cubic-bezier(0.22,1,0.36,1) both;
         }
-
-        .file-card:hover { transform: translateY(-5px); }
-
-        .file-top {
-            display: flex;
-            align-items: flex-start;
-            gap: 12px;
+        @keyframes cardPop {
+            from { opacity: 0; transform: scale(0.9) translateY(12px); }
+            to   { opacity: 1; transform: scale(1) translateY(0); }
         }
+        .file-card:nth-child(1) { animation-delay: 0.03s; }
+        .file-card:nth-child(2) { animation-delay: 0.07s; }
+        .file-card:nth-child(3) { animation-delay: 0.11s; }
+        .file-card:nth-child(4) { animation-delay: 0.15s; }
+        .file-card:nth-child(5) { animation-delay: 0.19s; }
+        .file-card:nth-child(6) { animation-delay: 0.23s; }
+        .file-card:nth-child(7) { animation-delay: 0.27s; }
+        .file-card:nth-child(8) { animation-delay: 0.31s; }
+        .file-card:hover { transform: translateY(-6px); box-shadow: 0 16px 40px rgba(102,126,234,0.45); }
 
+        .file-top { display: flex; align-items: flex-start; gap: 12px; }
         .file-ext-badge {
             background: rgba(255,255,255,0.25);
-            color: #fff;
-            font-size: 10px;
-            font-weight: 800;
-            letter-spacing: 0.5px;
-            width: 36px;
-            height: 36px;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
+            color: #fff; font-size: 10px; font-weight: 800;
+            letter-spacing: 0.5px; width: 36px; height: 36px;
+            border-radius: 8px; display: flex; align-items: center;
+            justify-content: center; flex-shrink: 0;
         }
-
-        .file-name {
-            font-size: 15px;
-            font-weight: 700;
-            color: white;
-            line-height: 1.4;
-        }
-
-        .file-desc {
-            font-size: 13px;
-            color: rgba(255,255,255,0.85);
-            line-height: 1.5;
-        }
-
+        .file-name { font-size: 15px; font-weight: 700; color: white; line-height: 1.4; }
+        .file-desc { font-size: 13px; color: rgba(255,255,255,0.85); line-height: 1.5; }
         .file-dl {
             margin-top: auto;
             display: inline-block;
@@ -427,42 +394,75 @@
             align-self: flex-start;
             transition: background 0.2s;
         }
-
         .file-card:hover .file-dl { background: rgba(255,255,255,0.35); }
 
-        /* COMING SOON */
+        /* Coming soon */
         .coming-soon {
             background: #f8f8ff;
             border: 2px dashed #d0d4f5;
-            border-radius: 12px;
-            padding: 36px;
+            border-radius: 16px;
+            padding: 60px 40px;
             text-align: center;
             color: #888;
+            grid-column: 1/-1;
         }
+        .coming-soon .cs-icon { font-size: 44px; margin-bottom: 14px; }
+        .coming-soon h4 { font-size: 18px; color: #555; margin-bottom: 8px; font-weight: 700; }
 
-        .coming-soon .cs-icon { font-size: 36px; margin-bottom: 12px; }
-
-        .coming-soon h4 {
-            font-size: 17px;
-            color: #555;
-            margin-bottom: 6px;
+        /* Back button */
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            border: 2px solid var(--border);
+            border-radius: 30px;
+            background: #fff;
+            color: var(--muted);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.25s;
+            margin-bottom: 28px;
         }
+        .back-btn:hover { border-color: var(--primary); color: var(--primary); background: rgba(102,126,234,0.05); }
+        .back-btn .back-arrow { font-size: 16px; transition: transform 0.25s; }
+        .back-btn:hover .back-arrow { transform: translateX(-3px); }
 
-        /* NO RESULTS */
+        /* Step title bar */
+        .step-title-bar {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 32px;
+        }
+        .step-num {
+            width: 40px; height: 40px;
+            border-radius: 50%;
+            background: var(--grad);
+            color: #fff;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 16px;
+            font-weight: 800;
+            flex-shrink: 0;
+            box-shadow: 0 4px 12px rgba(102,126,234,0.4);
+        }
+        .step-title { font-size: 22px; font-weight: 800; color: var(--text); }
+        .step-subtitle { font-size: 14px; color: var(--muted); margin-top: 2px; }
+
+        /* No results */
         #noResults {
-            display: none;
-            text-align: center;
-            padding: 50px 20px;
-            color: #888;
+            display: none; text-align: center;
+            padding: 60px 20px; color: #888;
         }
-
         #noResults .nr-icon { font-size: 44px; margin-bottom: 14px; }
         #noResults h3 { font-size: 20px; color: #555; margin-bottom: 8px; }
 
-        /* INFO NOTE */
+        /* Info note */
         .info-note {
             background: rgba(102,126,234,0.07);
-            border-left: 4px solid #667eea;
+            border-left: 4px solid var(--primary);
             border-radius: 10px;
             padding: 18px 22px;
             font-size: 14px;
@@ -470,7 +470,17 @@
             margin-top: 40px;
         }
 
-        /* POPUP ANIMATION - exact match */
+        /* FOOTER */
+        footer {
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            margin: 40px 20px 20px;
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+
         @keyframes flashBounce {
             0%   { transform: scale(0); opacity: 0; }
             25%  { opacity: 1; }
@@ -478,33 +488,14 @@
             75%  { transform: scale(0.9); opacity: 1; }
             100% { transform: scale(1); opacity: 1; }
         }
+        .popup-animation { animation: flashBounce 0.7s cubic-bezier(0.68,-0.55,0.265,1.55) forwards; }
 
-        .popup-animation {
-            animation: flashBounce 0.7s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
-        }
-
-        /* ── HAMBURGER BUTTON ── */
+        /* ── HAMBURGER ── */
         .hamburger {
-            display: none;
-            flex-direction: column;
-            justify-content: center;
-            gap: 5px;
-            background: none;
-            border: none;
-            cursor: pointer;
-            padding: 6px;
-            z-index: 1100;
+            display: none; flex-direction: column; justify-content: center;
+            gap: 5px; background: none; border: none; cursor: pointer; padding: 6px; z-index: 1100;
         }
-
-        .hamburger span {
-            display: block;
-            width: 26px;
-            height: 3px;
-            background: #667eea;
-            border-radius: 3px;
-            transition: all 0.3s ease;
-        }
-
+        .hamburger span { display: block; width: 26px; height: 3px; background: var(--primary); border-radius: 3px; transition: all 0.3s ease; }
         .hamburger.open span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
         .hamburger.open span:nth-child(2) { opacity: 0; }
         .hamburger.open span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
@@ -512,57 +503,38 @@
         /* RESPONSIVE */
         @media (max-width: 768px) {
             .hamburger { display: flex; }
-
             .nav-links {
-                display: none;
-                position: fixed;
-                top: 0; left: 0; right: 0; bottom: 0;
-                background: rgba(255,255,255,0.98);
-                backdrop-filter: blur(12px);
-                flex-direction: column;
-                align-items: center;
-                justify-content: center;
-                gap: 28px;
-                z-index: 1050;
+                display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+                background: rgba(255,255,255,0.98); backdrop-filter: blur(12px);
+                flex-direction: column; align-items: center; justify-content: center;
+                gap: 28px; z-index: 1050;
             }
-
             .nav-links.open { display: flex; }
             .nav-links a { font-size: 20px; font-weight: 600; }
-
             .section { padding: 30px 16px; margin: 16px 10px; }
-            .section h2 { font-size: 26px; }
-
-            .board-selector { flex-direction: column; border-radius: 20px; }
-            .board-btn { padding: 10px 24px; font-size: 15px; }
-
-            .subject-header { padding: 14px 14px; }
-            .subject-name { font-size: 15px; }
-            .files-area { padding: 0 10px 14px; }
+            .section-header h2 { font-size: 28px; }
+            .board-grid, .class-grid, .subject-grid { grid-template-columns: 1fr 1fr; }
             .files-grid { grid-template-columns: 1fr; }
-            .class-tab { padding: 8px 16px; font-size: 13px; }
-
             footer { margin: 16px 10px 10px; padding: 24px 16px; }
             footer img { width: 160px !important; height: 160px !important; }
         }
-
-        @media (max-width: 400px) {
-            .tabs-wrap { gap: 8px; }
-            .class-tab { padding: 7px 12px; font-size: 12px; }
+        @media (max-width: 480px) {
+            .board-grid, .class-grid { grid-template-columns: 1fr; }
+            .subject-grid { grid-template-columns: 1fr; }
         }
     </style>
-	<!-- Google tag (gtag.js) -->
-	<script async src="https://www.googletagmanager.com/gtag/js?id=G-RLCS3104Z1"></script>
-	<script>
-	  window.dataLayer = window.dataLayer || [];
-	  function gtag(){dataLayer.push(arguments);}
-	  gtag('js', new Date());
-
-	  gtag('config', 'G-RLCS3104Z1');
-	</script>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-RLCS3104Z1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-RLCS3104Z1');
+    </script>
 </head>
 <body>
 
-    <!-- HEADER - identical to index.htm -->
+    <!-- HEADER -->
     <header>
         <nav class="container">
             <div class="logo">Fakhar STEM Sphere</div>
@@ -584,747 +556,551 @@
     <section class="section">
         <div class="container">
 
-            <h2>📥 Downloads</h2>
-	    <!--
-            <p style="text-align:center; color:#666; font-size:18px; max-width:700px; margin:0 auto;">
-                Free Federal Board study notes, model papers &amp; syllabi — Class 9 through 12.
-            </p>
-	    -->
-            <!-- Search -->
-            <div class="search-wrap">
+            <div class="section-header">
+                <h2>📥 Downloads</h2>
+            </div>
+
+            <!-- Search (shown only on files step) -->
+            <div class="search-wrap" id="searchWrap" style="display:none;">
                 <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                     <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
                 </svg>
-                <input id="searchInput" type="text" placeholder="Search subject, topic or file name…" autocomplete="off" />
+                <input id="searchInput" type="text" placeholder="Search file name…" autocomplete="off" />
             </div>
 
-            <!-- Board Selector — pill toggle -->
-            <div class="board-selector-wrap">
-                <div class="board-selector">
-                    <button class="board-btn active" id="btn-fbise" onclick="switchBoard('fbise')">
-                        Federal Board
-                    </button>
-                    <button class="board-btn" id="btn-punjab" onclick="switchBoard('punjab')">
-                        Punjab Board
-                    </button>
-                </div>
-            </div>
+            <!-- Breadcrumb -->
+            <nav class="breadcrumb" id="breadcrumb" aria-label="Navigation">
+                <span class="breadcrumb-item active" id="bc-home">
+                    <span class="bc-icon">🏠</span> Home
+                </span>
+                <span class="breadcrumb-sep" id="bcsep1" style="display:none;">›</span>
+                <span class="breadcrumb-item" id="bc-board" style="display:none;"></span>
+                <span class="breadcrumb-sep" id="bcsep2" style="display:none;">›</span>
+                <span class="breadcrumb-item" id="bc-class" style="display:none;"></span>
+                <span class="breadcrumb-sep" id="bcsep3" style="display:none;">›</span>
+                <span class="breadcrumb-item" id="bc-subject" style="display:none;"></span>
+            </nav>
 
             <!-- No results -->
             <div id="noResults">
                 <div class="nr-icon">🔍</div>
                 <h3>No results found</h3>
-                <p>Try a different keyword or browse by class tab above.</p>
+                <p>Try a different keyword.</p>
             </div>
 
-            <!-- ══ FBISE CONTENT ══ -->
-            <div id="boardContent-fbise" class="board-content visible">
-                <div id="classTabs-fbise" class="tabs-wrap" style="margin-top: 14px;">
-                    <button class="class-tab active" data-class="9" data-board-group="fbise">Class 9th</button>
-                    <button class="class-tab" data-class="10" data-board-group="fbise">Class 10th</button>
-                    <button class="class-tab" data-class="11" data-board-group="fbise">Class 11th</button>
-                    <button class="class-tab" data-class="12" data-board-group="fbise">Class 12th</button>
-                </div>
-
-            <!-- ══ FBISE PANELS ══ -->
-            <div id="fbisePanels">
-
-            <!-- ══ CLASS 9 ══ -->
-            <div class="class-panel active" data-panel="9">
-
-                <div class="panel-heading">
-                    <h3>Class 9th</h3>
-                    <span class="file-count-badge">16 files available</span>
-                </div>
-
-                <!-- Islamiat -->
-                <div class="subject-block" data-subject="islamiat 9">
-                    <div class="subject-header" onclick="toggle(this)">
-                        <div class="subject-left">
-                            <div class="subj-icon" style="background:#e8f5e9;">🕌</div>
-                            <div>
-                                <div class="subject-name">Islamiat (Lazmi)</div>
-                                <div class="subject-meta">FBISE</div>
-                            </div>
-                        </div>
-                        <div class="subject-right">
-                            <span class="files-badge">6 files</span>
-                            <svg class="chevron" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg>
-                        </div>
-                    </div>
-                    <div class="files-area">
-                        <div class="files-grid">
-
-                            <a href="assets/FBISE\9th_Class\Islamiat\Islmiat_Class_9th_Syllabus.pdf" target="_blank" download class="file-card" data-tags="islamiat syllabus 9">
-                                <div class="file-top">
-                                    <div class="file-ext-badge">PDF</div>
-                                    <div class="file-name">Islamiat Syllabus — Class 9th</div>
-                                </div>
-                                <div class="file-desc">Complete official syllabus for Islamiat Lazmi.</div>
-                                <div class="file-dl">⬇ Download</div>
-                            </a>
-
-                            <a href="assets/FBISE\9th_Class\Islamiat\Most_Important_Personalities_of_Islam.pdf" target="_blank" download class="file-card" data-tags="islamiat personalities islam 9">
-                                <div class="file-top">
-                                    <div class="file-ext-badge">PDF</div>
-                                    <div class="file-name">Important Personalities of Islam</div>
-                                </div>
-                                <div class="file-desc">Key Islamic personalities from the Class 9 syllabus with full detail.</div>
-                                <div class="file-dl">⬇ Download</div>
-                            </a>
-
-                            <a href="assets/FBISE\9th_Class\Islamiat\Islamiat_Lazmi_Final_Assessemnt_Framework___Model_Question_Paper_SSC-I.pdf" target="_blank" download class="file-card" data-tags="islamiat assessment framework model paper ssc 9">
-                                <div class="file-top">
-                                    <div class="file-ext-badge">PDF</div>
-                                    <div class="file-name">Assessment Framework &amp; Model Paper (SSC-I)</div>
-                                </div>
-                                <div class="file-desc">Final assessment framework with official model question paper for SSC-I.</div>
-                                <div class="file-dl">⬇ Download</div>
-                            </a>
-
-                            <a href="assets/FBISE\9th_Class\Islamiat\Islamiat_Paper_Development_Class_9th.pdf" target="_blank" download class="file-card" data-tags="islamiat paper development 9">
-                                <div class="file-top">
-                                    <div class="file-ext-badge">PDF</div>
-                                    <div class="file-name">Paper Development Guide</div>
-                                </div>
-                                <div class="file-desc">Question paper development guidelines for Class 9th Islamiat.</div>
-                                <div class="file-dl">⬇ Download</div>
-                            </a>
-
-                            <a href="assets/FBISE\9th_Class\Islamiat\Islamiat_Model_Paper_Class_9th_FBISE_2026.pdf" target="_blank" download class="file-card" data-tags="islamiat model paper 2026 fbise 9">
-                                <div class="file-top">
-                                    <div class="file-ext-badge">PDF</div>
-                                    <div class="file-name">Model Paper 2026 — FBISE</div>
-                                </div>
-                                <div class="file-desc">Official FBISE model question paper.</div>
-                                <div class="file-dl">⬇ Download</div>
-                            </a>
-
-                            <a href="assets/FBISE\9th_Class\Islamiat\Islmiat_TOS_Class_9th_FBISE.pdf" target="_blank" download class="file-card" data-tags="islamiat table of specification tos 9">
-                                <div class="file-top">
-                                    <div class="file-ext-badge">PDF</div>
-                                    <div class="file-name">Table of Specification (ToS)</div>
-                                </div>
-                                <div class="file-desc">Official ToS showing marks distribution across all topics.</div>
-                                <div class="file-dl">⬇ Download</div>
-                            </a>
-
-                        </div>
+            <!-- ══════════════════════════
+                 STEP 1 — Board Selection
+            ══════════════════════════ -->
+            <div class="step-panel active" id="step-board">
+                <div class="step-title-bar">
+                    <div class="step-num">1</div>
+                    <div>
+                        <div class="step-title">Choose Your Board</div>
+                        <div class="step-subtitle">Select the education board to browse resources</div>
                     </div>
                 </div>
-
-                <!-- Mathematics -->
-                <div class="subject-block" data-subject="mathematics 9">
-                    <div class="subject-header" onclick="toggle(this)">
-                        <div class="subject-left">
-                            <div class="subj-icon" style="background:#fff8e1;">📐</div>
-                            <div>
-                                <div class="subject-name">Mathematics</div>
-                                <div class="subject-meta">FBISE</div>
-                            </div>
-                        </div>
-                        <div class="subject-right">
-                            <span class="files-badge">Coming Soon</span>
-                            <svg class="chevron" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg>
-                        </div>
+                <div class="board-grid">
+                    <div class="board-card" onclick="goToClass('fbise', 'Federal Board (FBISE)', '🏛️')">
+                        <div class="board-card-icon">🏛️</div>
+                        <div class="board-card-name">Federal Board</div>
+                        <div class="board-card-desc">FBISE — Classes 9th to 12th<br>Notes, Papers &amp; Resources</div>
+                        <div class="board-card-arrow">→</div>
                     </div>
-                    <div class="files-area">
-                        <div class="coming-soon"><div class="cs-icon">🚧</div><h4>Coming Soon</h4><p>Mathematics notes for Class 9 are being prepared.</p></div>
+                    <div class="board-card" onclick="goToClass('punjab', 'Punjab Board', '📚')">
+                        <div class="board-card-icon">📚</div>
+                        <div class="board-card-name">Punjab Board</div>
+                        <div class="board-card-desc">BISE Punjab — Classes 9th to 12th<br>Coming soon!</div>
+                        <div class="board-card-arrow">→</div>
                     </div>
                 </div>
-
-                <!-- Physics -->
-                <div class="subject-block" data-subject="physics 9">
-                    <div class="subject-header" onclick="toggle(this)">
-                        <div class="subject-left">
-                            <div class="subj-icon" style="background:#e3f2fd;">⚛️</div>
-                            <div>
-                                <div class="subject-name">Physics</div>
-                                <div class="subject-meta">FBISE</div>
-                            </div>
-                        </div>
-                        <div class="subject-right">
-                            <span class="files-badge">10 files</span>
-                            <svg class="chevron" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg>
-                        </div>
-                    </div>
-                    <div class="files-area">
-                        <div class="files-grid">
-
-                            <a href="assets\FBISE\9th_Class\Physics\Model_Paper_Physics_Class_9th_Federal_Board_2026.pdf" target="_blank" download class="file-card" data-tags="physics model paper 2026 fbise federal board 9">
-                                <div class="file-top">
-                                    <div class="file-ext-badge">PDF</div>
-                                    <div class="file-name">Model Paper 2026 — Federal Board</div>
-                                </div>
-                                <div class="file-desc">Official Federal Board model question paper for Physics Class 9th — Session 2025-26.</div>
-                                <div class="file-dl">⬇ Download</div>
-                            </a>
-
-                            <a href="assets\FBISE\9th_Class\Physics\Final_Assessment_Framework_Model_Question_Paper_Physics_SSC-I.pdf" target="_blank" download class="file-card" data-tags="physics assessment framework model paper ssc-i 9">
-                                <div class="file-top">
-                                    <div class="file-ext-badge">PDF</div>
-                                    <div class="file-name">Assessment Framework &amp; Model Paper (SSC-I)</div>
-                                </div>
-                                <div class="file-desc">Final assessment framework with official model question paper for Physics SSC-I.</div>
-                                <div class="file-dl">⬇ Download</div>
-                            </a>
-
-                            <a href="assets\FBISE\9th_Class\Physics\FBISE_Physics_9th_Class_2nd_Annual_2025_OLD.pdf" target="_blank" download class="file-card" data-tags="physics 2nd annual 2025 old paper fbise 9">
-                                <div class="file-top">
-                                    <div class="file-ext-badge">PDF</div>
-                                    <div class="file-name">2nd Annual 2025 Paper — Old Syllabus</div>
-                                </div>
-                                <div class="file-desc">Physics SSC-I 2nd Annual Examination 2025 — Old syllabus paper.</div>
-                                <div class="file-dl">⬇ Download</div>
-                            </a>
-
-                            <a href="assets\FBISE\9th_Class\Physics\FBISE_Physics_9th_Class_1st_Annual_2025_OLD.pdf" target="_blank" download class="file-card" data-tags="physics 1st annual 2025 old paper fbise 9">
-                                <div class="file-top">
-                                    <div class="file-ext-badge">PDF</div>
-                                    <div class="file-name">1st Annual 2025 Paper — Old Syllabus</div>
-                                </div>
-                                <div class="file-desc">Physics SSC-I 1st Annual Examination 2025 — Old syllabus paper.</div>
-                                <div class="file-dl">⬇ Download</div>
-                            </a>
-
-                            <a href="assets\FBISE\9th_Class\Physics\FBISE_Physics_9th_Class_1st_Annual_2025_Morning.pdf" target="_blank" download class="file-card" data-tags="physics 1st annual 2025 morning paper fbise 9">
-                                <div class="file-top">
-                                    <div class="file-ext-badge">PDF</div>
-                                    <div class="file-name">1st Annual 2025 — Morning Session</div>
-                                </div>
-                                <div class="file-desc">Physics SSC-I 1st Annual Examination 2025 — Morning session paper.</div>
-                                <div class="file-dl">⬇ Download</div>
-                            </a>
-
-                            <a href="assets\FBISE\9th_Class\Physics\FBISE_Physics_9th_Class_1st_Annual_2025_Evening.pdf" target="_blank" download class="file-card" data-tags="physics 1st annual 2025 evening paper fbise 9">
-                                <div class="file-top">
-                                    <div class="file-ext-badge">PDF</div>
-                                    <div class="file-name">1st Annual 2025 — Evening Session</div>
-                                </div>
-                                <div class="file-desc">Physics SSC-I 1st Annual Examination 2025 — Evening session paper.</div>
-                                <div class="file-dl">⬇ Download</div>
-                            </a>
-
-                            <a href="assets\FBISE\9th_Class\Physics\FBISE_Physics_9th_Class_2nd_Annual_2025.pdf" target="_blank" download class="file-card" data-tags="physics 2nd annual 2025 paper fbise 9">
-                                <div class="file-top">
-                                    <div class="file-ext-badge">PDF</div>
-                                    <div class="file-name">2nd Annual 2025 Examination Paper</div>
-                                </div>
-                                <div class="file-desc">Physics SSC-I 2nd Annual Examination 2025 paper.</div>
-                                <div class="file-dl">⬇ Download</div>
-                            </a>
-
-                            <a href="assets\FBISE\9th_Class\Physics\FBISE_Physics_Class_9th_Most_Important_Short_and_Long_Chapter_6_and_7_Solution.pdf" target="_blank" download class="file-card" data-tags="physics important short long questions chapter 6 7 solution fbise 9">
-                                <div class="file-top">
-                                    <div class="file-ext-badge">PDF</div>
-                                    <div class="file-name">Most Important Short &amp; Long Q&amp;A — Ch. 6 &amp; 7</div>
-                                </div>
-                                <div class="file-desc">Most important short and long questions with solutions for Chapters 6 &amp; 7.</div>
-                                <div class="file-dl">⬇ Download</div>
-                            </a>
-
-                            <a href="assets\FBISE\9th_Class\Physics\FBISE_Physics_Class_9th_Chapter_8_and_9_Important_Questions_Solution.pdf" target="_blank" download class="file-card" data-tags="physics important questions solution chapter 8 9 fbise 9">
-                                <div class="file-top">
-                                    <div class="file-ext-badge">PDF</div>
-                                    <div class="file-name">Important Questions &amp; Solutions — Ch. 8 &amp; 9</div>
-                                </div>
-                                <div class="file-desc">Important questions with solutions for Chapters 8 &amp; 9.</div>
-                                <div class="file-dl">⬇ Download</div>
-                            </a>
-
-                            <a href="assets\FBISE\9th_Class\Physics\FBISE_Physics_Class_9th_Most_Important_Short_and_Long_Questions.pdf" target="_blank" download class="file-card" data-tags="physics most important short long questions fbise 9">
-                                <div class="file-top">
-                                    <div class="file-ext-badge">PDF</div>
-                                    <div class="file-name">Most Important Short &amp; Long Questions</div>
-                                </div>
-                                <div class="file-desc">Comprehensive collection of the most important short and long questions for Class 9th Physics.</div>
-                                <div class="file-dl">⬇ Download</div>
-                            </a>
-
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Chemistry -->
-                <div class="subject-block" data-subject="chemistry 9">
-                    <div class="subject-header" onclick="toggle(this)">
-                        <div class="subject-left">
-                            <div class="subj-icon" style="background:#fce4ec;">🧪</div>
-                            <div>
-                                <div class="subject-name">Chemistry</div>
-                                <div class="subject-meta">FBISE</div>
-                            </div>
-                        </div>
-                        <div class="subject-right">
-                            <span class="files-badge">Coming Soon</span>
-                            <svg class="chevron" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg>
-                        </div>
-                    </div>
-                    <div class="files-area">
-                        <div class="coming-soon"><div class="cs-icon">🚧</div><h4>Coming Soon</h4><p>Chemistry notes for Class 9 are being prepared.</p></div>
-                    </div>
-                </div>
-
-                <!-- Biology -->
-                <div class="subject-block" data-subject="biology 9">
-                    <div class="subject-header" onclick="toggle(this)">
-                        <div class="subject-left">
-                            <div class="subj-icon" style="background:#e8f5e9;">🌿</div>
-                            <div>
-                                <div class="subject-name">Biology</div>
-                                <div class="subject-meta">FBISE</div>
-                            </div>
-                        </div>
-                        <div class="subject-right">
-                            <span class="files-badge">Coming Soon</span>
-                            <svg class="chevron" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg>
-                        </div>
-                    </div>
-                    <div class="files-area">
-                        <div class="coming-soon"><div class="cs-icon">🚧</div><h4>Coming Soon</h4><p>Biology notes for Class 9 are being prepared.</p></div>
-                    </div>
-                </div>
-
-                <!-- English -->
-                <div class="subject-block" data-subject="english 9">
-                    <div class="subject-header" onclick="toggle(this)">
-                        <div class="subject-left">
-                            <div class="subj-icon" style="background:#ede7f6;">📝</div>
-                            <div>
-                                <div class="subject-name">English</div>
-                                <div class="subject-meta">FBISE</div>
-                            </div>
-                        </div>
-                        <div class="subject-right">
-                            <span class="files-badge">Coming Soon</span>
-                            <svg class="chevron" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg>
-                        </div>
-                    </div>
-                    <div class="files-area">
-                        <div class="coming-soon"><div class="cs-icon">🚧</div><h4>Coming Soon</h4><p>English notes for Class 9 are being prepared.</p></div>
-                    </div>
-                </div>
-
-                <!-- Urdu -->
-                <div class="subject-block" data-subject="urdu 9">
-                    <div class="subject-header" onclick="toggle(this)">
-                        <div class="subject-left">
-                            <div class="subj-icon" style="background:#fff3e0;">📜</div>
-                            <div>
-                                <div class="subject-name">Urdu</div>
-                                <div class="subject-meta">FBISE</div>
-                            </div>
-                        </div>
-                        <div class="subject-right">
-                            <span class="files-badge">Coming Soon</span>
-                            <svg class="chevron" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg>
-                        </div>
-                    </div>
-                    <div class="files-area">
-                        <div class="coming-soon"><div class="cs-icon">🚧</div><h4>Coming Soon</h4><p>Urdu notes for Class 9 are being prepared.</p></div>
-                    </div>
-                </div>
-
-                <!-- Computer Science -->
-                <div class="subject-block" data-subject="computer science 9">
-                    <div class="subject-header" onclick="toggle(this)">
-                        <div class="subject-left">
-                            <div class="subj-icon" style="background:#e8eaf6;">💻</div>
-                            <div>
-                                <div class="subject-name">Computer Science</div>
-                                <div class="subject-meta">FBISE</div>
-                            </div>
-                        </div>
-                        <div class="subject-right">
-                            <span class="files-badge">Coming Soon</span>
-                            <svg class="chevron" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg>
-                        </div>
-                    </div>
-                    <div class="files-area">
-                        <div class="coming-soon"><div class="cs-icon">🚧</div><h4>Coming Soon</h4><p>Computer Science notes for Class 9 are being prepared.</p></div>
-                    </div>
-                </div>
-
-            </div><!-- /panel-9 -->
-
-            <!-- ══ CLASS 10 ══ -->
-            <div class="class-panel" data-panel="10">
-                <div class="panel-heading">
-                    <h3>Class 10th</h3>
-                    <span class="file-count-badge">7 files available</span>
-                </div>
-
-                <!-- Chemistry Class 10 -->
-                <div class="subject-block" data-subject="chemistry 10">
-                    <div class="subject-header" onclick="toggle(this)">
-                        <div class="subject-left">
-                            <div class="subj-icon" style="background:#fce4ec;">🧪</div>
-                            <div>
-                                <div class="subject-name">Chemistry</div>
-                                <div class="subject-meta">FBISE</div>
-                            </div>
-                        </div>
-                        <div class="subject-right">
-                            <span class="files-badge">7 files</span>
-                            <svg class="chevron" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg>
-                        </div>
-                    </div>
-                    <div class="files-area">
-                        <div class="files-grid">
-
-                            <a href="assets/FBISE\10th_Class\Chemistry\Chemisty_SSC_II_Summative_and_Formative_Topics.pdf" target="_blank" download class="file-card" data-tags="chemistry summative formative topics ssc 10">
-                                <div class="file-top">
-                                    <div class="file-ext-badge">PDF</div>
-                                    <div class="file-name">Summative &amp; Formative Topics (SSC-II)</div>
-                                </div>
-                                <div class="file-desc">Complete list of summative and formative assessment topics for Chemistry SSC-II.</div>
-                                <div class="file-dl">⬇ Download</div>
-                            </a>
-
-                            <a href="assets/FBISE\10th_Class\Chemistry\Final_Assessment_Framework_+_Model_Question_Paper_Chemistry_SSC-II.pdf" target="_blank" download class="file-card" data-tags="chemistry assessment framework model paper ssc 10">
-                                <div class="file-top">
-                                    <div class="file-ext-badge">PDF</div>
-                                    <div class="file-name">Assessment Framework &amp; Model Paper (SSC-II)</div>
-                                </div>
-                                <div class="file-desc">Final assessment framework with official model question paper for Chemistry SSC-II.</div>
-                                <div class="file-dl">⬇ Download</div>
-                            </a>
-
-                            <a href="assets/FBISE\10th_Class\Chemistry\Chemistry_SSC_II_1st_Annual_Hard.pdf" target="_blank" download class="file-card" data-tags="chemistry 1st annual hard paper ssc 10">
-                                <div class="file-top">
-                                    <div class="file-ext-badge">PDF</div>
-                                    <div class="file-name">1st Annual Paper — Hard Copy</div>
-                                </div>
-                                <div class="file-desc">Chemistry SSC-II 1st Annual Examination — Hard copy paper.</div>
-                                <div class="file-dl">⬇ Download</div>
-                            </a>
-
-                            <a href="assets/FBISE\10th_Class\Chemistry\Chemistry_SSC_II_1st_Annual_Local.pdf" target="_blank" download class="file-card" data-tags="chemistry 1st annual local paper ssc 10">
-                                <div class="file-top">
-                                    <div class="file-ext-badge">PDF</div>
-                                    <div class="file-name">1st Annual Paper — Local Copy</div>
-                                </div>
-                                <div class="file-desc">Chemistry SSC-II 1st Annual Examination — Local copy paper.</div>
-                                <div class="file-dl">⬇ Download</div>
-                            </a>
-
-                            <a href="assets/FBISE\10th_Class\Chemistry\Chemistry_SSC_II_2nd_Annual.pdf" target="_blank" download class="file-card" data-tags="chemistry 2nd annual paper ssc 10">
-                                <div class="file-top">
-                                    <div class="file-ext-badge">PDF</div>
-                                    <div class="file-name">2nd Annual Examination Paper</div>
-                                </div>
-                                <div class="file-desc">Chemistry SSC-II 2nd Annual Examination paper.</div>
-                                <div class="file-dl">⬇ Download</div>
-                            </a>
-
-                            <a href="assets/FBISE\10th_Class\Chemistry\Chemistry_SSC_II_Model_Paper_2026.pdf" target="_blank" download class="file-card" data-tags="chemistry model paper 2026 fbise 10">
-                                <div class="file-top">
-                                    <div class="file-ext-badge">PDF</div>
-                                    <div class="file-name">Model Paper 2026 — FBISE</div>
-                                </div>
-                                <div class="file-desc">Official FBISE Chemistry model question paper — Session 2025-26.</div>
-                                <div class="file-dl">⬇ Download</div>
-                            </a>
-
-                            <a href="assets/FBISE\10th_Class\Chemistry\Table_of_Specifications_Chemistry_SSC_II_2026.pdf" target="_blank" download class="file-card" data-tags="chemistry table of specification tos 2026 ssc 10">
-                                <div class="file-top">
-                                    <div class="file-ext-badge">PDF</div>
-                                    <div class="file-name">Table of Specifications 2026 (SSC-II)</div>
-                                </div>
-                                <div class="file-desc">Official ToS showing marks distribution across all Chemistry topics for 2026.</div>
-                                <div class="file-dl">⬇ Download</div>
-                            </a>
-
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Mathematics Class 10 -->
-                <div class="subject-block" data-subject="mathematics 10">
-                    <div class="subject-header" onclick="toggle(this)">
-                        <div class="subject-left">
-                            <div class="subj-icon" style="background:#fff8e1;">📐</div>
-                            <div>
-                                <div class="subject-name">Mathematics</div>
-                                <div class="subject-meta">FBISE</div>
-                            </div>
-                        </div>
-                        <div class="subject-right">
-                            <span class="files-badge">Coming Soon</span>
-                            <svg class="chevron" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg>
-                        </div>
-                    </div>
-                    <div class="files-area">
-                        <div class="coming-soon"><div class="cs-icon">🚧</div><h4>Coming Soon</h4><p>Mathematics notes for Class 10 are being prepared.</p></div>
-                    </div>
-                </div>
-
-                <!-- Physics Class 10 -->
-                <div class="subject-block" data-subject="physics 10">
-                    <div class="subject-header" onclick="toggle(this)">
-                        <div class="subject-left">
-                            <div class="subj-icon" style="background:#e3f2fd;">⚛️</div>
-                            <div>
-                                <div class="subject-name">Physics</div>
-                                <div class="subject-meta">FBISE</div>
-                            </div>
-                        </div>
-                        <div class="subject-right">
-                            <span class="files-badge">Coming Soon</span>
-                            <svg class="chevron" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg>
-                        </div>
-                    </div>
-                    <div class="files-area">
-                        <div class="coming-soon"><div class="cs-icon">🚧</div><h4>Coming Soon</h4><p>Physics notes for Class 10 are being prepared.</p></div>
-                    </div>
-                </div>
-
-                <!-- Biology Class 10 -->
-                <div class="subject-block" data-subject="biology 10">
-                    <div class="subject-header" onclick="toggle(this)">
-                        <div class="subject-left">
-                            <div class="subj-icon" style="background:#e8f5e9;">🌿</div>
-                            <div>
-                                <div class="subject-name">Biology</div>
-                                <div class="subject-meta">FBISE</div>
-                            </div>
-                        </div>
-                        <div class="subject-right">
-                            <span class="files-badge">Coming Soon</span>
-                            <svg class="chevron" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg>
-                        </div>
-                    </div>
-                    <div class="files-area">
-                        <div class="coming-soon"><div class="cs-icon">🚧</div><h4>Coming Soon</h4><p>Biology notes for Class 10 are being prepared.</p></div>
-                    </div>
-                </div>
-
             </div>
 
-            <!-- ══ CLASS 11 ══ -->
-            <div class="class-panel" data-panel="11">
-                <div class="panel-heading">
-                    <h3>Class 11th</h3>
-                    <span class="file-count-badge">Coming Soon</span>
+            <!-- ══════════════════════════
+                 STEP 2 — Class Selection
+            ══════════════════════════ -->
+            <div class="step-panel" id="step-class">
+                <button class="back-btn" onclick="goBack('step-board')">
+                    <span class="back-arrow">←</span> Back to Boards
+                </button>
+                <div class="step-title-bar">
+                    <div class="step-num">2</div>
+                    <div>
+                        <div class="step-title" id="class-step-title">Select Class</div>
+                        <div class="step-subtitle">Choose a class to view available subjects</div>
+                    </div>
                 </div>
-                <div class="coming-soon"><div class="cs-icon">🚧</div><h4>Class 11th — Coming Soon</h4><p>Resources for FSc Part 1 are on the way!</p></div>
+                <div class="class-grid" id="class-grid">
+                    <!-- Populated by JS -->
+                </div>
             </div>
 
-            <!-- ══ CLASS 12 ══ -->
-            <div class="class-panel" data-panel="12">
-                <div class="panel-heading">
-                    <h3>Class 12th</h3>
-                    <span class="file-count-badge">Coming Soon</span>
+            <!-- ══════════════════════════
+                 STEP 3 — Subject Selection
+            ══════════════════════════ -->
+            <div class="step-panel" id="step-subject">
+                <button class="back-btn" onclick="goBack('step-class')">
+                    <span class="back-arrow">←</span> Back to Classes
+                </button>
+                <div class="step-title-bar">
+                    <div class="step-num">3</div>
+                    <div>
+                        <div class="step-title" id="subject-step-title">Select Subject</div>
+                        <div class="step-subtitle">Pick a subject to see all available files</div>
+                    </div>
                 </div>
-                <div class="coming-soon"><div class="cs-icon">🚧</div><h4>Class 12th — Coming Soon</h4><p>Resources for FSc Part 2 are on the way!</p></div>
+                <div class="subject-grid" id="subject-grid">
+                    <!-- Populated by JS -->
+                </div>
             </div>
 
-            </div><!-- /fbisePanels -->
-            </div><!-- /boardContent-fbise -->
-
-            <!-- ══ PUNJAB BOARD CONTENT ══ -->
-            <div id="boardContent-punjab" class="board-content">
-                <div id="classTabs-punjab" class="tabs-wrap" style="margin-top: 14px;">
-                    <button class="class-tab active" data-class="pb9" data-board-group="punjab">Class 9th</button>
-                    <button class="class-tab" data-class="pb10" data-board-group="punjab">Class 10th</button>
-                    <button class="class-tab" data-class="pb11" data-board-group="punjab">Class 11th</button>
-                    <button class="class-tab" data-class="pb12" data-board-group="punjab">Class 12th</button>
+            <!-- ══════════════════════════
+                 STEP 4 — Files
+            ══════════════════════════ -->
+            <div class="step-panel" id="step-files">
+                <button class="back-btn" onclick="goBack('step-subject')">
+                    <span class="back-arrow">←</span> Back to Subjects
+                </button>
+                <div class="files-header" id="files-header">
+                    <!-- Populated by JS -->
                 </div>
-
-            <!-- ══ PUNJAB BOARD PANELS ══ -->
-            <div id="punjabPanels" style="display:none;">
-
-                <!-- Punjab Class 9 -->
-                <div class="class-panel active" data-panel="pb9">
-                    <div class="panel-heading">
-                        <h3>Class 9th</h3>
-                        <span class="file-count-badge">Coming Soon</span>
-                    </div>
-                    <div class="coming-soon"><div class="cs-icon">🚧</div><h4>Class 9th — Coming Soon</h4><p>Punjab Board notes for Class 9 subjects are being uploaded. Check back soon!</p></div>
+                <div class="files-grid" id="files-grid">
+                    <!-- Populated by JS -->
                 </div>
+            </div>
 
-                <!-- Punjab Class 10 -->
-                <div class="class-panel" data-panel="pb10">
-                    <div class="panel-heading">
-                        <h3>Class 10th</h3>
-                        <span class="file-count-badge">Coming Soon</span>
-                    </div>
-                    <div class="coming-soon"><div class="cs-icon">🚧</div><h4>Class 10th — Coming Soon</h4><p>Punjab Board notes for Class 10 subjects are being uploaded. Check back soon!</p></div>
-                </div>
-
-                <!-- Punjab Class 11 -->
-                <div class="class-panel" data-panel="pb11">
-                    <div class="panel-heading">
-                        <h3>Class 11th</h3>
-                        <span class="file-count-badge">Coming Soon</span>
-                    </div>
-                    <div class="coming-soon"><div class="cs-icon">🚧</div><h4>Class 11th — Coming Soon</h4><p>Punjab Board resources for FSc Part 1 are on the way!</p></div>
-                </div>
-
-                <!-- Punjab Class 12 -->
-                <div class="class-panel" data-panel="pb12">
-                    <div class="panel-heading">
-                        <h3>Class 12th</h3>
-                        <span class="file-count-badge">Coming Soon</span>
-                    </div>
-                    <div class="coming-soon"><div class="cs-icon">🚧</div><h4>Class 12th — Coming Soon</h4><p>Punjab Board resources for FSc Part 2 are on the way!</p></div>
-                </div>
-
-            </div><!-- /punjabPanels -->
-            </div><!-- /boardContent-punjab -->
-
-            <div class="info-note">
+            <div class="info-note" id="infoNote">
                 <span style="color: red; font-weight: bold;">Disclaimer:</span> The documents uploaded on this website are for <strong>educational purposes</strong> only and are intended solely to support learning.
             </div>
 
         </div>
     </section>
 
-    <!-- FOOTER - identical to FSS.htm -->
+    <!-- FOOTER -->
     <footer>
         <img src="assets/icon.png" class="scroll-popup" style="width: 250px; height: 250px;">
         <p style="font-size: 18px; margin-bottom: 10px;">&copy; 2026 Fakhar STEM Sphere. All rights reserved.</p>
         <p style="color: #666;">Empowering Students | Building Futures | STEM Excellence</p>
         <p style="color: #b0b0b0; font-family: 'Poppins', sans-serif; font-size: 10px; letter-spacing: 0.5px;">Developed by
-            <a href="https://linkedin.com/in/fasih-ahmad-8091a9290" target="_blank" style="color: #d3d3d3; text-decoration: none; font-weight: 600; transition: all 0.3s ease;">
-                Fasih Ahmad
-            </a>
+            <a href="https://linkedin.com/in/fasih-ahmad-8091a9290" target="_blank" style="color: #d3d3d3; text-decoration: none; font-weight: 600; transition: all 0.3s ease;">Fasih Ahmad</a>
         </p>
     </footer>
 
     <script>
-        /* ── HAMBURGER MENU ── */
-        const hamburger = document.getElementById('hamburger');
-        const navLinks = document.getElementById('navLinks');
-        hamburger.addEventListener('click', () => {
-            hamburger.classList.toggle('open');
-            navLinks.classList.toggle('open');
-        });
-        navLinks.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                hamburger.classList.remove('open');
-                navLinks.classList.remove('open');
-            });
-        });
-
-        /* ── BOARD SWITCHING ── */
-        function switchBoard(board) {
-            // Update board button styles
-            document.getElementById('btn-fbise').classList.toggle('active', board === 'fbise');
-            document.getElementById('btn-punjab').classList.toggle('active', board === 'punjab');
-
-            // Show/hide board content blocks
-            const fbise = document.getElementById('boardContent-fbise');
-            const punjab = document.getElementById('boardContent-punjab');
-
-            if (board === 'fbise') {
-                punjab.classList.remove('visible');
-                setTimeout(() => { fbise.classList.add('visible'); }, 50);
-                // Show fbise panels, hide punjab
-                document.getElementById('fbisePanels').style.display = '';
-                document.getElementById('punjabPanels').style.display = 'none';
-            } else {
-                fbise.classList.remove('visible');
-                setTimeout(() => { punjab.classList.add('visible'); }, 50);
-                // Show punjab panels, hide fbise
-                document.getElementById('fbisePanels').style.display = 'none';
-                document.getElementById('punjabPanels').style.display = '';
-            }
-
-            // Reset to first class tab in the chosen board
-            const firstTab = document.querySelector(`#classTabs-${board} .class-tab`);
-            if (firstTab) switchClass(firstTab, board);
-        }
-
-        /* ── CLASS TAB SWITCHING ── */
-        function switchClass(tab, board) {
-            const group = board || tab.dataset.boardGroup;
-            const container = group === 'punjab'
-                ? document.getElementById('punjabPanels')
-                : document.getElementById('fbisePanels');
-
-            document.querySelectorAll(`#classTabs-${group} .class-tab`).forEach(t => t.classList.remove('active'));
-            tab.classList.add('active');
-
-            container.querySelectorAll('.class-panel').forEach(p => p.classList.remove('active'));
-            const target = container.querySelector(`.class-panel[data-panel="${tab.dataset.class}"]`);
-            if (target) target.classList.add('active');
-
-            doSearch(document.getElementById('searchInput').value.trim().toLowerCase());
-        }
-
-        // Bind class tabs
-        document.querySelectorAll('[data-board-group]').forEach(tab => {
-            tab.addEventListener('click', () => switchClass(tab));
-        });
-
-        /* ── ACCORDION ── */
-        function toggle(header) {
-            const block = header.closest('.subject-block');
-            const isOpen = block.classList.contains('open');
-            header.closest('.class-panel').querySelectorAll('.subject-block').forEach(b => b.classList.remove('open'));
-            if (!isOpen) block.classList.add('open');
-        }
-
-        /* ── SEARCH ── */
-        function doSearch(query) {
-            const noRes = document.getElementById('noResults');
-            const activePanel = document.querySelector('.class-panel.active');
-            if (!activePanel) return;
-            let anyVisible = false;
-
-            activePanel.querySelectorAll('.subject-block').forEach(block => {
-                const subjectName = (block.dataset.subject || '').toLowerCase();
-                const fileCards = block.querySelectorAll('.file-card');
-                let blockVisible = false;
-
-                if (!query) {
-                    block.style.display = '';
-                    fileCards.forEach(c => c.style.display = '');
-                    blockVisible = true;
-                } else {
-                    let matched = 0;
-                    fileCards.forEach(card => {
-                        const tags = (card.dataset.tags || '').toLowerCase();
-                        const name = (card.querySelector('.file-name')?.textContent || '').toLowerCase();
-                        const desc = (card.querySelector('.file-desc')?.textContent || '').toLowerCase();
-                        const hit = tags.includes(query) || name.includes(query) || desc.includes(query) || subjectName.includes(query);
-                        card.style.display = hit ? '' : 'none';
-                        if (hit) matched++;
-                    });
-                    if (matched > 0 || subjectName.includes(query)) {
-                        block.style.display = '';
-                        if (matched > 0) block.classList.add('open');
-                        blockVisible = true;
-                    } else {
-                        block.style.display = 'none';
+    /* ══════════════════════════════════════════════
+       DATA — Board → Class → Subject → Files
+    ══════════════════════════════════════════════ */
+    const DATA = {
+        fbise: {
+            label: 'Federal Board (FBISE)',
+            icon: '🏛️',
+            classes: {
+                '9': {
+                    label: 'Class 9th',
+                    badge: '16 files',
+                    subjects: {
+                        islamiat: {
+                            name: 'Islamiat (Lazmi)',
+                            icon: '🕌',
+                            iconBg: '#e8f5e9',
+                            badge: '6 files',
+                            files: [
+                                { href: 'assets/FBISE\\9th_Class\\Islamiat\\Islmiat_Class_9th_Syllabus.pdf', name: 'Islamiat Syllabus — Class 9th', desc: 'Complete official syllabus for Islamiat Lazmi.', tags: 'islamiat syllabus 9' },
+                                { href: 'assets/FBISE\\9th_Class\\Islamiat\\Most_Important_Personalities_of_Islam.pdf', name: 'Important Personalities of Islam', desc: 'Key Islamic personalities from the Class 9 syllabus with full detail.', tags: 'islamiat personalities islam 9' },
+                                { href: 'assets/FBISE\\9th_Class\\Islamiat\\Islamiat_Lazmi_Final_Assessemnt_Framework___Model_Question_Paper_SSC-I.pdf', name: 'Assessment Framework & Model Paper (SSC-I)', desc: 'Final assessment framework with official model question paper for SSC-I.', tags: 'islamiat assessment framework model paper ssc 9' },
+                                { href: 'assets/FBISE\\9th_Class\\Islamiat\\Islamiat_Paper_Development_Class_9th.pdf', name: 'Paper Development Guide', desc: 'Question paper development guidelines for Class 9th Islamiat.', tags: 'islamiat paper development 9' },
+                                { href: 'assets/FBISE\\9th_Class\\Islamiat\\Islamiat_Model_Paper_Class_9th_FBISE_2026.pdf', name: 'Model Paper 2026 — FBISE', desc: 'Official FBISE model question paper.', tags: 'islamiat model paper 2026 fbise 9' },
+                                { href: 'assets/FBISE\\9th_Class\\Islamiat\\Islmiat_TOS_Class_9th_FBISE.pdf', name: 'Table of Specification (ToS)', desc: 'Official ToS showing marks distribution across all topics.', tags: 'islamiat table of specification tos 9' }
+                            ]
+                        },
+                        mathematics: {
+                            name: 'Mathematics',
+                            icon: '📐',
+                            iconBg: '#fff8e1',
+                            badge: 'Coming Soon',
+                            files: []
+                        },
+                        physics: {
+                            name: 'Physics',
+                            icon: '⚛️',
+                            iconBg: '#e3f2fd',
+                            badge: '10 files',
+                            files: [
+                                { href: 'assets\\FBISE\\9th_Class\\Physics\\Model_Paper_Physics_Class_9th_Federal_Board_2026.pdf', name: 'Model Paper 2026 — Federal Board', desc: 'Official Federal Board model question paper for Physics Class 9th — Session 2025-26.', tags: 'physics model paper 2026 fbise federal board 9' },
+                                { href: 'assets\\FBISE\\9th_Class\\Physics\\Final_Assessment_Framework_Model_Question_Paper_Physics_SSC-I.pdf', name: 'Assessment Framework & Model Paper (SSC-I)', desc: 'Final assessment framework with official model question paper for Physics SSC-I.', tags: 'physics assessment framework model paper ssc-i 9' },
+                                { href: 'assets\\FBISE\\9th_Class\\Physics\\FBISE_Physics_9th_Class_2nd_Annual_2025_OLD.pdf', name: '2nd Annual 2025 Paper — Old Syllabus', desc: 'Physics SSC-I 2nd Annual Examination 2025 — Old syllabus paper.', tags: 'physics 2nd annual 2025 old paper fbise 9' },
+                                { href: 'assets\\FBISE\\9th_Class\\Physics\\FBISE_Physics_9th_Class_1st_Annual_2025_OLD.pdf', name: '1st Annual 2025 Paper — Old Syllabus', desc: 'Physics SSC-I 1st Annual Examination 2025 — Old syllabus paper.', tags: 'physics 1st annual 2025 old paper fbise 9' },
+                                { href: 'assets\\FBISE\\9th_Class\\Physics\\FBISE_Physics_9th_Class_1st_Annual_2025_Morning.pdf', name: '1st Annual 2025 — Morning Session', desc: 'Physics SSC-I 1st Annual Examination 2025 — Morning session paper.', tags: 'physics 1st annual 2025 morning paper fbise 9' },
+                                { href: 'assets\\FBISE\\9th_Class\\Physics\\FBISE_Physics_9th_Class_1st_Annual_2025_Evening.pdf', name: '1st Annual 2025 — Evening Session', desc: 'Physics SSC-I 1st Annual Examination 2025 — Evening session paper.', tags: 'physics 1st annual 2025 evening paper fbise 9' },
+                                { href: 'assets\\FBISE\\9th_Class\\Physics\\FBISE_Physics_9th_Class_2nd_Annual_2025.pdf', name: '2nd Annual 2025 Examination Paper', desc: 'Physics SSC-I 2nd Annual Examination 2025 paper.', tags: 'physics 2nd annual 2025 paper fbise 9' },
+                                { href: 'assets\\FBISE\\9th_Class\\Physics\\FBISE_Physics_Class_9th_Most_Important_Short_and_Long_Chapter_6_and_7_Solution.pdf', name: 'Most Important Short & Long Q&A — Ch. 6 & 7', desc: 'Most important short and long questions with solutions for Chapters 6 & 7.', tags: 'physics important short long questions chapter 6 7 solution fbise 9' },
+                                { href: 'assets\\FBISE\\9th_Class\\Physics\\FBISE_Physics_Class_9th_Chapter_8_and_9_Important_Questions_Solution.pdf', name: 'Important Questions & Solutions — Ch. 8 & 9', desc: 'Important questions with solutions for Chapters 8 & 9.', tags: 'physics important questions solution chapter 8 9 fbise 9' },
+                                { href: 'assets\\FBISE\\9th_Class\\Physics\\FBISE_Physics_Class_9th_Most_Important_Short_and_Long_Questions.pdf', name: 'Most Important Short & Long Questions', desc: 'Comprehensive collection of the most important short and long questions for Class 9th Physics.', tags: 'physics most important short long questions fbise 9' }
+                            ]
+                        },
+                        chemistry: {
+                            name: 'Chemistry',
+                            icon: '🧪',
+                            iconBg: '#fce4ec',
+                            badge: 'Coming Soon',
+                            files: []
+                        },
+                        biology: {
+                            name: 'Biology',
+                            icon: '🌿',
+                            iconBg: '#e8f5e9',
+                            badge: 'Coming Soon',
+                            files: []
+                        },
+                        english: {
+                            name: 'English',
+                            icon: '📝',
+                            iconBg: '#ede7f6',
+                            badge: 'Coming Soon',
+                            files: []
+                        },
+                        urdu: {
+                            name: 'Urdu',
+                            icon: '📜',
+                            iconBg: '#fff3e0',
+                            badge: 'Coming Soon',
+                            files: []
+                        },
+                        cs: {
+                            name: 'Computer Science',
+                            icon: '💻',
+                            iconBg: '#e8eaf6',
+                            badge: 'Coming Soon',
+                            files: []
+                        }
                     }
+                },
+                '10': {
+                    label: 'Class 10th',
+                    badge: '12 files',
+                    subjects: {
+                        chemistry: {
+                            name: 'Chemistry',
+                            icon: '🧪',
+                            iconBg: '#fce4ec',
+                            badge: '7 files',
+                            files: [
+                                { href: 'assets/FBISE\\10th_Class\\Chemistry\\Chemisty_SSC_II_Summative_and_Formative_Topics.pdf', name: 'Summative & Formative Topics (SSC-II)', desc: 'Complete list of summative and formative assessment topics for Chemistry SSC-II.', tags: 'chemistry summative formative topics ssc 10' },
+                                { href: 'assets/FBISE\\10th_Class\\Chemistry\\Final_Assessment_Framework_+_Model_Question_Paper_Chemistry_SSC-II.pdf', name: 'Assessment Framework & Model Paper (SSC-II)', desc: 'Final assessment framework with official model question paper for Chemistry SSC-II.', tags: 'chemistry assessment framework model paper ssc 10' },
+                                { href: 'assets/FBISE\\10th_Class\\Chemistry\\Chemistry_SSC_II_1st_Annual_Hard.pdf', name: '1st Annual Paper — Hard Copy', desc: 'Chemistry SSC-II 1st Annual Examination — Hard copy paper.', tags: 'chemistry 1st annual hard paper ssc 10' },
+                                { href: 'assets/FBISE\\10th_Class\\Chemistry\\Chemistry_SSC_II_1st_Annual_Local.pdf', name: '1st Annual Paper — Local Copy', desc: 'Chemistry SSC-II 1st Annual Examination — Local copy paper.', tags: 'chemistry 1st annual local paper ssc 10' },
+                                { href: 'assets/FBISE\\10th_Class\\Chemistry\\Chemistry_SSC_II_2nd_Annual.pdf', name: '2nd Annual Examination Paper', desc: 'Chemistry SSC-II 2nd Annual Examination paper.', tags: 'chemistry 2nd annual paper ssc 10' },
+                                { href: 'assets/FBISE\\10th_Class\\Chemistry\\Chemistry_SSC_II_Model_Paper_2026.pdf', name: 'Model Paper 2026 — FBISE', desc: 'Official FBISE Chemistry model question paper — Session 2025-26.', tags: 'chemistry model paper 2026 fbise 10' },
+                                { href: 'assets/FBISE\\10th_Class\\Chemistry\\Table_of_Specifications_Chemistry_SSC_II_2026.pdf', name: 'Table of Specifications 2026 (SSC-II)', desc: 'Official ToS showing marks distribution across all Chemistry topics for 2026.', tags: 'chemistry table of specification tos 2026 ssc 10' }
+                            ]
+                        },
+                        mathematics: {
+                            name: 'Mathematics',
+                            icon: '📐',
+                            iconBg: '#fff8e1',
+                            badge: '5 files',
+                            files: [
+                                { href: 'assets\\FBISE\\10th_Class\\Mathematics\\FBISE_Math_Class_10_Guess_Paper_Important_Questions.pdf', name: 'Guess Paper — Important Questions', desc: 'Most important guess paper questions for Class 10 Mathematics — Federal Board.', tags: 'mathematics guess paper important questions fbise 10' },
+                                { href: 'assets\\FBISE\\10th_Class\\Mathematics\\Maths_Class_10_Model_Paper_Federal_Board.pdf', name: 'Model Paper — Federal Board', desc: 'Official model question paper for Class 10 Mathematics, Federal Board.', tags: 'mathematics model paper federal board fbise 10' },
+                                { href: 'assets\\FBISE\\10th_Class\\Mathematics\\Maths_Class_10_1st_Annual_Exam_(Evening)_2025_Paper_Federal_Board.pdf', name: '1st Annual 2025 — Evening Session', desc: 'Mathematics SSC-II 1st Annual Examination 2025 — Evening session paper.', tags: 'mathematics 1st annual 2025 evening paper federal board fbise 10' },
+                                { href: 'assets\\FBISE\\10th_Class\\Mathematics\\Maths_Class_10_1st_Annual_Exam_(Morning)_2025_Paper_Federal_Board.pdf', name: '1st Annual 2025 — Morning Session', desc: 'Mathematics SSC-II 1st Annual Examination 2025 — Morning session paper.', tags: 'mathematics 1st annual 2025 morning paper federal board fbise 10' },
+                                { href: 'assets\\FBISE\\10th_Class\\Mathematics\\Maths_Class_10_2nd_Annual_Exam_2025_Paper_Federal_Board.pdf', name: '2nd Annual 2025 Examination Paper', desc: 'Mathematics SSC-II 2nd Annual Examination 2025 — Federal Board paper.', tags: 'mathematics 2nd annual 2025 paper federal board fbise 10' }
+                            ]
+                        },
+                        physics: {
+                            name: 'Physics',
+                            icon: '⚛️',
+                            iconBg: '#e3f2fd',
+                            badge: 'Coming Soon',
+                            files: []
+                        },
+                        biology: {
+                            name: 'Biology',
+                            icon: '🌿',
+                            iconBg: '#e8f5e9',
+                            badge: 'Coming Soon',
+                            files: []
+                        }
+                    }
+                },
+                '11': {
+                    label: 'Class 11th',
+                    badge: 'Coming Soon',
+                    subjects: {}
+                },
+                '12': {
+                    label: 'Class 12th',
+                    badge: 'Coming Soon',
+                    subjects: {}
                 }
-                if (blockVisible) anyVisible = true;
-            });
+            }
+        },
+        punjab: {
+            label: 'Punjab Board',
+            icon: '📚',
+            classes: {
+                'pb9':  { label: 'Class 9th',  badge: 'Coming Soon', subjects: {} },
+                'pb10': { label: 'Class 10th', badge: 'Coming Soon', subjects: {} },
+                'pb11': { label: 'Class 11th', badge: 'Coming Soon', subjects: {} },
+                'pb12': { label: 'Class 12th', badge: 'Coming Soon', subjects: {} }
+            }
+        }
+    };
 
-            noRes.style.display = anyVisible ? 'none' : 'block';
+    /* ══════════════════════════════════
+       STATE
+    ══════════════════════════════════ */
+    let state = { board: null, classKey: null, subjectKey: null };
+    let currentStep = 'step-board';
+
+    /* ══════════════════════════════════
+       NAVIGATION
+    ══════════════════════════════════ */
+    function showStep(nextId, direction = 'forward') {
+        const current = document.getElementById(currentStep);
+        const next = document.getElementById(nextId);
+
+        current.classList.remove('active');
+        next.classList.remove('active', 'back-in');
+
+        if (direction === 'forward') {
+            next.classList.add('active');
+        } else {
+            next.classList.add('active', 'back-in');
         }
 
-        let debounce;
-        document.getElementById('searchInput').addEventListener('input', e => {
-            clearTimeout(debounce);
-            debounce = setTimeout(() => doSearch(e.target.value.trim().toLowerCase()), 200);
+        currentStep = nextId;
+        updateBreadcrumb();
+        updateSearchVisibility();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function goToClass(boardKey, boardLabel, boardIcon) {
+        state.board = boardKey;
+        state.classKey = null;
+        state.subjectKey = null;
+
+        document.getElementById('class-step-title').textContent = boardLabel + ' — Select Class';
+
+        const grid = document.getElementById('class-grid');
+        grid.innerHTML = '';
+        const boardData = DATA[boardKey];
+
+        Object.entries(boardData.classes).forEach(([key, cls]) => {
+            const num = cls.label.replace('Class ', '').replace('th', '').replace('st', '').replace('nd', '').replace('rd', '');
+            const card = document.createElement('div');
+            card.className = 'class-card';
+            card.innerHTML = `
+                <div class="class-card-num">${num}</div>
+                <div class="class-card-label">${cls.label}</div>
+                <span class="class-card-badge">${cls.badge}</span>
+            `;
+            card.onclick = () => goToSubject(key);
+            grid.appendChild(card);
         });
 
-        /* ── FOOTER LOGO POPUP ── */
-        const img = document.querySelector('.scroll-popup');
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    img.classList.remove('popup-animation');
-                    void img.offsetWidth;
-                    img.classList.add('popup-animation');
-                    observer.unobserve(img);
-                }
+        showStep('step-class');
+    }
+
+    function goToSubject(classKey) {
+        state.classKey = classKey;
+        state.subjectKey = null;
+
+        const cls = DATA[state.board].classes[classKey];
+        document.getElementById('subject-step-title').textContent = cls.label + ' — Select Subject';
+
+        const grid = document.getElementById('subject-grid');
+        grid.innerHTML = '';
+
+        if (!cls.subjects || Object.keys(cls.subjects).length === 0) {
+            grid.innerHTML = `<div class="coming-soon" style="grid-column:1/-1"><div class="cs-icon">🚧</div><h4>${cls.label} — Coming Soon</h4><p>Resources are being uploaded. Check back soon!</p></div>`;
+        } else {
+            Object.entries(cls.subjects).forEach(([key, subj]) => {
+                const card = document.createElement('div');
+                card.className = 'subject-card';
+                const isSoon = subj.badge === 'Coming Soon';
+                card.innerHTML = `
+                    <div class="subj-card-icon" style="background:${subj.iconBg}">${subj.icon}</div>
+                    <div class="subj-card-info">
+                        <div class="subj-card-name">${subj.name}</div>
+                        <span class="subj-card-count ${isSoon ? 'soon' : ''}">${subj.badge}</span>
+                    </div>
+                    <span class="subj-card-chevron">›</span>
+                `;
+                card.onclick = () => goToFiles(key);
+                grid.appendChild(card);
             });
-        }, { threshold: 0.1, rootMargin: '0px 0px -10% 0px' });
-        observer.observe(img);
+        }
+
+        showStep('step-subject');
+    }
+
+    function goToFiles(subjectKey) {
+        state.subjectKey = subjectKey;
+        const subj = DATA[state.board].classes[state.classKey].subjects[subjectKey];
+
+        // Header
+        const header = document.getElementById('files-header');
+        header.innerHTML = `
+            <div class="files-header-icon" style="background:${subj.iconBg}">${subj.icon}</div>
+            <div>
+                <div class="files-header-title">${subj.name}</div>
+                <div class="files-header-sub">${DATA[state.board].label} · ${DATA[state.board].classes[state.classKey].label}</div>
+            </div>
+            <div class="files-count-badge">${subj.badge}</div>
+        `;
+
+        // Files grid
+        const grid = document.getElementById('files-grid');
+        grid.innerHTML = '';
+
+        if (!subj.files || subj.files.length === 0) {
+            grid.innerHTML = `<div class="coming-soon"><div class="cs-icon">🚧</div><h4>Coming Soon</h4><p>${subj.name} resources are being prepared. Check back soon!</p></div>`;
+        } else {
+            subj.files.forEach(f => {
+                const ext = f.href.split('.').pop().toUpperCase();
+                const a = document.createElement('a');
+                a.href = f.href;
+                a.target = '_blank';
+                a.download = '';
+                a.className = 'file-card';
+                a.dataset.tags = f.tags || '';
+                a.innerHTML = `
+                    <div class="file-top">
+                        <div class="file-ext-badge">${ext}</div>
+                        <div class="file-name">${f.name}</div>
+                    </div>
+                    <div class="file-desc">${f.desc}</div>
+                    <div class="file-dl">⬇ Download</div>
+                `;
+                grid.appendChild(a);
+            });
+        }
+
+        showStep('step-files');
+    }
+
+    function goBack(targetStep) {
+        if (targetStep === 'step-board') {
+            state.board = null; state.classKey = null; state.subjectKey = null;
+        } else if (targetStep === 'step-class') {
+            state.classKey = null; state.subjectKey = null;
+        } else if (targetStep === 'step-subject') {
+            state.subjectKey = null;
+        }
+        showStep(targetStep, 'back');
+    }
+
+    /* ══════════════════════════════════
+       BREADCRUMB
+    ══════════════════════════════════ */
+    function updateBreadcrumb() {
+        const bcHome  = document.getElementById('bc-home');
+        const bcBoard = document.getElementById('bc-board');
+        const bcClass = document.getElementById('bc-class');
+        const bcSubj  = document.getElementById('bc-subject');
+        const sep1    = document.getElementById('bcsep1');
+        const sep2    = document.getElementById('bcsep2');
+        const sep3    = document.getElementById('bcsep3');
+
+        // Reset
+        [bcBoard,bcClass,bcSubj,sep1,sep2,sep3].forEach(el => el.style.display = 'none');
+        bcHome.classList.remove('active','clickable');
+
+        if (currentStep === 'step-board') {
+            bcHome.classList.add('active');
+        } else if (currentStep === 'step-class') {
+            bcHome.classList.add('clickable');
+            bcHome.onclick = () => goBack('step-board');
+            sep1.style.display = '';
+            bcBoard.style.display = '';
+            bcBoard.textContent = DATA[state.board].icon + ' ' + DATA[state.board].label;
+            bcBoard.classList.add('active');
+        } else if (currentStep === 'step-subject') {
+            bcHome.classList.add('clickable');
+            bcHome.onclick = () => goBack('step-board');
+            sep1.style.display = ''; sep2.style.display = '';
+            bcBoard.style.display = '';
+            bcBoard.textContent = DATA[state.board].icon + ' ' + DATA[state.board].label;
+            bcBoard.classList.add('clickable');
+            bcBoard.onclick = () => goBack('step-class');
+            bcClass.style.display = '';
+            bcClass.textContent = DATA[state.board].classes[state.classKey].label;
+            bcClass.classList.add('active');
+        } else if (currentStep === 'step-files') {
+            bcHome.classList.add('clickable');
+            bcHome.onclick = () => goBack('step-board');
+            sep1.style.display = ''; sep2.style.display = ''; sep3.style.display = '';
+            bcBoard.style.display = '';
+            bcBoard.textContent = DATA[state.board].icon + ' ' + DATA[state.board].label;
+            bcBoard.classList.add('clickable');
+            bcBoard.onclick = () => goBack('step-class');
+            bcClass.style.display = '';
+            bcClass.textContent = DATA[state.board].classes[state.classKey].label;
+            bcClass.classList.add('clickable');
+            bcClass.onclick = () => goBack('step-subject');
+            bcSubj.style.display = '';
+            bcSubj.textContent = DATA[state.board].classes[state.classKey].subjects[state.subjectKey]?.name || '';
+            bcSubj.classList.add('active');
+        }
+    }
+
+    function updateSearchVisibility() {
+        document.getElementById('searchWrap').style.display = currentStep === 'step-files' ? '' : 'none';
+    }
+
+    /* ══════════════════════════════════
+       SEARCH (files step only)
+    ══════════════════════════════════ */
+    let debounce;
+    document.getElementById('searchInput').addEventListener('input', e => {
+        clearTimeout(debounce);
+        debounce = setTimeout(() => {
+            const q = e.target.value.trim().toLowerCase();
+            const grid = document.getElementById('files-grid');
+            let any = false;
+            grid.querySelectorAll('.file-card').forEach(card => {
+                const tags = (card.dataset.tags || '').toLowerCase();
+                const name = (card.querySelector('.file-name')?.textContent || '').toLowerCase();
+                const desc = (card.querySelector('.file-desc')?.textContent || '').toLowerCase();
+                const hit = !q || tags.includes(q) || name.includes(q) || desc.includes(q);
+                card.style.display = hit ? '' : 'none';
+                if (hit) any = true;
+            });
+            document.getElementById('noResults').style.display = (q && !any) ? 'block' : 'none';
+        }, 180);
+    });
+
+    /* ══════════════════════════════════
+       HAMBURGER
+    ══════════════════════════════════ */
+    const hamburger = document.getElementById('hamburger');
+    const navLinks  = document.getElementById('navLinks');
+    hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('open');
+        navLinks.classList.toggle('open');
+    });
+    navLinks.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+            hamburger.classList.remove('open');
+            navLinks.classList.remove('open');
+        });
+    });
+
+    /* ══════════════════════════════════
+       FOOTER LOGO POPUP
+    ══════════════════════════════════ */
+    const img = document.querySelector('.scroll-popup');
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                img.classList.remove('popup-animation');
+                void img.offsetWidth;
+                img.classList.add('popup-animation');
+                observer.unobserve(img);
+            }
+        });
+    }, { threshold: 0.1, rootMargin: '0px 0px -10% 0px' });
+    observer.observe(img);
     </script>
 </body>
 </html>
