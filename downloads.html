@@ -626,7 +626,7 @@
                     <div class="board-card" onclick="goToClass('punjab', 'Punjab Board', '📚')">
                         <div class="board-card-icon">📚</div>
                         <div class="board-card-name">Punjab Board</div>
-                        <div class="board-card-desc">BISE Punjab — Classes 9th to 12th<br>Coming soon!</div>
+                        <div class="board-card-desc">BISE Punjab — Classes 9th to 12th<br>Notes, Papers &amp; Resources</div>
                         <div class="board-card-arrow">→</div>
                     </div>
                 </div>
@@ -913,7 +913,20 @@
             label: 'Punjab Board',
             icon: '📚',
             classes: {
-                'pb9':  { label: 'Class 9th',  badge: 'Coming Soon', subjects: {} },
+                'pb9':  { label: 'Class 9th',  badge: '4 files', subjects: {
+                    mathematics: {
+                        name: 'Mathematics',
+                        icon: '📐',
+                        iconBg: '#fff8e1',
+                        badge: '4 files',
+                        files: [
+                            { href: 'assets\\BISE_Punjab\\9th_Class\\Mathematics\\Mathematics_Guess_Paper_Class_9th_Punjab_Boards.pdf', name: 'Mathematics Guess Paper — Class 9th Punjab Boards', desc: 'Important guess paper for Mathematics Class 9th covering all Punjab Boards.', tags: 'mathematics guess paper 9 punjab board bise' },
+                            { href: 'assets\\BISE_Punjab\\9th_Class\\Mathematics\\Pairing_Scheme_Maths_Smart_Syllabus.pdf', name: 'Pairing Scheme — Maths Smart Syllabus', desc: 'Official pairing scheme for Mathematics based on the Smart Syllabus — Punjab Board.', tags: 'mathematics pairing scheme smart syllabus 9 punjab board bise' },
+                            { href: 'assets\\BISE_Punjab\\9th_Class\\Mathematics\\Maths_Model_Paper_Class_9th_Punjab_Boards_2026.pdf', name: 'Model Paper 2026 — Punjab Boards', desc: 'Official Mathematics model question paper for Class 9th Punjab Boards — Session 2025-26.', tags: 'mathematics model paper 2026 9 punjab board bise' },
+                            { href: 'assets\\BISE_Punjab\\9th_Class\\Mathematics\\Maths_Class_9th_Revised_Smart_Syllabus.pdf', name: 'Revised Smart Syllabus — Class 9th', desc: 'Revised and updated Smart Syllabus for Mathematics Class 9th — Punjab Board.', tags: 'mathematics revised smart syllabus 9 punjab board bise' }
+                        ]
+                    }
+                } },
                 'pb10': { label: 'Class 10th', badge: 'Coming Soon', subjects: {} },
                 'pb11': { label: 'Class 11th', badge: 'Coming Soon', subjects: {} },
                 'pb12': { label: 'Class 12th', badge: 'Coming Soon', subjects: {} }
