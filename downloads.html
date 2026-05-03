@@ -3,10 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Download free STEM resources including programming notes, engineering PDFs, project files, learning materials, templates, guides, and educational tools from Fakhar STEM Sphere.">
+    <meta name="description" content="Download free STEM resources, past papers & entry test material including NUST NET, NAT, GAT, GRE preparation. Programming notes, engineering PDFs, project files and educational tools from Fakhar STEM Sphere.">
+    <meta name="keywords" content="NUST NET past papers, NET mathematics MCQs, NUST entry test preparation, NET past questions, NAT test material, GAT preparation, GRE Pakistan, NUST admission test, entry test MCQs, FSc math MCQs, engineering entry test, STEM resources Pakistan, free past papers download, Fakhar STEM Sphere, NET-1 NET-2 NET-3 NET-4, ugadmissions.nust.edu.pk, computer science entry test, FBISE notes, Punjab board papers">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="Downloads — Fakhar STEM Sphere | Entry Test & Study Resources">
+    <meta property="og:description" content="Free NUST NET past papers, entry test MCQs, board papers, and STEM learning resources for Pakistani students.">
+    <meta property="og:type" content="website">
     <link rel="icon" type="image/png" sizes="32x32" href="icon.png">
     <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
-    <title>Downloads — Fakhar STEM Sphere</title>
+    <title>Downloads — Fakhar STEM Sphere | Entry Tests, NET, NAT, GAT Resources</title>
     <style>
         *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -624,6 +629,125 @@
             margin-top: 40px;
         }
 
+        /* ─── SECTION TABS ─── */
+        .section-tabs {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 32px;
+            background: var(--paper-3);
+            padding: 5px;
+            border-radius: 12px;
+            width: fit-content;
+            flex-wrap: wrap;
+        }
+        .section-tab {
+            padding: 9px 20px;
+            border-radius: 9px;
+            font-family: 'Sora', sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            border: none;
+            background: transparent;
+            color: var(--ink-3);
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            white-space: nowrap;
+        }
+        .section-tab:hover { color: var(--ink); background: rgba(255,255,255,0.7); }
+        .section-tab.active { background: var(--paper); color: var(--accent); box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+        .section-tab .tab-badge { background: var(--accent); color: #fff; font-size: 10px; font-weight: 700; padding: 1px 7px; border-radius: 10px; }
+        .section-tab.active .tab-badge { background: var(--accent-2); }
+        .section-content { display: none; }
+        .section-content.active { display: block; animation: fadeUp 0.3s ease both; }
+
+        /* ─── ENTRY TEST ─── */
+        .et-hero {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b5bdb 50%, #4f46e5 100%);
+            border-radius: var(--radius);
+            padding: 36px 32px;
+            margin-bottom: 28px;
+            color: #fff;
+            position: relative;
+            overflow: hidden;
+        }
+        .et-hero::before { content:''; position:absolute; top:-30px; right:-30px; width:200px; height:200px; background:rgba(255,255,255,0.05); border-radius:50%; }
+        .et-hero::after { content:''; position:absolute; bottom:-50px; left:30%; width:280px; height:280px; background:rgba(255,255,255,0.04); border-radius:50%; }
+        .et-hero-label { font-size:11px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,0.65); margin-bottom:8px; }
+        .et-hero-title { font-family:'Sora',sans-serif; font-size:26px; font-weight:800; letter-spacing:-0.5px; margin-bottom:10px; line-height:1.2; }
+        .et-hero-desc { font-size:14px; color:rgba(255,255,255,0.8); max-width:540px; line-height:1.6; }
+        .et-hero-chips { display:flex; flex-wrap:wrap; gap:8px; margin-top:18px; }
+        .et-chip { background:rgba(255,255,255,0.15); border:1px solid rgba(255,255,255,0.25); color:#fff; border-radius:20px; padding:5px 14px; font-size:12px; font-weight:600; }
+        .et-exams-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(220px,1fr)); gap:14px; margin-bottom:32px; }
+        .et-exam-card { background:var(--paper); border:1.5px solid var(--paper-3); border-radius:var(--radius); padding:24px 20px; cursor:pointer; transition:all 0.2s; position:relative; overflow:hidden; }
+        .et-exam-card::before { content:''; position:absolute; top:0; left:0; right:0; height:3px; background:var(--accent); transform:scaleX(0); transform-origin:left; transition:transform 0.25s; }
+        .et-exam-card:hover { border-color:var(--accent); box-shadow:var(--shadow); transform:translateY(-3px); }
+        .et-exam-card:hover::before { transform:scaleX(1); }
+        .et-exam-card.disabled { opacity:0.5; cursor:default; pointer-events:none; }
+        .et-exam-icon { font-size:32px; margin-bottom:10px; }
+        .et-exam-name { font-family:'Sora',sans-serif; font-size:17px; font-weight:800; color:var(--ink); margin-bottom:4px; }
+        .et-exam-full { font-size:12px; color:var(--ink-3); margin-bottom:10px; line-height:1.4; }
+        .et-exam-badge { display:inline-block; padding:3px 10px; background:var(--accent-light); color:var(--accent); border-radius:20px; font-size:11px; font-weight:700; }
+        .et-exam-badge.soon { background:#fef3c7; color:var(--amber); }
+        .net-view { display:none; }
+        .net-view.active { display:block; animation:fadeUp 0.3s ease both; }
+        .et-back-btn { display:inline-flex; align-items:center; gap:6px; padding:8px 16px; background:none; border:1.5px solid var(--paper-3); border-radius:20px; color:var(--ink-2); font-family:'DM Sans',sans-serif; font-size:13px; font-weight:600; cursor:pointer; margin-bottom:24px; transition:border-color 0.2s, color 0.2s; }
+        .et-back-btn:hover { border-color:var(--accent); color:var(--accent); }
+        .net-subj-tabs { display:flex; gap:8px; margin-bottom:24px; flex-wrap:wrap; }
+        .net-subj-tab { padding:8px 18px; border-radius:20px; font-size:13px; font-weight:600; cursor:pointer; border:1.5px solid var(--paper-3); background:var(--paper); color:var(--ink-2); transition:all 0.2s; }
+        .net-subj-tab:hover { border-color:var(--accent); color:var(--accent); }
+        .net-subj-tab.active { background:var(--accent); color:#fff; border-color:var(--accent); }
+        .pdf-preview-card { background:var(--paper); border:1.5px solid var(--paper-3); border-radius:var(--radius); overflow:hidden; margin-bottom:28px; box-shadow:var(--shadow); }
+        .pdf-preview-header { background:linear-gradient(90deg,#dc2626,#b91c1c); padding:16px 22px; display:flex; align-items:center; gap:14px; flex-wrap:wrap; }
+        .pdf-preview-icon { background:rgba(255,255,255,0.2); border-radius:8px; width:44px; height:44px; display:flex; align-items:center; justify-content:center; font-size:22px; flex-shrink:0; }
+        .pdf-preview-meta { flex:1; }
+        .pdf-preview-title { font-family:'Sora',sans-serif; font-size:15px; font-weight:700; color:#fff; margin-bottom:2px; }
+        .pdf-preview-sub { font-size:12px; color:rgba(255,255,255,0.75); }
+        .pdf-preview-dl { background:rgba(255,255,255,0.2); border:1px solid rgba(255,255,255,0.35); color:#fff; border-radius:20px; padding:8px 18px; font-size:13px; font-weight:700; text-decoration:none; display:flex; align-items:center; gap:7px; transition:background 0.2s; white-space:nowrap; flex-shrink:0; }
+        .pdf-preview-dl:hover { background:rgba(255,255,255,0.35); }
+        .pdf-embed-wrap { background:#f5f5f5; }
+        .pdf-embed-wrap iframe { width:100%; height:520px; border:none; display:block; }
+        .net-info-section { background:var(--paper); border:1.5px solid var(--paper-3); border-radius:var(--radius); padding:32px; margin-bottom:20px; }
+        .net-info-section h2 { font-family:'Sora',sans-serif; font-size:20px; font-weight:800; color:var(--ink); margin-bottom:14px; display:flex; align-items:center; gap:10px; }
+        .net-info-section h2 .info-icon { width:36px; height:36px; background:var(--accent-light); border-radius:8px; display:flex; align-items:center; justify-content:center; font-size:18px; flex-shrink:0; }
+        .net-info-section p { font-size:15px; color:var(--ink-2); line-height:1.75; margin-bottom:14px; }
+        .net-info-section p:last-child { margin-bottom:0; }
+        .net-bullet-list { list-style:none; display:flex; flex-direction:column; gap:9px; margin-bottom:14px; }
+        .net-bullet-list li { display:flex; align-items:flex-start; gap:10px; font-size:14px; color:var(--ink-2); line-height:1.55; }
+        .net-bullet-list li::before { content:'✦'; color:var(--accent); font-size:11px; margin-top:3px; flex-shrink:0; }
+        .net-series-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(160px,1fr)); gap:12px; margin:16px 0; }
+        .net-series-card { background:var(--paper-2); border:1.5px solid var(--paper-3); border-radius:var(--radius-sm); padding:16px; text-align:center; position:relative; overflow:hidden; }
+        .net-series-card::after { content:''; position:absolute; bottom:0; left:0; right:0; height:3px; background:var(--accent); }
+        .net-series-num { font-family:'Sora',sans-serif; font-size:22px; font-weight:800; color:var(--accent); }
+        .net-series-month { font-size:13px; color:var(--ink-3); margin-top:4px; }
+        .net-format-table { width:100%; border-collapse:collapse; font-size:14px; margin-top:12px; }
+        .net-format-table th { background:var(--accent-light); color:var(--accent); font-weight:700; padding:10px 14px; text-align:left; font-size:12px; text-transform:uppercase; letter-spacing:0.5px; }
+        .net-format-table td { padding:11px 14px; border-bottom:1px solid var(--paper-3); color:var(--ink-2); }
+        .net-format-table tr:last-child td { border-bottom:none; }
+        .net-format-table tr:nth-child(even) td { background:var(--paper-2); }
+        .net-register-cta { background:linear-gradient(135deg,#1e3a8a,#3b5bdb); border-radius:var(--radius); padding:32px; text-align:center; color:#fff; margin-bottom:20px; }
+        .net-register-cta h3 { font-family:'Sora',sans-serif; font-size:20px; font-weight:800; margin-bottom:10px; }
+        .net-register-cta p { font-size:14px; color:rgba(255,255,255,0.8); margin-bottom:20px; line-height:1.6; }
+        .net-register-btn { display:inline-flex; align-items:center; gap:8px; background:#fff; color:var(--accent); padding:12px 28px; border-radius:30px; font-family:'Sora',sans-serif; font-size:14px; font-weight:700; text-decoration:none; transition:transform 0.2s, box-shadow 0.2s; box-shadow:0 4px 16px rgba(0,0,0,0.2); }
+        .net-register-btn:hover { transform:translateY(-2px); box-shadow:0 8px 24px rgba(0,0,0,0.25); }
+        .net-info-tip { background:#fffbeb; border:1.5px solid #fde68a; border-radius:var(--radius-sm); padding:14px 18px; font-size:13px; color:#92400e; margin-top:16px; display:flex; gap:10px; align-items:flex-start; }
+
+        @media (max-width:768px) {
+            .section-tabs { width:100%; }
+            .section-tab { flex:1; justify-content:center; font-size:13px; padding:8px 12px; }
+            .et-hero { padding:24px 20px; }
+            .et-hero-title { font-size:20px; }
+            .et-exams-grid { grid-template-columns:repeat(2,1fr); }
+            .net-series-grid { grid-template-columns:repeat(2,1fr); }
+            .pdf-embed-wrap iframe { height:340px; }
+            .net-info-section { padding:22px 18px; }
+        }
+        @media (max-width:480px) {
+            .et-exams-grid { grid-template-columns:1fr; }
+        }
+
         /* ─── FOOTER ─── */
         footer {
             background: var(--paper);
@@ -754,46 +878,275 @@
         <!-- BREADCRUMB -->
         <nav class="breadcrumb" id="breadcrumb" aria-label="Breadcrumb"></nav>
 
-        <!-- VIEW: BOARDS -->
-        <div class="view active" id="view-boards">
-            <h1 class="page-title">📥 Downloads</h1>
-            <p class="page-subtitle">Choose your education board to browse study resources.</p>
-            <div class="board-grid" id="board-grid"></div>
+        <!-- SECTION TABS -->
+        <div class="section-tabs" id="sectionTabs">
+            <button class="section-tab active" data-section="study" onclick="switchSection('study')">
+                📚 Study Resources
+            </button>
+            <button class="section-tab" data-section="entry" onclick="switchSection('entry')">
+                🎯 Entry Tests
+                <span class="tab-badge">NEW</span>
+            </button>
         </div>
 
-        <!-- VIEW: CLASSES -->
-        <div class="view" id="view-classes">
-            <button class="back-btn" id="back-to-boards">← Back to Boards</button>
-            <h1 class="page-title" id="class-title">Select Class</h1>
-            <p class="page-subtitle">Choose a class to view available subjects.</p>
-            <div class="class-grid" id="class-grid"></div>
-        </div>
+        <!-- ══════════════════════════════════
+             SECTION: STUDY RESOURCES
+        ══════════════════════════════════ -->
+        <div class="section-content active" id="section-study">
 
-        <!-- VIEW: SUBJECTS -->
-        <div class="view" id="view-subjects">
-            <button class="back-btn" id="back-to-classes">← Back to Classes</button>
-            <h1 class="page-title" id="subject-title">Select Subject</h1>
-            <p class="page-subtitle">Pick a subject to see all available files.</p>
-            <div class="subject-grid" id="subject-grid"></div>
-        </div>
-
-        <!-- VIEW: FILES -->
-        <div class="view" id="view-files">
-            <button class="back-btn" id="back-to-subjects">← Back to Subjects</button>
-            <div class="files-header" id="files-header"></div>
-            <div class="search-wrap">
-                <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                    <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
-                </svg>
-                <input id="searchInput" type="text" placeholder="Search files…" autocomplete="off">
+            <!-- VIEW: BOARDS -->
+            <div class="view active" id="view-boards">
+                <h1 class="page-title">📥 Downloads</h1>
+                <p class="page-subtitle">Choose your education board to browse study resources.</p>
+                <div class="board-grid" id="board-grid"></div>
             </div>
-            <div class="files-list" id="files-list"></div>
-            <div id="noResults" style="display:none;">
-                <div class="nr-icon">🔍</div>
-                <h3>No results found</h3>
-                <p>Try a different keyword.</p>
+
+            <!-- VIEW: CLASSES -->
+            <div class="view" id="view-classes">
+                <button class="back-btn" id="back-to-boards">← Back to Boards</button>
+                <h1 class="page-title" id="class-title">Select Class</h1>
+                <p class="page-subtitle">Choose a class to view available subjects.</p>
+                <div class="class-grid" id="class-grid"></div>
             </div>
-        </div>
+
+            <!-- VIEW: SUBJECTS -->
+            <div class="view" id="view-subjects">
+                <button class="back-btn" id="back-to-classes">← Back to Classes</button>
+                <h1 class="page-title" id="subject-title">Select Subject</h1>
+                <p class="page-subtitle">Pick a subject to see all available files.</p>
+                <div class="subject-grid" id="subject-grid"></div>
+            </div>
+
+            <!-- VIEW: FILES -->
+            <div class="view" id="view-files">
+                <button class="back-btn" id="back-to-subjects">← Back to Subjects</button>
+                <div class="files-header" id="files-header"></div>
+                <div class="search-wrap">
+                    <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+                    </svg>
+                    <input id="searchInput" type="text" placeholder="Search files…" autocomplete="off">
+                </div>
+                <div class="files-list" id="files-list"></div>
+                <div id="noResults" style="display:none;">
+                    <div class="nr-icon">🔍</div>
+                    <h3>No results found</h3>
+                    <p>Try a different keyword.</p>
+                </div>
+            </div>
+
+        </div><!-- /section-study -->
+
+        <!-- ══════════════════════════════════
+             SECTION: ENTRY TESTS
+        ══════════════════════════════════ -->
+        <div class="section-content" id="section-entry">
+
+            <!-- EXAM PICKER VIEW -->
+            <div class="net-view active" id="et-view-picker">
+                <!-- Hero -->
+                <div class="et-hero">
+                    <div class="et-hero-label">Entry Test Preparation Hub</div>
+                    <h1 class="et-hero-title">🎯 Crack Your Entry Test</h1>
+                    <p class="et-hero-desc">Past papers, MCQs, and guides for major university entry tests in Pakistan — all in one place. Select your exam below to get started.</p>
+                    <div class="et-hero-chips">
+                        <span class="et-chip">NET — NUST</span>
+                        <span class="et-chip">NAT — NTS</span>
+                        <span class="et-chip">GAT</span>
+                        <span class="et-chip">GRE</span>
+                        <span class="et-chip">MDCAT</span>
+                        <span class="et-chip">ECAT</span>
+                    </div>
+                </div>
+
+                <!-- Exam Cards -->
+                <div class="et-exams-grid">
+                    <div class="et-exam-card" onclick="showNetView()">
+                        <div class="et-exam-icon">🏛️</div>
+                        <div class="et-exam-name">NET</div>
+                        <div class="et-exam-full">NUST Entry Test — Engineering, CS, Business & Sciences</div>
+                        <span class="et-exam-badge">1 file available</span>
+                    </div>
+                    <div class="et-exam-card disabled">
+                        <div class="et-exam-icon">📋</div>
+                        <div class="et-exam-name">NAT</div>
+                        <div class="et-exam-full">National Aptitude Test by NTS</div>
+                        <span class="et-exam-badge soon">Coming Soon</span>
+                    </div>
+                    <div class="et-exam-card disabled">
+                        <div class="et-exam-icon">🎓</div>
+                        <div class="et-exam-name">GAT</div>
+                        <div class="et-exam-full">Graduate Assessment Test — HEC Pakistan</div>
+                        <span class="et-exam-badge soon">Coming Soon</span>
+                    </div>
+                    <div class="et-exam-card disabled">
+                        <div class="et-exam-icon">🌐</div>
+                        <div class="et-exam-name">GRE</div>
+                        <div class="et-exam-full">Graduate Record Examination — International</div>
+                        <span class="et-exam-badge soon">Coming Soon</span>
+                    </div>
+                    <div class="et-exam-card disabled">
+                        <div class="et-exam-icon">🩺</div>
+                        <div class="et-exam-name">MDCAT</div>
+                        <div class="et-exam-full">Medical & Dental College Admission Test</div>
+                        <span class="et-exam-badge soon">Coming Soon</span>
+                    </div>
+                    <div class="et-exam-card disabled">
+                        <div class="et-exam-icon">⚙️</div>
+                        <div class="et-exam-name">ECAT</div>
+                        <div class="et-exam-full">Engineering College Admission Test — UET</div>
+                        <span class="et-exam-badge soon">Coming Soon</span>
+                    </div>
+                </div>
+            </div><!-- /et-view-picker -->
+
+            <!-- NUST NET VIEW -->
+            <div class="net-view" id="et-view-net">
+                <button class="et-back-btn" onclick="showEtPicker()">← Back to Entry Tests</button>
+
+                <!-- Breadcrumb-style header -->
+                <h1 class="page-title" style="margin-bottom:4px;">🏛️ NUST Entry Test (NET)</h1>
+                <p class="page-subtitle" style="margin-bottom:24px;">Past papers, MCQs &amp; complete guide to NET — your gateway to NUST</p>
+
+                <!-- Subject tabs -->
+                <div class="net-subj-tabs">
+                    <button class="net-subj-tab active" onclick="showNetSubj('math')">📐 Mathematics</button>
+                    <button class="net-subj-tab" style="opacity:0.5;cursor:default;" disabled>🧪 Physics (Soon)</button>
+                    <button class="net-subj-tab" style="opacity:0.5;cursor:default;" disabled>⚗️ Chemistry (Soon)</button>
+                    <button class="net-subj-tab" style="opacity:0.5;cursor:default;" disabled>🧬 Biology (Soon)</button>
+                </div>
+
+                <!-- PDF FILE FIRST -->
+                <div class="pdf-preview-card">
+                    <div class="pdf-preview-header">
+                        <div class="pdf-preview-icon">📄</div>
+                        <div class="pdf-preview-meta">
+                            <div class="pdf-preview-title">NUST NET — Math Past Papers (120 MCQs)</div>
+                            <div class="pdf-preview-sub">Mathematics · Past Questions · 120 MCQs compiled · PDF</div>
+                        </div>
+                        <a class="pdf-preview-dl" href="assets/Entry_Test/NUST_NET/NUST-NET_Math_Past_Papers_120_MCQs.pdf" target="_blank" rel="noopener noreferrer">
+                            <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M12 16l-4-4h3V4h2v8h3l-4 4z"/><path d="M4 18h16"/></svg>
+                            Download PDF
+                        </a>
+                    </div>
+                    <div class="pdf-embed-wrap">
+                        <iframe
+                            src="assets/Entry_Test/NUST_NET/NUST-NET_Math_Past_Papers_120_MCQs.pdf"
+                            title="NUST NET Math Past Papers 120 MCQs"
+                            loading="lazy"
+                            allowfullscreen>
+                            <div class="pdf-fallback">
+                                <p>PDF preview not supported in your browser. <a href="assets/Entry_Test/NUST_NET/NUST-NET_Math_Past_Papers_120_MCQs.pdf" target="_blank">Click here to open the PDF</a>.</p>
+                            </div>
+                        </iframe>
+                    </div>
+                </div>
+
+                <!-- INFO CONTENT -->
+
+                <!-- What is NET -->
+                <div class="net-info-section">
+                    <h2><span class="info-icon">❓</span> What is NET?</h2>
+                    <p>The NUST Entry Test (NET) is the official admission test conducted by NUST for undergraduate (BS) programs. It is a computer-based (and in some cities paper-based) exam consisting of MCQs based primarily on Matric (SSC) and Intermediate (HSSC) syllabus.</p>
+                    <p>NET is designed to evaluate students' academic knowledge, analytical skills, and readiness for higher education in fields such as:</p>
+                    <ul class="net-bullet-list">
+                        <li>Engineering</li>
+                        <li>Computer Science</li>
+                        <li>Business &amp; Social Sciences</li>
+                        <li>Natural Sciences</li>
+                        <li>Architecture &amp; Design</li>
+                    </ul>
+                    <p>The test typically includes <strong>200 MCQs</strong> to be solved in <strong>3 hours</strong>, with subject weightage depending on the chosen discipline.</p>
+                </div>
+
+                <!-- Why NET is Important -->
+                <div class="net-info-section">
+                    <h2><span class="info-icon">⭐</span> Why NET is Important?</h2>
+                    <ul class="net-bullet-list">
+                        <li>NET plays a central role in securing admission to NUST, one of Pakistan's top-ranked universities. Here's why it matters:</li>
+                        <li>NUST primarily uses NET scores to determine merit. A higher score increases your chances of getting into competitive programs.</li>
+                        <li>Students can appear in NET multiple times within the same admission cycle, and only the best score is considered, giving you multiple chances to improve.</li>
+                        <li>NET ensures a fair and standardized assessment system for all applicants across Pakistan and overseas.</li>
+                        <li>Clearing NET opens doors to prestigious undergraduate programs in engineering, computing, business, and sciences.</li>
+                    </ul>
+                </div>
+
+                <!-- How many NETs -->
+                <div class="net-info-section">
+                    <h2><span class="info-icon">📅</span> How Many NETs Are Conducted for Fall Intake?</h2>
+                    <p>For each Fall admission cycle, NUST conducts the NET in multiple series throughout the year.</p>
+                    <p><strong>NUST conducts 4 NET series every year for Fall admissions:</strong></p>
+                    <div class="net-series-grid">
+                        <div class="net-series-card">
+                            <div class="net-series-num">NET-1</div>
+                            <div class="net-series-month">Usually in December</div>
+                        </div>
+                        <div class="net-series-card">
+                            <div class="net-series-num">NET-2</div>
+                            <div class="net-series-month">Usually in February</div>
+                        </div>
+                        <div class="net-series-card">
+                            <div class="net-series-num">NET-3</div>
+                            <div class="net-series-month">Usually in April</div>
+                        </div>
+                        <div class="net-series-card">
+                            <div class="net-series-num">NET-4</div>
+                            <div class="net-series-month">Usually in June / July (final attempt)</div>
+                        </div>
+                    </div>
+                    <div class="net-info-tip">
+                        <span>⚠️</span>
+                        <div><strong>Important:</strong> You can attempt each series once per discipline. You can appear in multiple series. Best score is counted for final merit.</div>
+                    </div>
+                </div>
+
+                <!-- Test Format -->
+                <div class="net-info-section">
+                    <h2><span class="info-icon">📝</span> Test Format &amp; Key Features</h2>
+                    <table class="net-format-table">
+                        <thead>
+                            <tr><th>Feature</th><th>Details</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Syllabus</td><td>FSc / A-Level syllabus</td></tr>
+                            <tr><td>Format</td><td>MCQ-based exam</td></tr>
+                            <tr><td>Duration</td><td>180 minutes (3 hours)</td></tr>
+                            <tr><td>Total Questions</td><td>200 MCQs</td></tr>
+                            <tr><td>Exam Mode</td><td>Computer-based (Islamabad &amp; Quetta) · Paper-based (Karachi &amp; Gilgit)</td></tr>
+                            <tr><td>Cities</td><td>Islamabad, Karachi, Quetta, Gilgit</td></tr>
+                        </tbody>
+                    </table>
+                    <p style="margin-top:16px;">Because NET is conducted multiple times:</p>
+                    <ul class="net-bullet-list">
+                        <li>Attempt more than one series</li>
+                        <li>Learn from previous attempts</li>
+                        <li>Improve your score progressively</li>
+                    </ul>
+                    <p>This flexibility is one of the biggest advantages of the NUST admission system.</p>
+                </div>
+
+                <!-- Register CTA -->
+                <div class="net-register-cta">
+                    <h3>📝 Register for NET</h3>
+                    <p>To apply for the NUST Entry Test or get the latest updates, visit the official admissions portal:</p>
+                    <a class="net-register-btn" href="https://ugadmissions.nust.edu.pk/" target="_blank" rel="noopener noreferrer">
+                        🌐 Visit NUST Admissions Portal →
+                    </a>
+                </div>
+
+                <!-- Closing statement -->
+                <div class="net-info-section" style="border-left: 3px solid var(--accent); background: linear-gradient(135deg, #f0f4ff, #ffffff);">
+                    <p style="font-size:15px; color:var(--ink-2); line-height:1.8; margin:0;">
+                        The NUST Entry Test (NET) is not just an exam — it is your <strong>gateway to one of Pakistan's leading universities</strong>. With multiple attempts, a clear structure, and merit-based selection, it provides a fair opportunity for every student to succeed.
+                    </p>
+                    <p style="margin-top:14px; font-size:15px; color:var(--accent); font-weight:700; margin-bottom:0;">
+                        🚀 Prepare smart, attempt wisely, and aim for your best score!
+                    </p>
+                </div>
+
+            </div><!-- /et-view-net -->
+
+        </div><!-- /section-entry -->
 
         <div class="disclaimer">
             <strong style="color:#dc2626;">Disclaimer:</strong> All documents on this site are for <strong>educational purposes only</strong> and intended solely to support learning.
@@ -1331,6 +1684,38 @@
         }, { threshold: 0.2 });
         obs.observe(footerLogo);
     }
+    /* ══════════════════════════════════
+       SECTION TABS
+    ══════════════════════════════════ */
+    function switchSection(section) {
+        document.querySelectorAll('.section-tab').forEach(t => {
+            t.classList.toggle('active', t.dataset.section === section);
+        });
+        document.querySelectorAll('.section-content').forEach(c => {
+            c.classList.toggle('active', c.id === 'section-' + section);
+        });
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    /* ══════════════════════════════════
+       ENTRY TEST NAVIGATION
+    ══════════════════════════════════ */
+    function showNetView() {
+        document.getElementById('et-view-picker').classList.remove('active');
+        document.getElementById('et-view-net').classList.add('active');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function showEtPicker() {
+        document.getElementById('et-view-net').classList.remove('active');
+        document.getElementById('et-view-picker').classList.add('active');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function showNetSubj(subj) {
+        // Currently only math is active; extend later
+        document.querySelectorAll('.net-subj-tab').forEach(t => t.classList.remove('active'));
+        event.target.classList.add('active');
+    }
+
     </script>
-</body>
-</html>
