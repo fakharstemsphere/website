@@ -1402,9 +1402,38 @@
     }
 
     function render() {
-        const { board, cls, subj } = getRoute();
+        const hash = location.hash.replace('#', '');
+        const parts = hash.split('/').filter(Boolean);
 
-        // Determine which view to show
+        // Entry Test routes: #et, #et/net
+        if (parts[0] === 'et') {
+            // Activate Entry Tests tab
+            document.querySelectorAll('.section-tab').forEach(t =>
+                t.classList.toggle('active', t.dataset.section === 'entry'));
+            document.querySelectorAll('.section-content').forEach(c =>
+                c.classList.toggle('active', c.id === 'section-entry'));
+
+            if (parts[1] === 'net') {
+                document.getElementById('et-view-picker').classList.remove('active');
+                document.getElementById('et-view-net').classList.add('active');
+            } else {
+                document.getElementById('et-view-net').classList.remove('active');
+                document.getElementById('et-view-picker').classList.add('active');
+            }
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            return;
+        }
+
+        // Study Resources routes (existing logic)
+        document.querySelectorAll('.section-tab').forEach(t =>
+            t.classList.toggle('active', t.dataset.section === 'study'));
+        document.querySelectorAll('.section-content').forEach(c =>
+            c.classList.toggle('active', c.id === 'section-study'));
+
+        const board = parts[0] || null;
+        const cls   = parts[1] || null;
+        const subj  = parts[2] || null;
+
         if (board && cls && subj) {
             showFiles(board, cls, subj);
         } else if (board && cls) {
@@ -1668,6 +1697,8 @@
     ══════════════════════════════════ */
     window.addEventListener('hashchange', render);
     render();
+    // Also re-render on popstate for back/forward support
+    window.addEventListener('popstate', render);
 
     /* Footer logo pop-in on scroll */
     const footerLogo = document.querySelector('.footer-logo-img');
@@ -1688,32 +1719,25 @@
        SECTION TABS
     ══════════════════════════════════ */
     function switchSection(section) {
-        document.querySelectorAll('.section-tab').forEach(t => {
-            t.classList.toggle('active', t.dataset.section === section);
-        });
-        document.querySelectorAll('.section-content').forEach(c => {
-            c.classList.toggle('active', c.id === 'section-' + section);
-        });
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+        if (section === 'entry') {
+            location.hash = 'et';
+        } else {
+            location.hash = '';
+        }
     }
 
     /* ══════════════════════════════════
        ENTRY TEST NAVIGATION
     ══════════════════════════════════ */
     function showNetView() {
-        document.getElementById('et-view-picker').classList.remove('active');
-        document.getElementById('et-view-net').classList.add('active');
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+        location.hash = 'et/net';
     }
 
     function showEtPicker() {
-        document.getElementById('et-view-net').classList.remove('active');
-        document.getElementById('et-view-picker').classList.add('active');
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+        location.hash = 'et';
     }
 
     function showNetSubj(subj) {
-        // Currently only math is active; extend later
         document.querySelectorAll('.net-subj-tab').forEach(t => t.classList.remove('active'));
         event.target.classList.add('active');
     }
