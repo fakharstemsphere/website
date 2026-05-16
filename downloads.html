@@ -393,6 +393,13 @@
             flex-shrink: 0;
         }
 
+        .subj-icon.urdu-script {
+            font-size: 13px;
+            font-weight: 700;
+            direction: rtl;
+            font-family: 'Noto Nastaliq Urdu', 'Jameel Noori Nastaleeq', serif;
+        }
+
         .subj-info { flex: 1; min-width: 0; }
 
         .subj-name {
@@ -1357,7 +1364,7 @@
                 },
                 '12': {
                     label: 'Class 12th',
-                    badge: '9 files',
+                    badge: '14 files',
                     subjects: {
                         mathematics: {
                             name: 'Mathematics',
@@ -1374,6 +1381,19 @@
                                 { href: 'assets/FBISE/2nd_Year/Mathematics/Final_Assessment_Framework+Model_Question_Paper_Maths_HSSC-II.pdf', name: 'Assessment Framework & Model Paper (HSSC-II)', desc: 'Final assessment framework with official model question paper for Mathematics HSSC-II.', tags: 'mathematics assessment framework model paper hssc 12 fbise 2nd year' },
                                 { href: 'assets/FBISE/2nd_Year/Mathematics/Math_Class_12_Model_Paper_FBISE.pdf', name: 'Model Paper — FBISE', desc: 'Official FBISE model question paper for Mathematics Class 12th.', tags: 'mathematics model paper fbise class 12 hssc 2nd year' },
                                 { href: 'assets/FBISE/2nd_Year/Mathematics/Maths_2025_Part_II.pdf', name: '2025 Part II Full Paper', desc: 'Complete Mathematics Part II examination paper from 2025 — Federal Board.', tags: 'mathematics 2025 part 2 full paper hssc 12 fbise 2nd year' }
+                            ]
+                        },
+                        urdu: {
+                            name: 'Urdu',
+                            icon: 'اردو',
+                            iconBg: '#fce4ec',
+                            badge: '5 files',
+                            files: [
+                                { href: 'assets/FBISE/2nd_Year/Urdu/Urdu_2nd_Year_FBISE_2nd_Annual_Exam_2025.pdf', name: '2nd Annual Exam 2025 — FBISE', desc: 'Urdu HSSC-II 2nd Annual Examination paper — Federal Board, 2025.', tags: 'urdu 2nd annual exam 2025 fbise hssc 12 2nd year' },
+                                { href: 'assets/FBISE/2nd_Year/Urdu/Urdu_2nd_Year_FBISE_Model_Paper_Set_1.pdf', name: 'Model Paper Set 1 — FBISE', desc: 'Official FBISE model question paper Set 1 for Urdu HSSC-II (Class 12th).', tags: 'urdu model paper set 1 fbise hssc 12 2nd year' },
+                                { href: 'assets/FBISE/2nd_Year/Urdu/Urdu_2nd_Year_FBISE_Model_Paper_Set_2.pdf', name: 'Model Paper Set 2 — FBISE', desc: 'Official FBISE model question paper Set 2 for Urdu HSSC-II (Class 12th).', tags: 'urdu model paper set 2 fbise hssc 12 2nd year' },
+                                { href: 'assets/FBISE/2nd_Year/Urdu/Urdu_2nd_Year_FBISE_Model_Paper_Set_3.pdf', name: 'Model Paper Set 3 — FBISE', desc: 'Official FBISE model question paper Set 3 for Urdu HSSC-II (Class 12th).', tags: 'urdu model paper set 3 fbise hssc 12 2nd year' },
+                                { href: 'assets/FBISE/2nd_Year/Urdu/Urdu_Model_Paper_Class_12_Federal_Board_2026.pdf', name: 'Model Paper 2026 — Federal Board', desc: 'Urdu model question paper for Class 12th (HSSC-II) — Federal Board, Session 2025-26.', tags: 'urdu model paper 2026 class 12 federal board fbise hssc 2nd year' }
                             ]
                         }
                     }
@@ -1564,7 +1584,7 @@
                 const card = document.createElement('div');
                 card.className = 'subject-card' + (isSoon ? ' disabled' : '');
                 card.innerHTML = `
-                    <div class="subj-icon" style="background:${subj.iconBg}">${subj.icon}</div>
+                    <div class="subj-icon${subj.icon === 'اردو' ? ' urdu-script' : ''}" style="background:${subj.iconBg}">${subj.icon}</div>
                     <div class="subj-info">
                         <div class="subj-name">${subj.name}</div>
                         <span class="subj-badge${isSoon ? ' soon' : ''}">${subj.badge}</span>
@@ -1601,7 +1621,7 @@
 
         // Header
         document.getElementById('files-header').innerHTML = `
-            <div class="files-header-icon" style="background:${subj.iconBg}">${subj.icon}</div>
+            <div class="files-header-icon${subj.icon === 'اردو' ? ' urdu-script' : ''}" style="background:${subj.iconBg}">${subj.icon}</div>
             <div class="files-header-text">
                 <div class="files-header-title">${subj.name}</div>
                 <div class="files-header-sub">${board.label} · ${cls.label}</div>
