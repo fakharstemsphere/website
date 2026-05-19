@@ -1316,7 +1316,7 @@
                 },
                 '11': {
                     label: 'Class 11th',
-                    badge: '26 files',
+                    badge: '39 files',
                     subjects: {
                         mathematics: {
                             name: 'Mathematics',
@@ -1358,6 +1358,27 @@
                                 { href: 'assets/FBISE/1st_Year/Islamic_Studies/Islamiat_1st_Annual_Paper_FBISE_1st_Year_2025.pdf', name: '1st Annual Paper 2025 — FBISE', desc: 'Islamiat HSSC-I 1st Annual Examination paper — Federal Board, 2025.', tags: 'islamiat 1st annual paper 2025 fbise hssc 11 1st year islamic studies' },
                                 { href: 'assets/FBISE/1st_Year/Islamic_Studies/Islamiat_2nd_Annual_Paper_FBISE_1st_Year_2025.pdf', name: '2nd Annual Paper 2025 — FBISE', desc: 'Islamiat HSSC-I 2nd Annual Examination paper — Federal Board, 2025.', tags: 'islamiat 2nd annual paper 2025 fbise hssc 11 1st year islamic studies' },
                                 { href: 'assets/FBISE/1st_Year/Islamic_Studies/Islamiat_Model_Paper_FBISE_1st_Year_2026.pdf', name: 'Model Paper 2026 — FBISE', desc: 'Official FBISE model question paper for Islamiat HSSC-I — Session 2025-26.', tags: 'islamiat model paper 2026 fbise hssc 11 1st year islamic studies' }
+                            ]
+                        },
+                        english: {
+                            name: 'English',
+                            icon: '📝',
+                            iconBg: '#ede7f6',
+                            badge: '13 files',
+                            files: [
+                                { href: 'assets/FBISE/1st_Year/English/English_Model_Paper_Class_11th_Federal_Board_2026.pdf', name: 'Model Paper 2026 — Federal Board', desc: 'Official Federal Board model question paper for English Class 11th (HSSC-I) — Session 2025-26.', tags: 'english model paper 2026 class 11 federal board fbise hssc 1st year' },
+                                { href: 'assets/FBISE/1st_Year/English/Final_Assessment_Framework_&_Model_Question_Paper_English_HSSC-I.pdf', name: 'Assessment Framework & Model Paper (HSSC-I)', desc: 'Final assessment framework with official model question paper for English HSSC-I — Federal Board.', tags: 'english assessment framework model paper hssc 11 fbise 1st year' },
+                                { href: 'assets/FBISE/1st_Year/English/English_Paper_Federal_Board_11th_Class_1st_Annual_Exam_2025_OLD.pdf', name: '1st Annual 2025 — Old Syllabus', desc: 'English HSSC-I 1st Annual Examination 2025 — Old syllabus paper, Federal Board.', tags: 'english 1st annual 2025 old paper hssc 11 fbise 1st year' },
+                                { href: 'assets/FBISE/1st_Year/English/English_Paper_Federal_Board_11th_Class_1st_Annual_Exam_2025_Hard_Area.pdf', name: '1st Annual 2025 — Hard Area', desc: 'English HSSC-I 1st Annual Examination 2025 — Hard Area paper, Federal Board.', tags: 'english 1st annual 2025 hard area paper hssc 11 fbise 1st year' },
+                                { href: 'assets/FBISE/1st_Year/English/English_Paper_Federal_Board_11th_Class_1st_Annual_Exam_2025_Local_Area.pdf', name: '1st Annual 2025 — Local Area', desc: 'English HSSC-I 1st Annual Examination 2025 — Local Area paper, Federal Board.', tags: 'english 1st annual 2025 local area paper hssc 11 fbise 1st year' },
+                                { href: 'assets/FBISE/1st_Year/English/English_Paper_Federal_Board_11th_Class_2nd_Annual_Exam_2025_OLD.pdf', name: '2nd Annual 2025 — Old Syllabus', desc: 'English HSSC-I 2nd Annual Examination 2025 — Old syllabus paper, Federal Board.', tags: 'english 2nd annual 2025 old paper hssc 11 fbise 1st year' },
+                                { href: 'assets/FBISE/1st_Year/English/English_Paper_Federal_Board_11th_Class_2nd_Annual_Exam_2025.pdf', name: '2nd Annual 2025 Examination Paper', desc: 'English HSSC-I 2nd Annual Examination 2025 paper — Federal Board.', tags: 'english 2nd annual 2025 paper hssc 11 fbise 1st year' },
+                                { href: 'assets/FBISE/1st_Year/English/English_HSSC-I_(1st_Set)_Solution.pdf', name: '1st Set Solution — HSSC-I', desc: 'Complete solution to the English HSSC-I 1st Set paper — Federal Board.', tags: 'english solution 1st set hssc 11 fbise 1st year' },
+                                { href: 'assets/FBISE/1st_Year/English/English_HSSC-I_(2nd_Set)_Solution.pdf', name: '2nd Set Solution — HSSC-I', desc: 'Complete solution to the English HSSC-I 2nd Set paper — Federal Board.', tags: 'english solution 2nd set hssc 11 fbise 1st year' },
+                                { href: 'assets/FBISE/1st_Year/English/English_HSSC-I_(3rd_Set)_Solution.pdf', name: '3rd Set Solution — HSSC-I', desc: 'Complete solution to the English HSSC-I 3rd Set paper — Federal Board.', tags: 'english solution 3rd set hssc 11 fbise 1st year' },
+                                { href: 'assets/FBISE/1st_Year/English/English_HSSC-I_(1st Set)_Updated.pdf', name: '1st Set — Updated (HSSC-I)', desc: 'Updated English HSSC-I 1st Set paper — Federal Board.', tags: 'english 1st set updated hssc 11 fbise 1st year' },
+                                { href: 'assets/FBISE/1st_Year/English/English_HSSC-I_(2nd_Set)_Updated.pdf', name: '2nd Set — Updated (HSSC-I)', desc: 'Updated English HSSC-I 2nd Set paper — Federal Board.', tags: 'english 2nd set updated hssc 11 fbise 1st year' },
+                                { href: 'assets/FBISE/1st_Year/English/English_HSSC-I_(3rd_Set)_Updated.pdf', name: '3rd Set — Updated (HSSC-I)', desc: 'Updated English HSSC-I 3rd Set paper — Federal Board.', tags: 'english 3rd set updated hssc 11 fbise 1st year' }
                             ]
                         }
                     }
@@ -1496,6 +1517,16 @@
     /* ══════════════════════════════════
        VIEW: BOARDS
     ══════════════════════════════════ */
+    function countBoardFiles(board) {
+        let total = 0;
+        Object.values(board.classes).forEach(cls => {
+            Object.values(cls.subjects || {}).forEach(subj => {
+                if (subj.files) total += subj.files.length;
+            });
+        });
+        return total;
+    }
+
     function showBoards() {
         setActiveView('view-boards');
         setBreadcrumb([{ label: '🏠 Downloads', active: true }]);
@@ -1503,6 +1534,7 @@
         const grid = document.getElementById('board-grid');
         grid.innerHTML = '';
         Object.entries(DATA).forEach(([key, board]) => {
+            const fileCount = countBoardFiles(board);
             const card = document.createElement('div');
             card.className = 'board-card';
             card.innerHTML = `
@@ -1510,6 +1542,7 @@
                 <div class="board-card-body">
                     <div class="board-card-name">${board.label}</div>
                     <div class="board-card-meta">${board.desc}</div>
+                    <div class="board-card-meta" style="margin-top:6px;"><strong style="color:var(--accent);">${fileCount} files</strong> available</div>
                 </div>
                 <span class="board-card-arrow">→</span>
             `;
