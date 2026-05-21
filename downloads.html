@@ -892,6 +892,9 @@
             </button>
             <button class="section-tab" data-section="entry" onclick="switchSection('entry')">
                 🎯 Entry Tests
+            </button>
+            <button class="section-tab" data-section="uninotes" onclick="switchSection('uninotes')">
+                🎓 University Notes
                 <span class="tab-badge">NEW</span>
             </button>
         </div>
@@ -1155,6 +1158,123 @@
 
         </div><!-- /section-entry -->
 
+        <!-- ══════════════════════════════════
+             SECTION: UNIVERSITY NOTES
+        ══════════════════════════════════ -->
+        <div class="section-content" id="section-uninotes">
+
+            <!-- SUBJECT PICKER VIEW -->
+            <div class="net-view active" id="uni-view-picker">
+                <div class="et-hero">
+                    <div class="et-hero-label">University Course Notes Hub</div>
+                    <h1 class="et-hero-title">🎓 University Notes & Resources</h1>
+                    <p class="et-hero-desc">Solved problems, notes, and study material for university-level engineering and CS courses. Select your subject below to get started.</p>
+                    <div class="et-hero-chips">
+                        <span class="et-chip">Digital Logic Design</span>
+                        <span class="et-chip">More Coming Soon</span>
+                    </div>
+                </div>
+
+                <div class="et-exams-grid">
+                    <div class="et-exam-card" onclick="showDldView()">
+                        <div class="et-exam-icon">🔌</div>
+                        <div class="et-exam-name">DLD</div>
+                        <div class="et-exam-full">Digital Logic Design — Notes & Solved Problems</div>
+                        <span class="et-exam-badge">1 file available</span>
+                    </div>
+                    <div class="et-exam-card disabled">
+                        <div class="et-exam-icon">⚡</div>
+                        <div class="et-exam-name">Circuit Theory</div>
+                        <div class="et-exam-full">Circuit Analysis & Electrical Network Theory</div>
+                        <span class="et-exam-badge soon">Coming Soon</span>
+                    </div>
+                    <div class="et-exam-card disabled">
+                        <div class="et-exam-icon">💻</div>
+                        <div class="et-exam-name">DS&A</div>
+                        <div class="et-exam-full">Data Structures & Algorithms</div>
+                        <span class="et-exam-badge soon">Coming Soon</span>
+                    </div>
+                    <div class="et-exam-card disabled">
+                        <div class="et-exam-icon">🔢</div>
+                        <div class="et-exam-name">Discrete Math</div>
+                        <div class="et-exam-full">Discrete Mathematics for Computer Science</div>
+                        <span class="et-exam-badge soon">Coming Soon</span>
+                    </div>
+                </div>
+            </div><!-- /uni-view-picker -->
+
+            <!-- DLD VIEW -->
+            <div class="net-view" id="uni-view-dld">
+                <button class="et-back-btn" onclick="showUniPicker()">← Back to University Notes</button>
+
+                <h1 class="page-title" style="margin-bottom:4px;">🔌 Digital Logic Design (DLD)</h1>
+                <p class="page-subtitle" style="margin-bottom:24px;">Solved problems, notes &amp; key concepts for Digital Logic Design</p>
+
+                <!-- PDF FILE -->
+                <div class="pdf-preview-card">
+                    <div class="pdf-preview-header" style="background:linear-gradient(90deg,#6d28d9,#4c1d95);">
+                        <div class="pdf-preview-icon">📄</div>
+                        <div class="pdf-preview-meta">
+                            <div class="pdf-preview-title">DLD — Solution of Most Important Problems</div>
+                            <div class="pdf-preview-sub">Digital Logic Design · Solved Problems · University Level · PDF</div>
+                        </div>
+                        <a class="pdf-preview-dl" href="assets/Notes/Digital_Logic_Design/DLD_Solution_of_Most_Important_Problems.pdf" target="_blank" rel="noopener noreferrer">
+                            <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M12 16l-4-4h3V4h2v8h3l-4 4z"/><path d="M4 18h16"/></svg>
+                            Download PDF
+                        </a>
+                    </div>
+                    <div class="pdf-embed-wrap">
+                        <iframe
+                            src="assets/Notes/Digital_Logic_Design/DLD_Solution_of_Most_Important_Problems.pdf"
+                            title="DLD Solution of Most Important Problems"
+                            loading="lazy">
+                        </iframe>
+                    </div>
+                </div>
+
+                <!-- About DLD -->
+                <div class="net-info-section">
+                    <h2><span class="info-icon">📖</span> About Digital Logic Design</h2>
+                    <p>Digital Logic Design (DLD) is a foundational course in Computer Engineering and Electrical Engineering programs. It covers the principles of designing digital circuits and systems using logic gates, Boolean algebra, and combinational/sequential circuits.</p>
+                    <ul class="net-bullet-list">
+                        <li>Number systems &amp; Boolean algebra — the mathematical backbone of all digital systems.</li>
+                        <li>Combinational circuits — adders, subtractors, multiplexers, decoders, and encoders.</li>
+                        <li>Sequential circuits — flip-flops, registers, counters, and state machines.</li>
+                        <li>Simplification techniques — Karnaugh Maps (K-Maps) and Quine-McCluskey method.</li>
+                        <li>Logic families &amp; implementation using TTL and CMOS technologies.</li>
+                    </ul>
+                </div>
+
+                <!-- What's in the File -->
+                <div class="net-info-section">
+                    <h2><span class="info-icon">📝</span> What's Covered in This File?</h2>
+                    <p>This PDF compiles solutions to the most important and frequently asked problems in Digital Logic Design, making it ideal for exam preparation and concept revision.</p>
+                    <ul class="net-bullet-list">
+                        <li>Step-by-step worked solutions to high-weightage problems.</li>
+                        <li>K-Map simplifications with clear grouping and SOP/POS derivations.</li>
+                        <li>Truth tables and circuit designs for combinational logic problems.</li>
+                        <li>Sequential circuit analysis including state diagrams and transition tables.</li>
+                    </ul>
+                    <div class="net-info-tip">
+                        <span>💡</span>
+                        <div><strong>Tip:</strong> Use this resource alongside your textbook to reinforce understanding — don't just memorize, understand the method behind each solution.</div>
+                    </div>
+                </div>
+
+                <!-- Closing -->
+                <div class="net-info-section" style="border-left:3px solid #6d28d9; background:linear-gradient(135deg,#f5f3ff,#ffffff);">
+                    <p style="font-size:15px; color:var(--ink-2); line-height:1.8; margin:0;">
+                        Mastering Digital Logic Design gives you the building blocks to understand computer architecture, processors, and embedded systems. It is one of the <strong>most important foundational courses</strong> for any Computer or Electrical Engineering student.
+                    </p>
+                    <p style="margin-top:14px; font-size:15px; color:#6d28d9; font-weight:700; margin-bottom:0;">
+                        🚀 Understand the logic. Build the future.
+                    </p>
+                </div>
+
+            </div><!-- /uni-view-dld -->
+
+        </div><!-- /section-uninotes -->
+
         <div class="disclaimer">
             <strong style="color:#dc2626;">Disclaimer:</strong> All documents on this site are for <strong>educational purposes only</strong> and intended solely to support learning.
         </div>
@@ -1258,13 +1378,13 @@
                             iconBg: '#e8eaf6',
                             badge: '7 files',
                             files: [
+                                { href: 'assets/FBISE/9th_Class/Computer_Science/9th_Class_Solution_Compute_Science_Federal_Board_Morning_Paper_2026.pdf', name: 'Solution — Federal Board Morning Paper 2026', desc: 'Complete solution of the Federal Board morning paper for Computer Science Class 9th 2026.', tags: 'computer science solution federal board morning paper 2026 fbise 9' },
+                                { href: 'assets/FBISE/9th_Class/Computer_Science/Computer_Science_Class_9th_1st_Annual_Exam_2025_Evening.pdf', name: '1st Annual 2025 — Evening Session', desc: 'Computer Science SSC-I 1st Annual Examination 2025 — Evening session paper.', tags: 'computer science 1st annual 2025 evening paper fbise 9' },
+                                { href: 'assets/FBISE/9th_Class/Computer_Science/Computer_Science_Class_9th_1st_Annual_Exam_2025_Morning.pdf', name: '1st Annual 2025 — Morning Session', desc: 'Computer Science SSC-I 1st Annual Examination 2025 — Morning session paper.', tags: 'computer science 1st annual 2025 morning paper fbise 9' },
+                                { href: 'assets/FBISE/9th_Class/Computer_Science/Computer_Science_Class_9th_2nd_Annual_Exam_2025.pdf', name: '2nd Annual 2025 Examination Paper', desc: 'Computer Science SSC-I 2nd Annual Examination 2025 paper.', tags: 'computer science 2nd annual 2025 paper fbise 9' },
                                 { href: 'assets/FBISE/9th_Class/Computer_Science/Computer_Science_Class_9th_Federal_Model_Paper_2026.pdf', name: 'Model Paper 2026 — Federal Board', desc: 'Official Federal Board model question paper for Computer Science Class 9th.', tags: 'computer science model paper 2026 fbise federal board 9' },
-                                { href: 'assets/FBISE/9th_Class/Computer_Science/Solution_of_Tasks_of_Algorithms_and_Flowcharts.pdf', name: 'Solution of Tasks — Algorithms & Flowcharts', desc: 'Complete solutions to all algorithm and flowchart tasks.', tags: 'computer science algorithms flowcharts tasks solution 9' },
-                                { href: 'assets/FBISE/9th_Class/Computer_Science/CS_Class_9th_Assessment_Framework_FBISE.pdf', name: 'Assessment Framework — FBISE', desc: 'Official assessment framework for Computer Science Class 9th — Federal Board.', tags: 'computer science assessment framework fbise 9' },
-                                { href: 'assets/FBISE/9th_Class/Computer_Science/CS_Class_9th_1st_Annual_2025_Morning.pdf', name: '1st Annual 2025 — Morning Session', desc: 'Computer Science SSC-I 1st Annual Examination 2025 — Morning session.', tags: 'computer science 1st annual 2025 morning paper fbise 9' },
-                                { href: 'assets/FBISE/9th_Class/Computer_Science/CS_Class_9th_1st_Annual_2025_Evening.pdf', name: '1st Annual 2025 — Evening Session', desc: 'Computer Science SSC-I 1st Annual Examination 2025 — Evening session.', tags: 'computer science 1st annual 2025 evening paper fbise 9' },
-                                { href: 'assets/FBISE/9th_Class/Computer_Science/CS_Class_9th_2nd_Annual_2025.pdf', name: '2nd Annual 2025 Examination Paper', desc: 'Computer Science SSC-I 2nd Annual Examination 2025 paper.', tags: 'computer science 2nd annual 2025 paper fbise 9' },
-                                { href: 'assets/FBISE/9th_Class/Computer_Science/CS_Class_9th_TOS_FBISE.pdf', name: 'Table of Specification (ToS)', desc: 'Official ToS for Computer Science Class 9th — Federal Board.', tags: 'computer science table specification tos fbise 9' }
+                                { href: 'assets/FBISE/9th_Class/Computer_Science/Computer_Science_FBISE_Class_9_Past_Paper_Solutions_2025.pdf', name: 'Past Paper Solutions 2025 — FBISE Class 9', desc: 'Complete solutions to FBISE Computer Science Class 9 past papers 2025.', tags: 'computer science past paper solutions 2025 fbise 9' },
+                                { href: 'assets/FBISE/9th_Class/Computer_Science/Solution_of_Tasks_of_Algorithms_and_Flowcharts.pdf', name: 'Solution of Tasks — Algorithms & Flowcharts', desc: 'Complete solutions to all algorithm and flowchart tasks.', tags: 'computer science algorithms flowcharts tasks solution 9' }
                             ]
                         }
                     }
@@ -1488,6 +1608,24 @@
             } else {
                 document.getElementById('et-view-net').classList.remove('active');
                 document.getElementById('et-view-picker').classList.add('active');
+            }
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            return;
+        }
+
+        // University Notes routes: #uni, #uni/dld
+        if (parts[0] === 'uni') {
+            document.querySelectorAll('.section-tab').forEach(t =>
+                t.classList.toggle('active', t.dataset.section === 'uninotes'));
+            document.querySelectorAll('.section-content').forEach(c =>
+                c.classList.toggle('active', c.id === 'section-uninotes'));
+
+            if (parts[1] === 'dld') {
+                document.getElementById('uni-view-picker').classList.remove('active');
+                document.getElementById('uni-view-dld').classList.add('active');
+            } else {
+                document.getElementById('uni-view-dld').classList.remove('active');
+                document.getElementById('uni-view-picker').classList.add('active');
             }
             window.scrollTo({ top: 0, behavior: 'smooth' });
             return;
@@ -1802,6 +1940,8 @@
     function switchSection(section) {
         if (section === 'entry') {
             location.hash = 'et';
+        } else if (section === 'uninotes') {
+            location.hash = 'uni';
         } else {
             location.hash = '';
         }
@@ -1821,6 +1961,17 @@
     function showNetSubj(subj) {
         document.querySelectorAll('.net-subj-tab').forEach(t => t.classList.remove('active'));
         event.target.classList.add('active');
+    }
+
+    /* ══════════════════════════════════
+       UNIVERSITY NOTES NAVIGATION
+    ══════════════════════════════════ */
+    function showDldView() {
+        location.hash = 'uni/dld';
+    }
+
+    function showUniPicker() {
+        location.hash = 'uni';
     }
 
     </script>
