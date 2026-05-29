@@ -1171,6 +1171,7 @@
                     <p class="et-hero-desc">Solved problems, notes, and study material for university-level engineering and CS courses. Select your subject below to get started.</p>
                     <div class="et-hero-chips">
                         <span class="et-chip">Digital Logic Design</span>
+                        <span class="et-chip">Circuit Theory</span>
                         <span class="et-chip">More Coming Soon</span>
                     </div>
                 </div>
@@ -1182,11 +1183,11 @@
                         <div class="et-exam-full">Digital Logic Design — Notes & Solved Problems</div>
                         <span class="et-exam-badge">22 files available</span>
                     </div>
-                    <div class="et-exam-card disabled">
+                    <div class="et-exam-card" onclick="showLcaView()">
                         <div class="et-exam-icon">⚡</div>
                         <div class="et-exam-name">Circuit Theory</div>
                         <div class="et-exam-full">Circuit Analysis & Electrical Network Theory</div>
-                        <span class="et-exam-badge soon">Coming Soon</span>
+                        <span class="et-exam-badge">1 file available</span>
                     </div>
                     <div class="et-exam-card disabled">
                         <div class="et-exam-icon">💻</div>
@@ -1438,6 +1439,76 @@
                 </div>
 
             </div><!-- /uni-view-dld -->
+
+            <!-- CIRCUIT THEORY (LCA) VIEW -->
+            <div class="net-view" id="uni-view-lca">
+                <button class="et-back-btn" onclick="showUniPicker()">← Back to University Notes</button>
+
+                <h1 class="page-title" style="margin-bottom:4px;">⚡ Circuit Theory (LCA)</h1>
+                <p class="page-subtitle" style="margin-bottom:24px;">Solved problems, notes &amp; key concepts for Circuit Theory — RLC Circuits &amp; Op-Amps</p>
+
+                <!-- PDF FILE -->
+                <div class="pdf-preview-card">
+                    <div class="pdf-preview-header" style="background:linear-gradient(90deg,#b45309,#78350f);">
+                        <div class="pdf-preview-icon">📄</div>
+                        <div class="pdf-preview-meta">
+                            <div class="pdf-preview-title">RLC & Op-Amp — Most Important Problems with Solutions</div>
+                            <div class="pdf-preview-sub">Circuit Theory (LCA) · Solved Problems · University Level · PDF</div>
+                        </div>
+                        <a class="pdf-preview-dl" href="assets/Notes/LCA/RLC_and_Opamp_Most_Important_Problems_with_Solution.pdf" target="_blank" rel="noopener noreferrer">
+                            <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M12 16l-4-4h3V4h2v8h3l-4 4z"/><path d="M4 18h16"/></svg>
+                            Download PDF
+                        </a>
+                    </div>
+                    <div class="pdf-embed-wrap">
+                        <iframe
+                            src="assets/Notes/LCA/RLC_and_Opamp_Most_Important_Problems_with_Solution.pdf"
+                            title="RLC and Op-Amp Most Important Problems with Solution"
+                            loading="lazy">
+                        </iframe>
+                    </div>
+                </div>
+
+                <!-- About Circuit Theory -->
+                <div class="net-info-section">
+                    <h2><span class="info-icon">📖</span> About Circuit Theory (LCA)</h2>
+                    <p>Circuit Theory (Linear Circuit Analysis) is a core course in Electrical and Computer Engineering programs. It lays the mathematical and physical foundation for understanding how electrical circuits behave, covering DC and AC analysis, transient response, and active components like Op-Amps.</p>
+                    <ul class="net-bullet-list">
+                        <li>RLC circuits — resistors, inductors, and capacitors in series and parallel configurations.</li>
+                        <li>Transient &amp; steady-state analysis — natural and forced responses of first and second-order circuits.</li>
+                        <li>Operational Amplifiers (Op-Amps) — inverting, non-inverting, summing, and differentiator/integrator configurations.</li>
+                        <li>Phasor analysis — AC circuit analysis using impedance and admittance.</li>
+                        <li>Network theorems — Thevenin, Norton, Superposition, and Maximum Power Transfer.</li>
+                    </ul>
+                </div>
+
+                <!-- What's in the File -->
+                <div class="net-info-section">
+                    <h2><span class="info-icon">📝</span> What's Covered in This File?</h2>
+                    <p>This PDF compiles solutions to the most important and frequently asked problems in Circuit Theory, covering both RLC circuits and Operational Amplifiers — ideal for exam preparation and concept revision.</p>
+                    <ul class="net-bullet-list">
+                        <li>Step-by-step worked solutions to high-weightage RLC circuit problems.</li>
+                        <li>Transient analysis of first and second-order circuits with complete derivations.</li>
+                        <li>Op-Amp circuit analysis — gain calculations, virtual ground concept, and feedback networks.</li>
+                        <li>Phasor-domain problems with impedance and frequency response analysis.</li>
+                    </ul>
+                    <div class="net-info-tip">
+                        <span>💡</span>
+                        <div><strong>Tip:</strong> Focus on understanding the method behind each solution — especially the choice of analysis technique. Being able to recognize which approach fits a given circuit is the key skill examiners test.</div>
+                    </div>
+                </div>
+
+                <!-- Closing -->
+                <div class="net-info-section" style="border-left:3px solid #b45309; background:linear-gradient(135deg,#fffbeb,#ffffff);">
+                    <p style="font-size:15px; color:var(--ink-2); line-height:1.8; margin:0;">
+                        Mastering Circuit Theory gives you the analytical tools to understand every electrical system — from power grids to microchips. It is one of the <strong>most fundamental courses</strong> for any Electrical or Computer Engineering student.
+                    </p>
+                    <p style="margin-top:14px; font-size:15px; color:#b45309; font-weight:700; margin-bottom:0;">
+                        ⚡ Understand the circuits. Power the world.
+                    </p>
+                </div>
+
+            </div><!-- /uni-view-lca -->
 
         </div><!-- /section-uninotes -->
 
@@ -1833,7 +1904,7 @@
             return;
         }
 
-        // University Notes routes: #uni, #uni/dld
+        // University Notes routes: #uni, #uni/dld, #uni/lca
         if (parts[0] === 'uni') {
             document.querySelectorAll('.section-tab').forEach(t =>
                 t.classList.toggle('active', t.dataset.section === 'uninotes'));
@@ -1842,9 +1913,15 @@
 
             if (parts[1] === 'dld') {
                 document.getElementById('uni-view-picker').classList.remove('active');
+                document.getElementById('uni-view-lca').classList.remove('active');
                 document.getElementById('uni-view-dld').classList.add('active');
+            } else if (parts[1] === 'lca') {
+                document.getElementById('uni-view-picker').classList.remove('active');
+                document.getElementById('uni-view-dld').classList.remove('active');
+                document.getElementById('uni-view-lca').classList.add('active');
             } else {
                 document.getElementById('uni-view-dld').classList.remove('active');
+                document.getElementById('uni-view-lca').classList.remove('active');
                 document.getElementById('uni-view-picker').classList.add('active');
             }
             window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -2188,6 +2265,10 @@
     ══════════════════════════════════ */
     function showDldView() {
         location.hash = 'uni/dld';
+    }
+
+    function showLcaView() {
+        location.hash = 'uni/lca';
     }
 
     function showUniPicker() {
