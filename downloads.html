@@ -1798,7 +1798,7 @@
                 },
                 '12': {
                     label: 'Class 12th',
-                    badge: '24 files',
+                    badge: '32 files',
                     subjects: {
                         mathematics: {
                             name: 'Mathematics',
@@ -1846,6 +1846,27 @@
                                 { href: 'assets/FBISE/2nd_Year/Computer_Science/Computer_Science_PBA_Model_and_Sample_Paper.pdf', name: 'CS PBA Model & Sample Paper', desc: 'Official model and sample paper for Computer Science PBA — Federal Board HSSC-II.', tags: 'computer science pba model sample paper fbise hssc 12 2nd year' },
                                 { href: 'assets/FBISE/2nd_Year/Computer_Science/Final_Computer_Science_PBA_HSSC_Merged.pdf', name: 'Final CS PBA HSSC Merged', desc: 'Merged final Computer Science PBA resource file for HSSC — Federal Board.', tags: 'computer science pba hssc merged final fbise hssc 12 2nd year' },
                                 { href: 'assets/FBISE/2nd_Year/Computer_Science/Computer_Science_PBA_Practicals_List.pdf', name: 'CS PBA Practicals List', desc: 'Complete list of practicals for Computer Science PBA — Federal Board HSSC-II.', tags: 'computer science pba practicals list fbise hssc 12 2nd year' }
+                            ]
+                        },
+                        physics: {
+                            name: 'Physics',
+                            icon: '⚛️',
+                            iconBg: '#e3f2fd',
+                            badge: '8 files',
+                            book: {
+                                href: 'assets/FBISE/2nd_Year/Physics/Physics_Book_Class_12_Federal_Board.pdf',
+                                title: 'Physics Textbook — Class 12 (Federal Board)',
+                                desc: 'The official Federal Board Physics textbook for Class 12 (HSSC-II). This comprehensive textbook covers all prescribed topics including electrostatics, current electricity, electromagnetism, electromagnetic induction, alternating current, physics of solids, electronics, dawn of modern physics, atomic spectra, and nuclear physics. Authored and published by the Federal Board of Intermediate & Secondary Education (FBISE), this is the primary resource every student should study alongside past papers and practice material.',
+                                gradient: 'linear-gradient(90deg,#1565c0,#0d47a1)'
+                            },
+                            files: [
+                                { href: 'assets/FBISE/2nd_Year/Physics/Physics_Class_12_Federal_Board_1st_Annual_Exam_2025_Local_Area.pdf', name: '1st Annual Exam 2025 — Local Area', desc: 'Physics HSSC-II 1st Annual Examination 2025 — Local Area paper, Federal Board.', tags: 'physics 1st annual exam 2025 local area hssc 12 fbise 2nd year class 12' },
+                                { href: 'assets/FBISE/2nd_Year/Physics/Physics_Class_12_Federal_Board_1st_Annual_Exam_2025_Hard_Area.pdf', name: '1st Annual Exam 2025 — Hard Area', desc: 'Physics HSSC-II 1st Annual Examination 2025 — Hard Area paper, Federal Board.', tags: 'physics 1st annual exam 2025 hard area hssc 12 fbise 2nd year class 12' },
+                                { href: 'assets/FBISE/2nd_Year/Physics/Physics_Class_12_Federal_Board_2nd_Annual_Exam_2025.pdf', name: '2nd Annual Exam 2025 — Federal Board', desc: 'Physics HSSC-II 2nd Annual Examination 2025 paper — Federal Board.', tags: 'physics 2nd annual exam 2025 fbise hssc 12 2nd year class 12' },
+                                { href: 'assets/FBISE/2nd_Year/Physics/Guess_Paper_Physics_Class_12_Federal_Board_2026.pdf', name: 'Guess Paper 2026 — Federal Board', desc: 'Important guess paper for Physics Class 12 (HSSC-II) — Federal Board, Session 2025-26.', tags: 'physics guess paper 2026 class 12 federal board fbise hssc 2nd year' },
+                                { href: 'assets/FBISE/2nd_Year/Physics/Physics_Model_Paper_Class_12_Federal_Board_2026.pdf', name: 'Model Paper 2026 — Federal Board', desc: 'Official model question paper for Physics Class 12 (HSSC-II) — Federal Board, Session 2025-26.', tags: 'physics model paper 2026 class 12 federal board fbise hssc 2nd year' },
+                                { href: 'assets/FBISE/2nd_Year/Physics/Formative_and_Summative_Topics_Physics_Class_12_Federal_Board_2026.pdf', name: 'Formative & Summative Topics 2026 — Federal Board', desc: 'Complete list of formative and summative assessment topics for Physics Class 12 (HSSC-II) — Federal Board, Session 2025-26.', tags: 'physics formative summative topics 2026 class 12 federal board fbise hssc 2nd year' },
+                                { href: 'assets/FBISE/2nd_Year/Physics/Final_Assessment_Framework_&_Model_Question_Paper_Physics_HSSC-II.pdf', name: 'Assessment Framework & Model Paper (HSSC-II)', desc: 'Final assessment framework with official model question paper for Physics HSSC-II — Federal Board.', tags: 'physics assessment framework model paper hssc 12 fbise 2nd year class 12' }
                             ]
                         }
                     }
@@ -2188,6 +2209,55 @@
                 `;
                 list.appendChild(a);
             });
+
+            // Render featured book card after the files if subject has a book
+            if (subj.book) {
+                // Section heading for the book
+                const heading = document.createElement('div');
+                heading.innerHTML = `<h2 style="font-family:'Sora',sans-serif;font-size:18px;font-weight:700;color:var(--ink);margin:28px 0 16px;display:flex;align-items:center;gap:8px;"><span style="background:var(--accent-light);color:var(--accent);border-radius:8px;width:32px;height:32px;display:inline-flex;align-items:center;justify-content:center;font-size:16px;">📘</span> Textbook</h2>`;
+                list.appendChild(heading);
+
+                const bookCard = document.createElement('div');
+                bookCard.className = 'pdf-preview-card';
+                bookCard.style.marginBottom = '28px';
+                bookCard.innerHTML = `
+                    <div class="pdf-preview-header" style="background:${subj.book.gradient || 'linear-gradient(90deg,#1565c0,#0d47a1)'};">
+                        <div class="pdf-preview-icon">📘</div>
+                        <div class="pdf-preview-meta">
+                            <div class="pdf-preview-title">${subj.book.title}</div>
+                            <div class="pdf-preview-sub">${subj.book.desc}</div>
+                        </div>
+                        <a class="pdf-preview-dl" href="${subj.book.href}" target="_blank" rel="noopener noreferrer">
+                            <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M12 16l-4-4h3V4h2v8h3l-4 4z"/><path d="M4 18h16"/></svg>
+                            Download PDF
+                        </a>
+                    </div>
+                    <div class="pdf-embed-wrap">
+                        <iframe src="${subj.book.href}" title="${subj.book.title}" loading="lazy"></iframe>
+                    </div>
+                `;
+                list.appendChild(bookCard);
+
+                // Info section about the textbook
+                const infoSection = document.createElement('div');
+                infoSection.className = 'net-info-section';
+                infoSection.style.cssText = 'border-left:3px solid #1565c0;background:linear-gradient(135deg,#e3f2fd,#ffffff);margin-bottom:28px;';
+                infoSection.innerHTML = `
+                    <h2><span class="info-icon" style="background:#bbdefb;">📘</span> About the Textbook</h2>
+                    <p><strong>Physics — Class 12 (HSSC-II)</strong> is the official textbook prescribed by the <strong>Federal Board of Intermediate and Secondary Education (FBISE)</strong>. It covers all essential topics of the Class 12 Physics curriculum in a structured, exam-oriented manner — from foundational concepts of electrostatics and current electricity to the modern frontiers of atomic spectra and nuclear physics.</p>
+                    <ul class="net-bullet-list">
+                        <li>Covers all HSSC-II Physics chapters: Electrostatics, Current Electricity, Electromagnetism, Electromagnetic Induction, Alternating Current, Physics of Solids, Electronics, Dawn of Modern Physics, Atomic Spectra &amp; Nuclear Physics.</li>
+                        <li>Includes worked examples, conceptual questions, and numerical problems at the end of each chapter.</li>
+                        <li>Fully aligned with the FBISE syllabus and assessment framework for the 2025–26 academic session.</li>
+                        <li>An indispensable study companion — use it alongside the past papers and guess papers listed above for best exam preparation.</li>
+                    </ul>
+                    <div class="net-info-tip">
+                        <span>💡</span>
+                        <div><strong>Pro Tip:</strong> Study each chapter from this textbook thoroughly, then practise with the corresponding past papers and the 2026 guess paper listed above to maximise your exam score.</div>
+                    </div>
+                `;
+                list.appendChild(infoSection);
+            }
         }
 
         document.getElementById('back-to-subjects').onclick = () => setRoute([boardKey, classKey]);
