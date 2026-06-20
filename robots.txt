@@ -1,0 +1,5 @@
+robots.txt written by Fasih Ahmad
+User-agent: *
+Disallow: 
+Disallow: /cgi-bin/
+Sitemap: https://www.fakharstemsphere.com/sitemap.xml
