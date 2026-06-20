@@ -509,7 +509,7 @@
 <!-- Firebase SDK -->
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-app.js";
-import { getAuth, GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged }
+import { getAuth, GoogleAuthProvider, signInWithRedirect, getRedirectResult, signOut, onAuthStateChanged }
     from "https://www.gstatic.com/firebasejs/12.15.0/firebase-auth.js";
 import {
     getFirestore, collection, addDoc, getDocs, doc, updateDoc, deleteDoc,
@@ -566,7 +566,7 @@ function avatarHtml(photoURL, displayName, size = 22) {
 // ── Auth ──
 function doSignIn() {
     const provider = new GoogleAuthProvider();
-    signInWithPopup(auth, provider).catch(e => showToast("Sign-in failed: " + e.message, "error"));
+    signInWithRedirect(auth, provider).catch(e => showToast("Sign-in failed: " + e.message, "error"));
 }
 function doSignOut() {
     signOut(auth).then(() => showToast("Signed out."));
@@ -580,6 +580,10 @@ onAuthStateChanged(auth, user => {
     updateAuthUI(user);
     updateAskBar(user);
 });
+
+getRedirectResult(auth)
+    .then(result => { if (result && result.user) showToast("Signed in as " + (result.user.displayName || "user") + "."); })
+    .catch(e => showToast("Sign-in failed: " + e.message, "error"));
 
 function updateAuthUI(user) {
     const area = document.getElementById("authArea");
