@@ -70,16 +70,17 @@
             display: flex;
             align-items: center;
             list-style: none;
-            gap: 4px;
+            gap: 2px;
         }
 
         .nav-links a {
             text-decoration: none;
             color: #3d4152;
-            font-size: 14px;
+            font-size: 13px;
             font-weight: 500;
-            padding: 6px 12px;
+            padding: 6px 9px;
             border-radius: 8px;
+            white-space: nowrap;
             transition: background 0.15s, color 0.15s;
         }
 
@@ -486,6 +487,10 @@
 
         .mobile-nav a:hover { color: #667eea; }
 
+        @media (max-width: 1024px) and (min-width: 769px) {
+            .nav-links a { font-size: 12px; padding: 6px 7px; }
+        }
+
         /* ══════════════════════════════
            RESPONSIVE — TABLET / MOBILE
         ══════════════════════════════ */
@@ -750,11 +755,13 @@
                 <span></span><span></span><span></span>
             </button>
             <ul class="nav-links" id="navLinks">
-                <li><a href="#home">Home</a></li>
+                <li><a href="#home" class="active">Home</a></li>
                 <li><a href="#courses">Courses</a></li>
                 <li><a href="#booking">Book Session</a></li>
                 <li><a href="#about">About</a></li>
                 <li><a href="#contact">Contact</a></li>
+                <li><a href="stem-insights.html">STEM Insights</a></li>
+                <li><a href="stem-community.html">STEM Community</a></li>
                 <li><a href="downloads.html">Downloads</a></li>
             </ul>
         </div>
@@ -763,11 +770,13 @@
     <!-- Mobile Nav Overlay -->
     <nav class="mobile-nav" id="mobileNav">
         <button class="mobile-nav-close" id="mobileNavClose" aria-label="Close menu">✕</button>
-        <a href="#home">Home</a>
+        <a href="#home" class="active">Home</a>
         <a href="#courses">Courses</a>
         <a href="#booking">Book Session</a>
         <a href="#about">About</a>
         <a href="#contact">Contact</a>
+        <a href="stem-insights.html">STEM Insights</a>
+        <a href="stem-community.html">STEM Community</a>
         <a href="downloads.html">Downloads</a>
     </nav>
 

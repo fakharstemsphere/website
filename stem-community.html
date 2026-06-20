@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="STEM Community — Ask questions, share advice, and connect with Pakistan's STEM students.">
+    <link rel="icon" type="image/png" sizes="32x32" href="icon.png">
+    <title>STEM Community — Fakhar STEM Sphere</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+
+        /* ── HEADER ── */
+        header {
+            background: rgba(255,255,255,0.98);
+            border-bottom: 1px solid #eceef5;
+            position: sticky; top: 0; z-index: 200;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+        }
+        .header-inner {
+            max-width: 1160px; margin: 0 auto; padding: 0 24px;
+            height: 64px; display: flex; align-items: center;
+            justify-content: space-between; gap: 20px;
+        }
+        .logo {
+            font-size: 18px; font-weight: 800;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            background-clip: text; text-decoration: none; letter-spacing: -0.4px; white-space: nowrap;
+        }
+        .nav-links { display: flex; align-items: center; list-style: none; gap: 2px; }
+        .nav-links a {
+            text-decoration: none; color: #3d4152; font-size: 13px; font-weight: 500;
+            padding: 6px 9px; border-radius: 8px; white-space: nowrap; transition: background 0.15s, color 0.15s;
+        }
+        @media (max-width: 1024px) and (min-width: 769px) {
+            .nav-links a { font-size: 12px; padding: 6px 6px; }
+        }
+        .nav-links a:hover { background: #f5f6fa; color: #0f1117; }
+        .nav-links a.active { background: #dde4ff; color: #667eea; font-weight: 600; }
+
+        /* Auth in header */
+        .header-auth { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+        .btn-signin {
+            display: inline-flex; align-items: center; gap: 8px;
+            background: white; color: #444; padding: 7px 16px; border-radius: 20px;
+            border: 1.5px solid #e0e0e0; font-size: 13px; font-weight: 600;
+            cursor: pointer; transition: all 0.2s; white-space: nowrap;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.07);
+        }
+        .btn-signin:hover { border-color: #667eea; color: #667eea; box-shadow: 0 3px 10px rgba(102,126,234,0.15); }
+        .btn-signin svg { width: 16px; height: 16px; flex-shrink: 0; }
+        .user-chip {
+            display: flex; align-items: center; gap: 8px;
+            background: #f0f2ff; border-radius: 20px; padding: 4px 14px 4px 4px;
+        }
+        .user-chip img { width: 28px; height: 28px; border-radius: 50%; object-fit: cover; }
+        .user-chip span { font-size: 13px; font-weight: 600; color: #667eea; max-width: 120px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+        .btn-signout {
+            background: none; border: none; font-size: 12px; color: #999;
+            cursor: pointer; padding: 4px 6px; border-radius: 6px; transition: color 0.15s;
+        }
+        .btn-signout:hover { color: #e55353; }
+        #authArea { display: flex; align-items: center; gap: 8px; }
+
+        /* Hamburger */
+        .hamburger {
+            display: none; flex-direction: column; justify-content: space-between;
+            width: 26px; height: 18px; background: none; border: none; cursor: pointer; padding: 0; z-index: 210;
+        }
+        .hamburger span { display: block; width: 100%; height: 2px; background: #667eea; border-radius: 2px; transition: all 0.3s; }
+        .hamburger.open span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+        .hamburger.open span:nth-child(2) { opacity: 0; }
+        .hamburger.open span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+        .mobile-nav {
+            display: none; position: fixed; inset: 0; background: rgba(255,255,255,0.98);
+            z-index: 190; flex-direction: column; align-items: center; justify-content: center; gap: 24px;
+        }
+        .mobile-nav.open { display: flex; }
+        .mobile-nav a { text-decoration: none; color: #3d4152; font-size: 22px; font-weight: 600; padding: 8px 24px; border-radius: 10px; }
+        .mobile-nav a:hover { background: #f0f2ff; color: #667eea; }
+        .mobile-nav-close { position: absolute; top: 20px; right: 24px; background: none; border: none; font-size: 28px; cursor: pointer; color: #667eea; }
+
+        /* ── HERO ── */
+        .hero {
+            background: rgba(255,255,255,0.95); backdrop-filter: blur(10px);
+            margin: 40px 20px; border-radius: 20px; padding: 64px 40px;
+            text-align: center; box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        .hero-badge {
+            display: inline-block; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white; font-size: 13px; font-weight: 600; padding: 6px 18px;
+            border-radius: 20px; margin-bottom: 22px; letter-spacing: 0.5px;
+        }
+        .hero h1 {
+            font-size: 46px; margin-bottom: 16px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+        }
+        .hero p { font-size: 17px; color: #666; max-width: 620px; margin: 0 auto 32px; }
+        .hero-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+        .cta-button {
+            display: inline-block; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white; padding: 13px 32px; border-radius: 30px; text-decoration: none;
+            font-weight: 700; font-size: 15px; transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 5px 15px rgba(102,126,234,0.4); border: none; cursor: pointer;
+        }
+        .cta-button:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(102,126,234,0.6); }
+        .btn-google-hero {
+            display: inline-flex; align-items: center; gap: 10px; background: white;
+            color: #444; padding: 12px 28px; border-radius: 30px; border: 2px solid #e0e0e0;
+            font-size: 15px; font-weight: 600; cursor: pointer; transition: all 0.2s;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+        }
+        .btn-google-hero:hover { border-color: #667eea; color: #667eea; transform: translateY(-2px); }
+        .btn-google-hero svg { width: 20px; height: 20px; }
+
+        /* ── SECTION ── */
+        .section {
+            background: rgba(255,255,255,0.95); backdrop-filter: blur(10px);
+            margin: 32px 20px; border-radius: 20px; padding: 52px 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        .section h2 { font-size: 32px; margin-bottom: 10px; text-align: center; color: #333; }
+        .section-sub { text-align: center; color: #777; font-size: 15px; margin-bottom: 40px; max-width: 600px; margin-left: auto; margin-right: auto; }
+
+        /* ── COMMUNITY LAYOUT ── */
+        .community-layout { display: grid; grid-template-columns: 1fr 290px; gap: 28px; align-items: start; }
+
+        /* ── NEW POST FORM ── */
+        .new-post-box {
+            background: white; border: 1.5px solid #eceef5; border-radius: 14px;
+            padding: 20px; margin-bottom: 20px; display: none;
+        }
+        .new-post-box.visible { display: block; }
+        .new-post-box h3 { font-size: 16px; color: #333; margin-bottom: 16px; font-weight: 700; }
+        .np-field { margin-bottom: 12px; }
+        .np-field label { display: block; font-size: 12px; font-weight: 700; color: #667eea; margin-bottom: 5px; text-transform: uppercase; letter-spacing: 0.4px; }
+        .np-field input, .np-field textarea, .np-field select {
+            width: 100%; padding: 10px 14px; border: 1.5px solid #e0e4f5; border-radius: 10px;
+            font-size: 14px; color: #333; font-family: inherit; background: #fafbff;
+            transition: border-color 0.2s; outline: none;
+        }
+        .np-field input:focus, .np-field textarea:focus, .np-field select:focus { border-color: #667eea; }
+        .np-field textarea { resize: vertical; min-height: 90px; }
+        .np-actions { display: flex; gap: 10px; justify-content: flex-end; }
+        .btn-cancel {
+            background: none; border: 1.5px solid #e0e0e0; color: #888; padding: 8px 20px;
+            border-radius: 20px; font-size: 14px; font-weight: 600; cursor: pointer; transition: all 0.2s;
+        }
+        .btn-cancel:hover { border-color: #ccc; color: #555; }
+        .btn-post {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white; border: none; padding: 9px 24px; border-radius: 20px;
+            font-size: 14px; font-weight: 700; cursor: pointer; transition: all 0.2s;
+        }
+        .btn-post:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(102,126,234,0.4); }
+        .btn-post:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+
+        /* Ask bar */
+        .ask-bar {
+            background: white; border: 1.5px solid #eceef5; border-radius: 14px;
+            padding: 14px 18px; margin-bottom: 20px; display: flex; align-items: center; gap: 12px;
+        }
+        .ask-avatar {
+            width: 38px; height: 38px; border-radius: 50%; flex-shrink: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex; align-items: center; justify-content: center; overflow: hidden;
+        }
+        .ask-avatar img { width: 100%; height: 100%; object-fit: cover; }
+        .ask-avatar span { color: white; font-size: 16px; }
+        .ask-trigger {
+            flex: 1; background: #f8f9fe; border: 1.5px solid #e0e4f5; border-radius: 50px;
+            padding: 10px 18px; font-size: 14px; color: #aaa; cursor: pointer;
+            transition: all 0.2s; text-align: left;
+        }
+        .ask-trigger:hover { border-color: #667eea; color: #667eea; background: #f0f2ff; }
+
+        /* Categories */
+        .categories-bar { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+        .cat-chip {
+            background: #f0f2ff; border: 1.5px solid #c5cdf5; color: #667eea;
+            font-size: 12px; font-weight: 600; padding: 5px 14px; border-radius: 50px;
+            cursor: pointer; transition: all 0.2s;
+        }
+        .cat-chip:hover, .cat-chip.active { background: #667eea; color: white; border-color: #667eea; }
+
+        /* Post cards */
+        .post-list { display: flex; flex-direction: column; gap: 14px; }
+        .post-card {
+            background: white; border: 1.5px solid #eceef5; border-radius: 14px;
+            padding: 18px 20px; transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+        }
+        .post-card:hover { border-color: #667eea; box-shadow: 0 6px 20px rgba(102,126,234,0.12); transform: translateY(-2px); }
+        .post-card.pinned { border-left: 4px solid #667eea; background: #fafbff; }
+        .post-header-row { display: flex; gap: 14px; }
+        .vote-col { display: flex; flex-direction: column; align-items: center; gap: 3px; min-width: 34px; }
+        .vote-btn {
+            background: none; border: none; cursor: pointer; font-size: 16px; color: #ccc;
+            line-height: 1; padding: 2px 4px; border-radius: 4px; transition: color 0.15s, background 0.15s;
+        }
+        .vote-btn:hover { color: #667eea; background: #f0f2ff; }
+        .vote-btn.voted { color: #667eea; }
+        .vote-count { font-size: 13px; font-weight: 700; color: #667eea; min-width: 20px; text-align: center; }
+        .post-body { flex: 1; }
+        .post-tags { display: flex; gap: 7px; flex-wrap: wrap; margin-bottom: 7px; }
+        .post-tag {
+            background: #dde4ff; color: #667eea; font-size: 10px; font-weight: 700;
+            padding: 2px 9px; border-radius: 20px; text-transform: uppercase; letter-spacing: 0.3px;
+        }
+        .pinned-tag {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white; font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 10px;
+        }
+        .post-card h3 { font-size: 15px; color: #1a1a2e; margin-bottom: 5px; line-height: 1.4; font-weight: 700; }
+        .post-card .post-preview { color: #666; font-size: 13px; line-height: 1.55; margin-bottom: 12px; }
+        .post-footer { display: flex; align-items: center; gap: 14px; font-size: 12px; color: #aaa; flex-wrap: wrap; }
+        .post-author { display: flex; align-items: center; gap: 6px; color: #666; }
+        .mini-avatar {
+            width: 22px; height: 22px; border-radius: 50%; overflow: hidden; flex-shrink: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex; align-items: center; justify-content: center; color: white; font-size: 10px; font-weight: 700;
+        }
+        .mini-avatar img { width: 100%; height: 100%; object-fit: cover; }
+        .reply-toggle {
+            background: none; border: none; cursor: pointer; color: #667eea; font-size: 12px;
+            font-weight: 600; padding: 3px 8px; border-radius: 6px; transition: background 0.15s;
+            display: flex; align-items: center; gap: 4px;
+        }
+        .reply-toggle:hover { background: #f0f2ff; }
+        .delete-btn {
+            background: none; border: none; cursor: pointer; color: #ddd; font-size: 12px;
+            padding: 3px 6px; border-radius: 6px; transition: color 0.15s;
+        }
+        .delete-btn:hover { color: #e55353; }
+
+        /* Replies */
+        .replies-section { margin-top: 14px; padding-top: 14px; border-top: 1px solid #f0f0f0; display: none; }
+        .replies-section.open { display: block; }
+        .reply-card {
+            background: #f8f9fe; border-radius: 10px; padding: 12px 14px;
+            margin-bottom: 10px; border-left: 3px solid #c5cdf5;
+        }
+        .reply-card p { font-size: 13px; color: #555; line-height: 1.5; margin-bottom: 7px; }
+        .reply-meta { display: flex; align-items: center; gap: 8px; font-size: 11px; color: #aaa; }
+        .reply-form { display: flex; gap: 10px; margin-top: 12px; align-items: flex-start; }
+        .reply-form textarea {
+            flex: 1; padding: 9px 13px; border: 1.5px solid #e0e4f5; border-radius: 10px;
+            font-size: 13px; font-family: inherit; resize: none; min-height: 60px;
+            background: white; outline: none; transition: border-color 0.2s;
+        }
+        .reply-form textarea:focus { border-color: #667eea; }
+        .btn-reply {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white; border: none; padding: 9px 18px; border-radius: 10px;
+            font-size: 13px; font-weight: 700; cursor: pointer; transition: all 0.2s; white-space: nowrap;
+        }
+        .btn-reply:hover { transform: translateY(-1px); }
+        .btn-reply:disabled { opacity: 0.6; cursor: not-allowed; }
+
+        /* Empty / loading */
+        .empty-state { text-align: center; padding: 48px 20px; color: #aaa; }
+        .empty-state .e-icon { font-size: 48px; margin-bottom: 12px; }
+        .empty-state p { font-size: 15px; }
+        .loading-dots { display: flex; justify-content: center; gap: 6px; padding: 32px; }
+        .loading-dots span {
+            width: 8px; height: 8px; border-radius: 50%; background: #c5cdf5;
+            animation: bounce 1.2s infinite;
+        }
+        .loading-dots span:nth-child(2) { animation-delay: 0.2s; }
+        .loading-dots span:nth-child(3) { animation-delay: 0.4s; }
+        @keyframes bounce { 0%,80%,100%{transform:scale(0.8);opacity:0.5} 40%{transform:scale(1.2);opacity:1} }
+
+        /* Toast */
+        .toast {
+            position: fixed; bottom: 24px; right: 24px; background: #333; color: white;
+            padding: 12px 20px; border-radius: 10px; font-size: 14px; font-weight: 500;
+            z-index: 999; transform: translateY(100px); opacity: 0; transition: all 0.3s;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.2); max-width: 320px;
+        }
+        .toast.show { transform: translateY(0); opacity: 1; }
+        .toast.success { background: #2d8a4e; }
+        .toast.error { background: #c0392b; }
+
+        /* ── SIDEBAR ── */
+        .sidebar { display: flex; flex-direction: column; gap: 18px; }
+        .sidebar-card {
+            background: white; border: 1.5px solid #eceef5; border-radius: 14px; padding: 20px;
+        }
+        .sidebar-card h3 {
+            font-size: 14px; font-weight: 700; color: #333; margin-bottom: 14px;
+            padding-bottom: 10px; border-bottom: 1px solid #f0f0f0;
+        }
+        .rule-item { display: flex; gap: 9px; margin-bottom: 10px; align-items: flex-start; }
+        .rule-num {
+            width: 20px; height: 20px; border-radius: 50%; background: #dde4ff; color: #667eea;
+            font-size: 10px; font-weight: 700; display: flex; align-items: center; justify-content: center;
+            flex-shrink: 0; margin-top: 2px;
+        }
+        .rule-item p { font-size: 12px; color: #555; line-height: 1.5; }
+        .trending-list { list-style: none; }
+        .trending-list li {
+            display: flex; align-items: center; gap: 8px; padding: 7px 0;
+            border-bottom: 1px solid #f5f5f5; font-size: 12px; color: #555; cursor: pointer;
+        }
+        .trending-list li:last-child { border-bottom: none; }
+        .trending-list li:hover { color: #667eea; }
+
+        /* ── FOOTER ── */
+        footer {
+            background: rgba(255,255,255,0.95); backdrop-filter: blur(10px);
+            margin: 40px 20px 20px; border-radius: 20px; padding: 40px 24px 28px;
+            text-align: center; box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        .footer-logo-wrap { display: flex; align-items: center; justify-content: center; gap: 20px; flex-wrap: wrap; margin-bottom: 24px; }
+        .footer-logo-img { width: 60px; height: 60px; border-radius: 50%; object-fit: cover; }
+        .footer-brand { text-align: left; }
+        .footer-brand-name {
+            font-size: 18px; font-weight: 800;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+        }
+        .footer-brand-tag { font-size: 12px; color: #888; margin-top: 2px; }
+        .footer-divider { width: 48px; height: 2px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 2px; margin: 0 auto 16px; opacity: 0.4; }
+        .footer-copy { font-size: 12px; color: #999; }
+        .footer-copy a { color: #667eea; text-decoration: none; font-weight: 500; }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 900px) { .community-layout { grid-template-columns: 1fr; } }
+        @media (max-width: 768px) {
+            .hamburger { display: flex; }
+            .nav-links { display: none; }
+            .hero { margin: 20px 12px; padding: 48px 20px; }
+            .hero h1 { font-size: 28px; }
+            .section { margin: 20px 12px; padding: 36px 20px; }
+            footer { margin: 20px 12px 12px; }
+            .footer-brand { text-align: center; }
+        }
+        @media (max-width: 480px) { .hero h1 { font-size: 24px; } }
+    </style>
+</head>
+<body>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<header>
+    <div class="header-inner">
+        <a href="index.htm" class="logo">Fakhar STEM Sphere</a>
+        <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+            <span></span><span></span><span></span>
+        </button>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="index.htm#home">Home</a></li>
+            <li><a href="index.htm#courses">Courses</a></li>
+            <li><a href="index.htm#booking">Book Session</a></li>
+            <li><a href="index.htm#about">About</a></li>
+            <li><a href="index.htm#contact">Contact</a></li>
+            <li><a href="stem-insights.html">STEM Insights</a></li>
+            <li><a href="stem-community.html" class="active">STEM Community</a></li>
+            <li><a href="downloads.html">Downloads</a></li>
+        </ul>
+        <div class="header-auth">
+            <div id="authArea">
+                <button class="btn-signin" id="headerSignInBtn">
+                    <svg viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+                    Sign-in
+                </button>
+            </div>
+        </div>
+    </div>
+</header>
+
+<nav class="mobile-nav" id="mobileNav">
+    <button class="mobile-nav-close" id="mobileNavClose">✕</button>
+    <a href="index.htm#home">Home</a>
+    <a href="index.htm#courses">Courses</a>
+    <a href="index.htm#booking">Book Session</a>
+    <a href="index.htm#about">About</a>
+    <a href="index.htm#contact">Contact</a>
+    <a href="stem-insights.html">STEM Insights</a>
+    <a href="stem-community.html">STEM Community</a>
+    <a href="downloads.html">Downloads</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+    <span class="hero-badge">💬 Ask · Share · Connect</span>
+    <h1>STEM Community</h1>
+    <p>Pakistan's student-driven space for STEM questions, admission guidance, and academic support. Ask anything, get answers from peers and experts.</p>
+    <div class="hero-btns">
+        <button class="btn-google-hero" id="heroSignInBtn">
+            <svg viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+            Sign in with Google to Post
+        </button>
+        <a href="#feed" class="cta-button">Browse Discussions</a>
+    </div>
+</section>
+
+<!-- MAIN FEED -->
+<section class="section" id="feed">
+    <div class="container">
+        <div class="community-layout">
+            <!-- FEED -->
+            <div>
+                <!-- New post form -->
+                <div class="new-post-box" id="newPostBox">
+                    <h3>✍️ Ask the Community</h3>
+                    <div class="np-field">
+                        <label>Category</label>
+                        <select id="postCategory">
+                            <option value="Admissions">Admissions</option>
+                            <option value="Entry Tests">Entry Tests</option>
+                            <option value="Career">Career</option>
+                            <option value="Subject Help">Subject Help</option>
+                            <option value="University Reviews">University Reviews</option>
+                            <option value="General">General</option>
+                        </select>
+                    </div>
+                    <div class="np-field">
+                        <label>Title / Question</label>
+                        <input type="text" id="postTitle" placeholder="Ask a clear, specific question…" maxlength="200">
+                    </div>
+                    <div class="np-field">
+                        <label>Details (optional)</label>
+                        <textarea id="postBody" placeholder="Add more context to help people answer better…" maxlength="2000"></textarea>
+                    </div>
+                    <div class="np-actions">
+                        <button class="btn-cancel" id="cancelPostBtn">Cancel</button>
+                        <button class="btn-post" id="submitPostBtn">Post Question</button>
+                    </div>
+                </div>
+
+                <!-- Ask bar -->
+                <div class="ask-bar" id="askBar">
+                    <div class="ask-avatar" id="askAvatar"><span>👤</span></div>
+                    <button class="ask-trigger" id="askTrigger">What's your STEM question? Sign in to post…</button>
+                </div>
+
+                <!-- Categories -->
+                <div class="categories-bar" id="categoriesBar">
+                    <span class="cat-chip active" data-cat="All">All</span>
+                    <span class="cat-chip" data-cat="Admissions">Admissions</span>
+                    <span class="cat-chip" data-cat="Entry Tests">Entry Tests</span>
+                    <span class="cat-chip" data-cat="Career">Career</span>
+                    <span class="cat-chip" data-cat="Subject Help">Subject Help</span>
+                    <span class="cat-chip" data-cat="University Reviews">University Reviews</span>
+                    <span class="cat-chip" data-cat="General">General</span>
+                </div>
+
+                <!-- Posts -->
+                <div class="post-list" id="postList">
+                    <div class="loading-dots"><span></span><span></span><span></span></div>
+                </div>
+            </div>
+
+            <!-- SIDEBAR -->
+            <div class="sidebar">
+                <div class="sidebar-card">
+                    <h3>📋 Community Rules</h3>
+                    <div class="rule-item"><div class="rule-num">1</div><p>Be respectful. No personal attacks.</p></div>
+                    <div class="rule-item"><div class="rule-num">2</div><p>STEM, admissions, and career topics only.</p></div>
+                    <div class="rule-item"><div class="rule-num">3</div><p>No spam or self-promotion.</p></div>
+                    <div class="rule-item"><div class="rule-num">4</div><p>Share accurate info. Label opinions clearly.</p></div>
+                    <div class="rule-item"><div class="rule-num">5</div><p>Search before posting — it may be answered.</p></div>
+                </div>
+                <div class="sidebar-card">
+                    <h3>🔥 Trending Topics</h3>
+                    <ul class="trending-list">
+                        <li>🏛️ FAST vs NUST — which to choose?</li>
+                        <li>📐 Linear Circuit Analysis resources</li>
+                        <li>💻 How to start competitive programming</li>
+                        <li>🧪 MDCAT 2026 preparation guide</li>
+                        <li>🚀 Scholarships for CS students</li>
+                    </ul>
+                </div>
+                <div class="sidebar-card" style="text-align:center;">
+                    <h3>🎓 Need Expert Help?</h3>
+                    <p style="font-size:12px;color:#666;margin-bottom:14px;">Book a 1-on-1 session with Engr. Fakhar Abbas for personalized guidance.</p>
+                    <a href="index.htm#booking" class="cta-button" style="font-size:13px;padding:9px 20px;">Book a Session</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <div class="footer-logo-wrap">
+        <img src="assets/icon.png" class="footer-logo-img" alt="Fakhar STEM Sphere Logo">
+        <div class="footer-brand">
+            <div class="footer-brand-name">Fakhar STEM Sphere</div>
+            <div class="footer-brand-tag">Empowering Students · Building Futures · STEM Excellence</div>
+        </div>
+    </div>
+    <div class="footer-divider"></div>
+    <p class="footer-copy">
+        &copy; 2026 Fakhar STEM Sphere. All rights reserved.<br>
+        Developed by <a href="https://linkedin.com/in/fasih-ahmad-8091a9290" target="_blank" rel="noopener">Fasih Ahmad</a>
+    </p>
+</footer>
+
+<!-- Firebase SDK -->
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-app.js";
+import { getAuth, GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged }
+    from "https://www.gstatic.com/firebasejs/12.15.0/firebase-auth.js";
+import {
+    getFirestore, collection, addDoc, getDocs, doc, updateDoc, deleteDoc,
+    query, orderBy, onSnapshot, serverTimestamp, arrayUnion, arrayRemove, getDoc
+} from "https://www.gstatic.com/firebasejs/12.15.0/firebase-firestore.js";
+
+// ── Firebase config ──
+const firebaseConfig = {
+    apiKey: "AIzaSyD8d3gMM9AqjahKN3XA6s0nXV6Q1wzz1e4",
+    authDomain: "fakhar-stem-sphere.firebaseapp.com",
+    projectId: "fakhar-stem-sphere",
+    storageBucket: "fakhar-stem-sphere.firebasestorage.app",
+    messagingSenderId: "347393039497",
+    appId: "1:347393039497:web:2c2fd1f72849719feeba58",
+    measurementId: "G-JHVZPKR50B"
+};
+
+const app  = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db   = getFirestore(app);
+
+// ── State ──
+let currentUser = null;
+let activeCategory = "All";
+let unsubPosts = null;
+
+// ── Helpers ──
+function showToast(msg, type = "") {
+    const t = document.getElementById("toast");
+    t.textContent = msg;
+    t.className = "toast show " + type;
+    setTimeout(() => t.className = "toast", 3000);
+}
+
+function timeAgo(ts) {
+    if (!ts) return "";
+    const sec = Math.floor((Date.now() - ts.toMillis()) / 1000);
+    if (sec < 60) return "just now";
+    if (sec < 3600) return Math.floor(sec/60) + "m ago";
+    if (sec < 86400) return Math.floor(sec/3600) + "h ago";
+    return Math.floor(sec/86400) + "d ago";
+}
+
+function escHtml(str) {
+    return String(str).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
+}
+
+function avatarHtml(photoURL, displayName, size = 22) {
+    if (photoURL) return `<img src="${escHtml(photoURL)}" alt="" style="width:${size}px;height:${size}px;border-radius:50%;object-fit:cover;">`;
+    const init = (displayName || "?")[0].toUpperCase();
+    return `<span style="font-size:${Math.floor(size*0.45)}px;">${init}</span>`;
+}
+
+// ── Auth ──
+function doSignIn() {
+    const provider = new GoogleAuthProvider();
+    signInWithPopup(auth, provider).catch(e => showToast("Sign-in failed: " + e.message, "error"));
+}
+function doSignOut() {
+    signOut(auth).then(() => showToast("Signed out."));
+}
+
+document.getElementById("heroSignInBtn").addEventListener("click", doSignIn);
+document.getElementById("headerSignInBtn").addEventListener("click", doSignIn);
+
+onAuthStateChanged(auth, user => {
+    currentUser = user;
+    updateAuthUI(user);
+    updateAskBar(user);
+});
+
+function updateAuthUI(user) {
+    const area = document.getElementById("authArea");
+    if (user) {
+        area.innerHTML = `
+            <div class="user-chip">
+                <img src="${escHtml(user.photoURL || '')}" onerror="this.style.display='none'" alt="" style="width:28px;height:28px;border-radius:50%;object-fit:cover;">
+                <span>${escHtml(user.displayName || user.email)}</span>
+            </div>
+            <button class="btn-signout" id="signOutBtn">Sign out</button>`;
+        document.getElementById("signOutBtn").addEventListener("click", doSignOut);
+        // Hide hero sign-in button
+        document.getElementById("heroSignInBtn").style.display = "none";
+    } else {
+        area.innerHTML = `<button class="btn-signin" id="headerSignInBtn">
+            <svg viewBox="0 0 24 24" width="16" height="16"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+            Sign in</button>`;
+        document.getElementById("headerSignInBtn").addEventListener("click", doSignIn);
+        document.getElementById("heroSignInBtn").style.display = "";
+    }
+}
+
+function updateAskBar(user) {
+    const avatar = document.getElementById("askAvatar");
+    const trigger = document.getElementById("askTrigger");
+    if (user) {
+        avatar.innerHTML = `<img src="${escHtml(user.photoURL || '')}" alt="" style="width:38px;height:38px;border-radius:50%;object-fit:cover;" onerror="this.outerHTML='<span style=color:white;font-size:16px>${(user.displayName||'?')[0]}</span>'">`;
+        trigger.textContent = "What's your STEM question today?";
+        trigger.onclick = openNewPostForm;
+    } else {
+        avatar.innerHTML = "<span>👤</span>";
+        trigger.textContent = "Sign in with Google to ask a question…";
+        trigger.onclick = doSignIn;
+    }
+}
+
+// ── New Post Form ──
+function openNewPostForm() {
+    if (!currentUser) { doSignIn(); return; }
+    document.getElementById("newPostBox").classList.add("visible");
+    document.getElementById("postTitle").focus();
+}
+document.getElementById("cancelPostBtn").addEventListener("click", () => {
+    document.getElementById("newPostBox").classList.remove("visible");
+    document.getElementById("postTitle").value = "";
+    document.getElementById("postBody").value = "";
+});
+
+document.getElementById("submitPostBtn").addEventListener("click", async () => {
+    if (!currentUser) { doSignIn(); return; }
+    const title    = document.getElementById("postTitle").value.trim();
+    const body     = document.getElementById("postBody").value.trim();
+    const category = document.getElementById("postCategory").value;
+    if (!title) { showToast("Please enter a question title.", "error"); return; }
+    const btn = document.getElementById("submitPostBtn");
+    btn.disabled = true; btn.textContent = "Posting…";
+    try {
+        await addDoc(collection(db, "posts"), {
+            title, body, category,
+            authorId:    currentUser.uid,
+            authorName:  currentUser.displayName || "Anonymous",
+            authorPhoto: currentUser.photoURL || "",
+            votes:       0,
+            votedBy:     [],
+            replyCount:  0,
+            createdAt:   serverTimestamp()
+        });
+        document.getElementById("newPostBox").classList.remove("visible");
+        document.getElementById("postTitle").value = "";
+        document.getElementById("postBody").value  = "";
+        showToast("Question posted! ✅", "success");
+    } catch(e) {
+        showToast("Error: " + e.message, "error");
+    }
+    btn.disabled = false; btn.textContent = "Post Question";
+});
+
+// ── Category Filter ──
+document.querySelectorAll(".cat-chip").forEach(chip => {
+    chip.addEventListener("click", () => {
+        document.querySelectorAll(".cat-chip").forEach(c => c.classList.remove("active"));
+        chip.classList.add("active");
+        activeCategory = chip.dataset.cat;
+        loadPosts();
+    });
+});
+
+// ── Load Posts (real-time) ──
+function loadPosts() {
+    const list = document.getElementById("postList");
+    list.innerHTML = `<div class="loading-dots"><span></span><span></span><span></span></div>`;
+    if (unsubPosts) unsubPosts();
+    const q = query(collection(db, "posts"), orderBy("createdAt", "desc"));
+    unsubPosts = onSnapshot(q, snap => {
+        let posts = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+        if (activeCategory !== "All") posts = posts.filter(p => p.category === activeCategory);
+        if (posts.length === 0) {
+            list.innerHTML = `<div class="empty-state"><div class="e-icon">💬</div><p>No posts yet in this category.<br>Be the first to ask!</p></div>`;
+            return;
+        }
+        list.innerHTML = posts.map(p => renderPost(p)).join("");
+        attachPostEvents();
+    }, err => {
+        list.innerHTML = `<div class="empty-state"><div class="e-icon">⚠️</div><p>Error loading posts. Please refresh.</p></div>`;
+    });
+}
+
+function renderPost(p) {
+    const voted   = currentUser && p.votedBy && p.votedBy.includes(currentUser.uid);
+    const isOwner = currentUser && p.authorId === currentUser.uid;
+    const votes   = p.votes || 0;
+    const preview = p.body ? `<p class="post-preview">${escHtml(p.body.substring(0,160))}${p.body.length>160?"…":""}</p>` : "";
+    return `
+    <div class="post-card" data-id="${p.id}">
+        <div class="post-header-row">
+            <div class="vote-col">
+                <button class="vote-btn ${voted?"voted":""}" data-action="vote" data-id="${p.id}" title="${voted?"Remove vote":"Upvote"}">▲</button>
+                <span class="vote-count">${votes}</span>
+                <button class="vote-btn" data-action="downvote" data-id="${p.id}" title="Downvote" style="color:#eee">▼</button>
+            </div>
+            <div class="post-body">
+                <div class="post-tags">
+                    <span class="post-tag">${escHtml(p.category||"General")}</span>
+                </div>
+                <h3>${escHtml(p.title)}</h3>
+                ${preview}
+                <div class="post-footer">
+                    <span class="post-author">
+                        <div class="mini-avatar">${avatarHtml(p.authorPhoto, p.authorName)}</div>
+                        ${escHtml(p.authorName)}
+                    </span>
+                    <button class="reply-toggle" data-id="${p.id}">💬 ${p.replyCount||0} ${p.replyCount===1?"reply":"replies"}</button>
+                    <span>${timeAgo(p.createdAt)}</span>
+                    ${isOwner ? `<button class="delete-btn" data-action="delete" data-id="${p.id}" title="Delete post">🗑</button>` : ""}
+                </div>
+                <div class="replies-section" id="replies-${p.id}">
+                    <div class="loading-dots"><span></span><span></span><span></span></div>
+                </div>
+            </div>
+        </div>
+    </div>`;
+}
+
+function attachPostEvents() {
+    // Vote
+    document.querySelectorAll('[data-action="vote"]').forEach(btn => {
+        btn.addEventListener("click", async () => {
+            if (!currentUser) { doSignIn(); return; }
+            const pid  = btn.dataset.id;
+            const ref  = doc(db, "posts", pid);
+            const snap = await getDoc(ref);
+            if (!snap.exists()) return;
+            const votedBy = snap.data().votedBy || [];
+            const hasVoted = votedBy.includes(currentUser.uid);
+            await updateDoc(ref, {
+                votes:   (snap.data().votes||0) + (hasVoted ? -1 : 1),
+                votedBy: hasVoted ? arrayRemove(currentUser.uid) : arrayUnion(currentUser.uid)
+            });
+        });
+    });
+
+    // Delete
+    document.querySelectorAll('[data-action="delete"]').forEach(btn => {
+        btn.addEventListener("click", async () => {
+            if (!confirm("Delete this post?")) return;
+            await deleteDoc(doc(db, "posts", btn.dataset.id));
+            showToast("Post deleted.", "success");
+        });
+    });
+
+    // Replies toggle
+    document.querySelectorAll(".reply-toggle").forEach(btn => {
+        btn.addEventListener("click", () => toggleReplies(btn.dataset.id));
+    });
+}
+
+// ── Replies ──
+async function toggleReplies(postId) {
+    const section = document.getElementById("replies-" + postId);
+    if (section.classList.contains("open")) {
+        section.classList.remove("open");
+        return;
+    }
+    section.classList.add("open");
+    section.innerHTML = `<div class="loading-dots"><span></span><span></span><span></span></div>`;
+    const q    = query(collection(db, "posts", postId, "replies"), orderBy("createdAt", "asc"));
+    const snap = await getDocs(q);
+    const replies = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+
+    const replyForm = currentUser ? `
+        <div class="reply-form">
+            <textarea id="replyText-${postId}" placeholder="Write a helpful reply…" maxlength="1000"></textarea>
+            <button class="btn-reply" data-post="${postId}" data-action="submitReply">Reply</button>
+        </div>` :
+        `<p style="font-size:12px;color:#aaa;margin-top:10px;">
+            <button onclick="window._signIn()" style="background:none;border:none;color:#667eea;font-weight:600;cursor:pointer;font-size:12px;">Sign in</button> to reply.
+        </p>`;
+
+    section.innerHTML = (replies.length === 0
+        ? `<p style="font-size:13px;color:#bbb;margin-bottom:10px;">No replies yet. Be the first!</p>`
+        : replies.map(r => `
+            <div class="reply-card">
+                <p>${escHtml(r.text)}</p>
+                <div class="reply-meta">
+                    <div class="mini-avatar">${avatarHtml(r.authorPhoto, r.authorName)}</div>
+                    <strong style="color:#555;">${escHtml(r.authorName)}</strong>
+                    <span>${timeAgo(r.createdAt)}</span>
+                    ${currentUser && r.authorId === currentUser.uid
+                        ? `<button onclick="window._deleteReply('${postId}','${r.id}')" style="background:none;border:none;color:#ddd;cursor:pointer;font-size:11px;" title="Delete">🗑</button>`
+                        : ""}
+                </div>
+            </div>`).join("")
+    ) + replyForm;
+
+    // Submit reply handler
+    const replyBtn = section.querySelector('[data-action="submitReply"]');
+    if (replyBtn) {
+        replyBtn.addEventListener("click", () => submitReply(postId));
+    }
+}
+
+async function submitReply(postId) {
+    if (!currentUser) { doSignIn(); return; }
+    const ta   = document.getElementById("replyText-" + postId);
+    const text = ta.value.trim();
+    if (!text) { showToast("Reply cannot be empty.", "error"); return; }
+    const btn = document.querySelector(`[data-post="${postId}"][data-action="submitReply"]`);
+    if (btn) { btn.disabled = true; btn.textContent = "Posting…"; }
+    try {
+        await addDoc(collection(db, "posts", postId, "replies"), {
+            text,
+            authorId:    currentUser.uid,
+            authorName:  currentUser.displayName || "Anonymous",
+            authorPhoto: currentUser.photoURL || "",
+            createdAt:   serverTimestamp()
+        });
+        // Increment replyCount
+        const postRef = doc(db, "posts", postId);
+        const postSnap = await getDoc(postRef);
+        if (postSnap.exists()) {
+            await updateDoc(postRef, { replyCount: (postSnap.data().replyCount || 0) + 1 });
+        }
+        ta.value = "";
+        showToast("Reply posted! ✅", "success");
+        // Reload replies
+        const section = document.getElementById("replies-" + postId);
+        section.classList.remove("open");
+        setTimeout(() => toggleReplies(postId), 300);
+    } catch(e) {
+        showToast("Error: " + e.message, "error");
+    }
+    if (btn) { btn.disabled = false; btn.textContent = "Reply"; }
+}
+
+window._deleteReply = async (postId, replyId) => {
+    if (!confirm("Delete this reply?")) return;
+    await deleteDoc(doc(db, "posts", postId, "replies", replyId));
+    const postRef = doc(db, "posts", postId);
+    const postSnap = await getDoc(postRef);
+    if (postSnap.exists()) {
+        await updateDoc(postRef, { replyCount: Math.max(0, (postSnap.data().replyCount||1) - 1) });
+    }
+    showToast("Reply deleted.", "success");
+    const section = document.getElementById("replies-" + postId);
+    section.classList.remove("open");
+    setTimeout(() => toggleReplies(postId), 300);
+};
+
+window._signIn = doSignIn;
+
+// ── Hamburger ──
+const hamburger = document.getElementById("hamburger");
+const mobileNav = document.getElementById("mobileNav");
+const closeBtn  = document.getElementById("mobileNavClose");
+hamburger.addEventListener("click", () => { hamburger.classList.toggle("open"); mobileNav.classList.toggle("open"); });
+[closeBtn, ...mobileNav.querySelectorAll("a")].forEach(el => {
+    el.addEventListener("click", () => { hamburger.classList.remove("open"); mobileNav.classList.remove("open"); });
+});
+
+// ── Start ──
+loadPosts();
+
+</script>
+</body>
+</html>

@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="STEM Insights — Student-written articles on STEM, admissions, and career guidance. Get your work published on Fakhar STEM Sphere.">
+    <link rel="icon" type="image/png" sizes="32x32" href="icon.png">
+    <title>STEM Insights — Fakhar STEM Sphere</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+
+        /* ── HEADER ── */
+        header {
+            background: rgba(255,255,255,0.98);
+            border-bottom: 1px solid #eceef5;
+            position: sticky;
+            top: 0;
+            z-index: 200;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+        }
+        .header-inner {
+            max-width: 1160px;
+            margin: 0 auto;
+            padding: 0 24px;
+            height: 64px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+        .logo {
+            font-size: 18px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-decoration: none;
+            letter-spacing: -0.4px;
+            white-space: nowrap;
+        }
+        .nav-links { display: flex; align-items: center; list-style: none; gap: 2px; }
+        .nav-links a {
+            text-decoration: none;
+            color: #3d4152;
+            font-size: 13px;
+            font-weight: 500;
+            padding: 6px 9px;
+            border-radius: 8px;
+            white-space: nowrap;
+            transition: background 0.15s, color 0.15s;
+        }
+        @media (max-width: 1024px) and (min-width: 769px) {
+            .nav-links a { font-size: 12px; padding: 6px 6px; }
+        }
+        .nav-links a:hover { background: #f5f6fa; color: #0f1117; }
+        .nav-links a.active { background: #dde4ff; color: #667eea; font-weight: 600; }
+
+        /* Hamburger */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 26px;
+            height: 18px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            z-index: 210;
+        }
+        .hamburger span {
+            display: block;
+            width: 100%;
+            height: 2px;
+            background: #667eea;
+            border-radius: 2px;
+            transition: all 0.3s;
+        }
+        .hamburger.open span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+        .hamburger.open span:nth-child(2) { opacity: 0; }
+        .hamburger.open span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+
+        .mobile-nav {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(255,255,255,0.98);
+            z-index: 190;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 24px;
+        }
+        .mobile-nav.open { display: flex; }
+        .mobile-nav a {
+            text-decoration: none;
+            color: #3d4152;
+            font-size: 22px;
+            font-weight: 600;
+            padding: 8px 24px;
+            border-radius: 10px;
+            transition: background 0.15s;
+        }
+        .mobile-nav a:hover { background: #f0f2ff; color: #667eea; }
+        .mobile-nav-close {
+            position: absolute;
+            top: 20px;
+            right: 24px;
+            background: none;
+            border: none;
+            font-size: 28px;
+            cursor: pointer;
+            color: #667eea;
+        }
+
+        /* ── HERO ── */
+        .hero {
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            margin: 40px 20px;
+            border-radius: 20px;
+            padding: 80px 40px;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        .hero-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            font-size: 13px;
+            font-weight: 600;
+            padding: 6px 18px;
+            border-radius: 20px;
+            margin-bottom: 24px;
+            letter-spacing: 0.5px;
+        }
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .hero p {
+            font-size: 18px;
+            color: #666;
+            margin-bottom: 36px;
+            max-width: 680px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .hero-btns { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 14px 36px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 15px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 5px 15px rgba(102,126,234,0.4);
+        }
+        .cta-button:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(102,126,234,0.6); }
+        .cta-outline {
+            display: inline-block;
+            background: white;
+            color: #667eea;
+            padding: 13px 36px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 15px;
+            border: 2px solid #667eea;
+            transition: all 0.3s;
+        }
+        .cta-outline:hover { background: #f0f2ff; transform: translateY(-2px); }
+
+        /* ── SECTIONS ── */
+        .section {
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            margin: 40px 20px;
+            border-radius: 20px;
+            padding: 60px 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        .section h2 {
+            font-size: 34px;
+            margin-bottom: 12px;
+            text-align: center;
+            color: #333;
+        }
+        .section-sub {
+            text-align: center;
+            color: #777;
+            font-size: 16px;
+            margin-bottom: 48px;
+            max-width: 620px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* ── HOW IT WORKS ── */
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+            gap: 28px;
+            margin-top: 40px;
+        }
+        .step-card {
+            background: white;
+            border: 2px solid #eceef5;
+            border-radius: 16px;
+            padding: 32px 24px;
+            text-align: center;
+            transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+        }
+        .step-card:hover {
+            transform: translateY(-6px);
+            border-color: #667eea;
+            box-shadow: 0 10px 30px rgba(102,126,234,0.15);
+        }
+        .step-num {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            font-size: 20px;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 18px;
+        }
+        .step-card h3 { font-size: 17px; color: #333; margin-bottom: 10px; }
+        .step-card p { color: #666; font-size: 14px; line-height: 1.6; }
+
+        /* ── FEATURED ARTICLES ── */
+        .articles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 28px;
+            margin-top: 40px;
+        }
+        .article-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid #eceef5;
+            box-shadow: 0 4px 14px rgba(0,0,0,0.07);
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: flex;
+            flex-direction: column;
+        }
+        .article-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 32px rgba(102,126,234,0.18);
+        }
+        .article-thumb {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 52px;
+        }
+        .article-body { padding: 22px; flex: 1; display: flex; flex-direction: column; }
+        .article-tag {
+            display: inline-block;
+            background: #dde4ff;
+            color: #667eea;
+            font-size: 11px;
+            font-weight: 700;
+            padding: 3px 10px;
+            border-radius: 20px;
+            margin-bottom: 10px;
+            letter-spacing: 0.4px;
+            text-transform: uppercase;
+        }
+        .article-card h3 { font-size: 17px; color: #222; margin-bottom: 8px; line-height: 1.4; }
+        .article-card p { color: #777; font-size: 14px; line-height: 1.6; flex: 1; }
+        .article-meta {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 18px;
+            padding-top: 14px;
+            border-top: 1px solid #f0f0f0;
+        }
+        .meta-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 13px;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+        .meta-info { font-size: 12px; color: #999; }
+        .meta-info strong { color: #555; display: block; }
+
+        /* coming soon overlay for articles */
+        .article-card.placeholder {
+            opacity: 0.6;
+            pointer-events: none;
+        }
+        .placeholder-ribbon {
+            background: #f0f2ff;
+            border: 2px dashed #c5cdf5;
+        }
+        .placeholder-ribbon .article-thumb { background: #e8ecff; }
+
+        /* ── GUIDELINES ── */
+        .guidelines-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 24px;
+            margin-top: 40px;
+        }
+        .guideline-card {
+            background: white;
+            border-radius: 14px;
+            padding: 26px;
+            border-left: 4px solid #667eea;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.07);
+        }
+        .guideline-card.warning { border-left-color: #e55353; }
+        .guideline-card .g-icon { font-size: 30px; margin-bottom: 12px; }
+        .guideline-card h3 { font-size: 16px; color: #333; margin-bottom: 8px; font-weight: 700; }
+        .guideline-card p { color: #666; font-size: 14px; line-height: 1.6; }
+
+        /* ── TOPICS ── */
+        .topics-wrap { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; justify-content: center; }
+        .topic-pill {
+            background: #f0f2ff;
+            border: 1.5px solid #c5cdf5;
+            color: #667eea;
+            font-size: 14px;
+            font-weight: 600;
+            padding: 8px 20px;
+            border-radius: 50px;
+            cursor: default;
+            transition: all 0.2s;
+        }
+        .topic-pill:hover { background: #667eea; color: white; border-color: #667eea; }
+
+        /* ── SUBMIT BANNER ── */
+        .submit-banner {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            margin: 40px 20px;
+            border-radius: 20px;
+            padding: 60px 40px;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            color: white;
+        }
+        .submit-banner h2 { font-size: 34px; margin-bottom: 14px; }
+        .submit-banner p { font-size: 17px; opacity: 0.88; max-width: 580px; margin: 0 auto 32px; }
+        .cta-white {
+            display: inline-block;
+            background: white;
+            color: #667eea;
+            padding: 14px 40px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 15px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+        }
+        .cta-white:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(0,0,0,0.2); }
+
+        /* ── FOOTER ── */
+        footer {
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            margin: 40px 20px 20px;
+            border-radius: 20px;
+            padding: 40px 24px 28px;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        .footer-logo-wrap {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-bottom: 24px;
+        }
+        .footer-logo-img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+            flex-shrink: 0;
+        }
+        .footer-brand { text-align: left; }
+        .footer-brand-name {
+            font-size: 18px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .footer-brand-tag { font-size: 12px; color: #888; margin-top: 2px; }
+        .footer-divider {
+            width: 48px;
+            height: 2px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 2px;
+            margin: 0 auto 16px;
+            opacity: 0.4;
+        }
+        .footer-copy { font-size: 12px; color: #999; }
+        .footer-copy a { color: #667eea; text-decoration: none; font-weight: 500; }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 768px) {
+            .hamburger { display: flex; }
+            .nav-links { display: none; }
+            .hero { margin: 20px 12px; padding: 56px 20px; }
+            .hero h1 { font-size: 30px; }
+            .section { margin: 20px 12px; padding: 40px 20px; }
+            .submit-banner { margin: 20px 12px; padding: 48px 20px; }
+            .submit-banner h2 { font-size: 26px; }
+            footer { margin: 20px 12px 12px; }
+            .footer-brand { text-align: center; }
+        }
+        @media (max-width: 480px) {
+            .hero h1 { font-size: 26px; }
+            .steps-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="header-inner">
+        <a href="index.htm" class="logo">Fakhar STEM Sphere</a>
+        <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+            <span></span><span></span><span></span>
+        </button>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="index.htm#home">Home</a></li>
+            <li><a href="index.htm#courses">Courses</a></li>
+            <li><a href="index.htm#booking">Book Session</a></li>
+            <li><a href="index.htm#about">About</a></li>
+            <li><a href="index.htm#contact">Contact</a></li>
+            <li><a href="stem-insights.html" class="active">STEM Insights</a></li>
+            <li><a href="stem-community.html">STEM Community</a></li>
+            <li><a href="downloads.html">Downloads</a></li>
+        </ul>
+    </div>
+</header>
+
+<nav class="mobile-nav" id="mobileNav">
+    <button class="mobile-nav-close" id="mobileNavClose">✕</button>
+    <a href="index.htm#home">Home</a>
+    <a href="index.htm#courses">Courses</a>
+    <a href="index.htm#booking">Book Session</a>
+    <a href="index.htm#about">About</a>
+    <a href="index.htm#contact">Contact</a>
+    <a href="stem-insights.html" class="active">STEM Insights</a>
+    <a href="stem-community.html">STEM Community</a>
+    <a href="downloads.html">Downloads</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+    <span class="hero-badge">✍️ Student-Powered Publishing</span>
+    <h1>STEM Insights</h1>
+    <p>Pakistan's growing STEM student community — where <strong>your ideas get published</strong>. Submit original, AI-free articles on STEM topics, admissions, and career guidance. Pass our quality review and your work goes live for thousands of students.</p>
+    <div class="hero-btns">
+        <a href="#submit" class="cta-button">Submit Your Article</a>
+        <a href="#articles" class="cta-outline">Read Articles</a>
+    </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="section">
+    <div class="container">
+        <h2>How It Works</h2>
+        <p class="section-sub">A simple, transparent process from draft to publication — entirely student-led and expert-reviewed.</p>
+        <div class="steps-grid">
+            <div class="step-card">
+                <div class="step-num">1</div>
+                <h3>Write Your Article</h3>
+                <p>Pick a STEM topic you're passionate about. Write in your own authentic voice — no AI-generated content, no plagiarism.</p>
+            </div>
+            <div class="step-card">
+                <div class="step-num">2</div>
+                <h3>Submit for Review</h3>
+                <p>Send your article via the submission form. Include your name, institution, and the subject area covered.</p>
+            </div>
+            <div class="step-card">
+                <div class="step-num">3</div>
+                <h3>Quality Check</h3>
+                <p>Our editorial team reviews for originality, accuracy, language quality, and value to the STEM student community.</p>
+            </div>
+            <div class="step-card">
+                <div class="step-num">4</div>
+                <h3>Get Published</h3>
+                <p>Approved articles go live on STEM Insights with your name and credit — building your academic portfolio.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ARTICLES -->
+<section class="section" id="articles">
+    <div class="container">
+        <h2>Published Articles</h2>
+        <p class="section-sub">Real articles written by real students. Be part of Pakistan's STEM knowledge community.</p>
+        <div class="articles-grid">
+
+            <!-- Placeholder cards — replace with real articles as they come in -->
+            <div class="article-card placeholder placeholder-ribbon">
+                <div class="article-thumb">📐</div>
+                <div class="article-body">
+                    <span class="article-tag">Engineering</span>
+                    <h3>Your Article Could Be Here</h3>
+                    <p>We're awaiting our first submissions! Be the pioneer and get your article published on STEM Insights.</p>
+                    <div class="article-meta">
+                        <div class="meta-avatar">?</div>
+                        <div class="meta-info"><strong>Future Author</strong>Could be you — submit now</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="article-card placeholder placeholder-ribbon">
+                <div class="article-thumb">🔬</div>
+                <div class="article-body">
+                    <span class="article-tag">Science</span>
+                    <h3>Your Article Could Be Here</h3>
+                    <p>Share your insights on physics, chemistry, biology, or any STEM subject that excites you.</p>
+                    <div class="article-meta">
+                        <div class="meta-avatar">?</div>
+                        <div class="meta-info"><strong>Future Author</strong>Could be you — submit now</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="article-card placeholder placeholder-ribbon">
+                <div class="article-thumb">🎓</div>
+                <div class="article-body">
+                    <span class="article-tag">Admissions</span>
+                    <h3>Your Article Could Be Here</h3>
+                    <p>Help fellow students by sharing your experience with university admissions in Pakistan's STEM programs.</p>
+                    <div class="article-meta">
+                        <div class="meta-avatar">?</div>
+                        <div class="meta-info"><strong>Future Author</strong>Could be you — submit now</div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- TOPICS -->
+<section class="section">
+    <div class="container">
+        <h2>Topics We Cover</h2>
+        <p class="section-sub">If it's related to STEM learning, admissions, or career growth in Pakistan — we want to read it.</p>
+        <div class="topics-wrap">
+            <span class="topic-pill">📐 Mathematics</span>
+            <span class="topic-pill">⚡ Electrical Engineering</span>
+            <span class="topic-pill">💻 Computer Science</span>
+            <span class="topic-pill">🔬 Physics</span>
+            <span class="topic-pill">🧪 Chemistry</span>
+            <span class="topic-pill">🤖 Artificial Intelligence</span>
+            <span class="topic-pill">🏛️ University Admissions</span>
+            <span class="topic-pill">📡 Electronics</span>
+            <span class="topic-pill">🧬 Biotechnology</span>
+            <span class="topic-pill">🏗️ Civil Engineering</span>
+            <span class="topic-pill">🚀 Career Guidance</span>
+            <span class="topic-pill">📊 Data Science</span>
+            <span class="topic-pill">🌐 Networking</span>
+            <span class="topic-pill">🔧 Mechanical Engineering</span>
+        </div>
+    </div>
+</section>
+
+<!-- GUIDELINES -->
+<section class="section">
+    <div class="container">
+        <h2>Submission Guidelines</h2>
+        <p class="section-sub">Read carefully before submitting. Articles that don't meet our standards will not be published.</p>
+        <div class="guidelines-grid">
+            <div class="guideline-card">
+                <div class="g-icon">✅</div>
+                <h3>Original Content Only</h3>
+                <p>Every word must be your own. Your article must be entirely original and not published anywhere else online or in print.</p>
+            </div>
+            <div class="guideline-card warning">
+                <div class="g-icon">🚫</div>
+                <h3>No AI-Generated Text</h3>
+                <p>Articles written or assisted by AI tools (ChatGPT, Gemini, etc.) will be immediately rejected. We verify using detection tools.</p>
+            </div>
+            <div class="guideline-card warning">
+                <div class="g-icon">❌</div>
+                <h3>Zero Plagiarism</h3>
+                <p>All submissions are checked with plagiarism detection software. Any copied content — even paraphrased — leads to disqualification.</p>
+            </div>
+            <div class="guideline-card">
+                <div class="g-icon">📏</div>
+                <h3>Length & Format</h3>
+                <p>Articles must be between <strong>600–2000 words</strong>. Use clear headings, simple language, and reference any sources cited.</p>
+            </div>
+            <div class="guideline-card">
+                <div class="g-icon">🎯</div>
+                <h3>Relevant Topics</h3>
+                <p>Content must be directly relevant to STEM education, admissions in Pakistan, or career guidance for students.</p>
+            </div>
+            <div class="guideline-card">
+                <div class="g-icon">🌟</div>
+                <h3>Quality Writing</h3>
+                <p>Articles should be well-structured, factually accurate, and genuinely helpful to fellow students. We value depth over length.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- SUBMIT CTA -->
+<section class="submit-banner" id="submit">
+    <h2>Ready to Get Published?</h2>
+    <p>Join Pakistan's STEM student community. Write something great, pass our review, and build your academic reputation — for free.</p>
+    <a href="https://forms.gle/cukseJnhxpKJkc2A8" target="_blank" class="cta-white">📬 Submit Your Article</a>
+    <p style="margin-top:18px; opacity:0.75; font-size:14px;">Questions? Email us at <a href="mailto:fakharstemsphere@gmail.com" style="color:white; font-weight:600;">fakharstemsphere@gmail.com</a></p>
+</section>
+
+<footer>
+    <div class="footer-logo-wrap">
+        <img src="assets/icon.png" class="footer-logo-img" alt="Fakhar STEM Sphere Logo">
+        <div class="footer-brand">
+            <div class="footer-brand-name">Fakhar STEM Sphere</div>
+            <div class="footer-brand-tag">Empowering Students · Building Futures · STEM Excellence</div>
+        </div>
+    </div>
+    <div class="footer-divider"></div>
+    <p class="footer-copy">
+        &copy; 2026 Fakhar STEM Sphere. All rights reserved.<br>
+        Developed by <a href="https://linkedin.com/in/fasih-ahmad-8091a9290" target="_blank" rel="noopener">Fasih Ahmad</a>
+    </p>
+</footer>
+
+<script>
+    const hamburger = document.getElementById('hamburger');
+    const mobileNav = document.getElementById('mobileNav');
+    const closeBtn  = document.getElementById('mobileNavClose');
+    hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('open');
+        mobileNav.classList.toggle('open');
+    });
+    [closeBtn, ...mobileNav.querySelectorAll('a')].forEach(el => {
+        el.addEventListener('click', () => {
+            hamburger.classList.remove('open');
+            mobileNav.classList.remove('open');
+        });
+    });
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+        a.addEventListener('click', function(e) {
+            e.preventDefault();
+            const t = document.querySelector(this.getAttribute('href'));
+            if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+    });
+</script>
+</body>
+</html>

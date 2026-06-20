@@ -79,17 +79,22 @@
             display: flex;
             align-items: center;
             list-style: none;
-            gap: 4px;
+            gap: 2px;
         }
 
         .nav-links a {
             text-decoration: none;
             color: var(--ink-2);
-            font-size: 14px;
+            font-size: 13px;
             font-weight: 500;
-            padding: 6px 12px;
+            padding: 6px 9px;
             border-radius: var(--radius-sm);
+            white-space: nowrap;
             transition: background 0.15s, color 0.15s;
+        }
+
+        @media (max-width: 1024px) and (min-width: 769px) {
+            .nav-links a { font-size: 12px; padding: 6px 7px; }
         }
 
         .nav-links a:hover { background: var(--paper-2); color: var(--ink); }
@@ -863,6 +868,8 @@
                 <li><a href="index.htm#booking">Book Session</a></li>
                 <li><a href="index.htm#about">About</a></li>
                 <li><a href="index.htm#contact">Contact</a></li>
+                <li><a href="stem-insights.html">STEM Insights</a></li>
+                <li><a href="stem-community.html">STEM Community</a></li>
                 <li><a href="downloads.html" class="active">Downloads</a></li>
             </ul>
         </div>
@@ -876,6 +883,8 @@
         <a href="index.htm#booking">Book Session</a>
         <a href="index.htm#about">About</a>
         <a href="index.htm#contact">Contact</a>
+        <a href="stem-insights.html">STEM Insights</a>
+        <a href="stem-community.html">STEM Community</a>
         <a href="downloads.html" class="active">Downloads</a>
     </nav>
 
