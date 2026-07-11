@@ -1834,6 +1834,12 @@
                         <div class="et-exam-full">Circuit Analysis & Electrical Network Theory</div>
                         <span class="et-exam-badge">1 file available</span>
                     </div>
+                    <div class="et-exam-card" onclick="showFinAidView()">
+                        <div class="et-exam-icon">💰</div>
+                        <div class="et-exam-name">Financial Aid</div>
+                        <div class="et-exam-full">FAST-NU Financial Aid Form</div>
+                        <span class="et-exam-badge">1 file available</span>
+                    </div>
                     <div class="et-exam-card disabled">
                         <div class="et-exam-icon">💻</div>
                         <div class="et-exam-name">DS&A</div>
@@ -2154,6 +2160,56 @@
                 </div>
 
             </div><!-- /uni-view-lca -->
+
+            <!-- FINANCIAL AID FORM VIEW -->
+            <div class="net-view" id="uni-view-finaid">
+                <button class="et-back-btn" onclick="showUniPicker()">← Back to University Notes</button>
+
+                <h1 class="page-title" style="margin-bottom:4px;">💰 FAST-NU Financial Aid Form</h1>
+                <p class="page-subtitle" style="margin-bottom:24px;">Official financial aid application form for FAST-NUCES students</p>
+
+                <!-- PDF FILE -->
+                <div class="pdf-preview-card">
+                    <div class="pdf-preview-header" style="background:linear-gradient(90deg,#0d9488,#134e4a);">
+                        <div class="pdf-preview-icon">📄</div>
+                        <div class="pdf-preview-meta">
+                            <div class="pdf-preview-title">FAST-NU Financial Aid Form</div>
+                            <div class="pdf-preview-sub">FAST-NU · Financial Aid · Application Form · PDF</div>
+                        </div>
+                        <a class="pdf-preview-dl" href="assets/Notes/Financial_Aid_Form_FAST_NU/Financial_Aid_Form.pdf" target="_blank" rel="noopener noreferrer">
+                            <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M12 16l-4-4h3V4h2v8h3l-4 4z"/><path d="M4 18h16"/></svg>
+                            Download PDF
+                        </a>
+                    </div>
+                    <div class="pdf-embed-wrap">
+                        <iframe
+                            src="assets/Notes/Financial_Aid_Form_FAST_NU/Financial_Aid_Form.pdf"
+                            title="FAST-NU Financial Aid Form"
+                            loading="lazy">
+                            <div class="pdf-fallback">
+                                <p>PDF preview not supported in your browser. <a href="assets/Notes/Financial_Aid_Form_FAST_NU/Financial_Aid_Form.pdf" target="_blank">Click here to open the PDF</a>.</p>
+                            </div>
+                        </iframe>
+                    </div>
+                </div>
+
+                <!-- About Financial Aid -->
+                <div class="net-info-section">
+                    <h2><span class="info-icon">❓</span> About the FAST-NU Financial Aid Form</h2>
+                    <p>The <strong>FAST-NU Financial Aid Form</strong> is the official application used by students to request need-based or merit-based financial assistance at FAST-NUCES. Fill it out carefully and attach all required supporting documents before submission to the university's financial aid office.</p>
+                </div>
+
+                <!-- Closing statement -->
+                <div class="net-info-section" style="border-left: 3px solid #0d9488; background: linear-gradient(135deg, #f0fdfa, #ffffff);">
+                    <p style="font-size:15px; color:var(--ink-2); line-height:1.8; margin:0;">
+                        Financial aid can make a real difference in continuing your education — make sure to submit accurate information and complete documentation.
+                    </p>
+                    <p style="margin-top:14px; font-size:15px; color:#0d9488; font-weight:700; margin-bottom:0;">
+                        💰 Apply early, apply accurately!
+                    </p>
+                </div>
+
+            </div><!-- /uni-view-finaid -->
 
         </div><!-- /section-uninotes -->
 
@@ -2711,17 +2767,18 @@
             document.querySelectorAll('.section-content').forEach(c =>
                 c.classList.toggle('active', c.id === 'section-uninotes'));
 
+            const uniViews = ['uni-view-picker', 'uni-view-dld', 'uni-view-lca', 'uni-view-finaid'];
             if (parts[1] === 'dld') {
-                document.getElementById('uni-view-picker').classList.remove('active');
-                document.getElementById('uni-view-lca').classList.remove('active');
+                uniViews.forEach(id => document.getElementById(id).classList.remove('active'));
                 document.getElementById('uni-view-dld').classList.add('active');
             } else if (parts[1] === 'lca') {
-                document.getElementById('uni-view-picker').classList.remove('active');
-                document.getElementById('uni-view-dld').classList.remove('active');
+                uniViews.forEach(id => document.getElementById(id).classList.remove('active'));
                 document.getElementById('uni-view-lca').classList.add('active');
+            } else if (parts[1] === 'finaid') {
+                uniViews.forEach(id => document.getElementById(id).classList.remove('active'));
+                document.getElementById('uni-view-finaid').classList.add('active');
             } else {
-                document.getElementById('uni-view-dld').classList.remove('active');
-                document.getElementById('uni-view-lca').classList.remove('active');
+                uniViews.forEach(id => document.getElementById(id).classList.remove('active'));
                 document.getElementById('uni-view-picker').classList.add('active');
             }
             window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -3130,6 +3187,10 @@
 
     function showLcaView() {
         location.hash = 'uni/lca';
+    }
+
+    function showFinAidView() {
+        location.hash = 'uni/finaid';
     }
 
     function showUniPicker() {
