@@ -745,6 +745,12 @@
         .net-register-btn { display:inline-flex; align-items:center; gap:8px; background:#fff; color:var(--accent); padding:12px 28px; border-radius:30px; font-family:'Sora',sans-serif; font-size:14px; font-weight:700; text-decoration:none; transition:transform 0.2s, box-shadow 0.2s; box-shadow:0 4px 16px rgba(0,0,0,0.2); }
         .net-register-btn:hover { transform:translateY(-2px); box-shadow:0 8px 24px rgba(0,0,0,0.25); }
         .net-info-tip { background:#fffbeb; border:1.5px solid #fde68a; border-radius:var(--radius-sm); padding:14px 18px; font-size:13px; color:#92400e; margin-top:16px; display:flex; gap:10px; align-items:flex-start; }
+        .uni-category-heading { display:flex; align-items:center; gap:10px; margin:8px 0 14px; }
+        .uni-category-heading .uch-icon { width:34px; height:34px; border-radius:9px; background:var(--accent-light); color:var(--accent); display:flex; align-items:center; justify-content:center; font-size:17px; flex-shrink:0; }
+        .uni-category-heading .uch-text h3 { font-family:'Sora',sans-serif; font-size:17px; font-weight:800; color:var(--ink); }
+        .uni-category-heading .uch-text p { font-size:12.5px; color:var(--ink-3); margin-top:1px; }
+        .uni-category-block { margin-bottom:32px; }
+        .uni-category-block:last-child { margin-bottom:0; }
 
         @media (max-width:768px) {
             .section-tabs { width:100%; }
@@ -903,7 +909,7 @@
                 🎯 Entry Tests
             </button>
             <button class="section-tab" data-section="uninotes" onclick="switchSection('uninotes')">
-                🎓 University Notes
+                🎓 University Resources
                 <span class="tab-badge">NEW</span>
             </button>
         </div>
@@ -1811,53 +1817,84 @@
             <!-- SUBJECT PICKER VIEW -->
             <div class="net-view active" id="uni-view-picker">
                 <div class="et-hero">
-                    <div class="et-hero-label">University Course Notes Hub</div>
-                    <h1 class="et-hero-title">🎓 University Notes & Resources</h1>
-                    <p class="et-hero-desc">Solved problems, notes, and study material for university-level engineering and CS courses. Select your subject below to get started.</p>
+                    <div class="et-hero-label">University Resources Hub</div>
+                    <h1 class="et-hero-title">🎓 University Notes &amp; Resources</h1>
+                    <p class="et-hero-desc">Course notes &amp; solved problems for university-level engineering and CS courses, plus admissions documents like merit lists and financial aid forms — all in one place.</p>
                     <div class="et-hero-chips">
                         <span class="et-chip">Digital Logic Design</span>
                         <span class="et-chip">Circuit Theory</span>
+                        <span class="et-chip">Merit Lists</span>
+                        <span class="et-chip">Financial Aid</span>
                         <span class="et-chip">More Coming Soon</span>
                     </div>
                 </div>
 
-                <div class="et-exams-grid">
-                    <div class="et-exam-card" onclick="showDldView()">
-                        <div class="et-exam-icon">🔌</div>
-                        <div class="et-exam-name">DLD</div>
-                        <div class="et-exam-full">Digital Logic Design — Notes & Solved Problems</div>
-                        <span class="et-exam-badge">22 files available</span>
+                <!-- CATEGORY: COURSE NOTES -->
+                <div class="uni-category-block">
+                    <div class="uni-category-heading">
+                        <div class="uch-icon">📖</div>
+                        <div class="uch-text">
+                            <h3>Course Notes</h3>
+                            <p>Solved problems, notes &amp; key concepts for university subjects</p>
+                        </div>
                     </div>
-                    <div class="et-exam-card" onclick="showLcaView()">
-                        <div class="et-exam-icon">⚡</div>
-                        <div class="et-exam-name">Circuit Theory</div>
-                        <div class="et-exam-full">Circuit Analysis & Electrical Network Theory</div>
-                        <span class="et-exam-badge">1 file available</span>
+                    <div class="et-exams-grid">
+                        <div class="et-exam-card" onclick="showDldView()">
+                            <div class="et-exam-icon">🔌</div>
+                            <div class="et-exam-name">DLD</div>
+                            <div class="et-exam-full">Digital Logic Design — Notes & Solved Problems</div>
+                            <span class="et-exam-badge">22 files available</span>
+                        </div>
+                        <div class="et-exam-card" onclick="showLcaView()">
+                            <div class="et-exam-icon">⚡</div>
+                            <div class="et-exam-name">Circuit Theory</div>
+                            <div class="et-exam-full">Circuit Analysis & Electrical Network Theory</div>
+                            <span class="et-exam-badge">1 file available</span>
+                        </div>
+                        <div class="et-exam-card disabled">
+                            <div class="et-exam-icon">💻</div>
+                            <div class="et-exam-name">DS&A</div>
+                            <div class="et-exam-full">Data Structures & Algorithms</div>
+                            <span class="et-exam-badge soon">Coming Soon</span>
+                        </div>
+                        <div class="et-exam-card disabled">
+                            <div class="et-exam-icon">🔢</div>
+                            <div class="et-exam-name">Discrete Math</div>
+                            <div class="et-exam-full">Discrete Mathematics for Computer Science</div>
+                            <span class="et-exam-badge soon">Coming Soon</span>
+                        </div>
                     </div>
-                    <div class="et-exam-card" onclick="showFinAidView()">
-                        <div class="et-exam-icon">💰</div>
-                        <div class="et-exam-name">Financial Aid</div>
-                        <div class="et-exam-full">FAST-NU Financial Aid Form</div>
-                        <span class="et-exam-badge">1 file available</span>
+                </div>
+
+                <!-- CATEGORY: ADMISSIONS & FORMS -->
+                <div class="uni-category-block">
+                    <div class="uni-category-heading">
+                        <div class="uch-icon">📋</div>
+                        <div class="uch-text">
+                            <h3>Admissions &amp; Forms</h3>
+                            <p>Merit lists, financial aid forms &amp; other official admissions documents</p>
+                        </div>
                     </div>
-                    <div class="et-exam-card disabled">
-                        <div class="et-exam-icon">💻</div>
-                        <div class="et-exam-name">DS&A</div>
-                        <div class="et-exam-full">Data Structures & Algorithms</div>
-                        <span class="et-exam-badge soon">Coming Soon</span>
-                    </div>
-                    <div class="et-exam-card disabled">
-                        <div class="et-exam-icon">🔢</div>
-                        <div class="et-exam-name">Discrete Math</div>
-                        <div class="et-exam-full">Discrete Mathematics for Computer Science</div>
-                        <span class="et-exam-badge soon">Coming Soon</span>
+                    <div class="et-exams-grid">
+                        <div class="et-exam-card" onclick="showMeritListView()">
+                            <div class="et-exam-icon">📊</div>
+                            <div class="et-exam-name">Merit List</div>
+                            <div class="et-exam-full">FAST-NU 1st Expected Merit List 2026</div>
+                            <span class="et-exam-badge">1 file available</span>
+                        </div>
+                        <div class="et-exam-card" onclick="showFinAidView()">
+                            <div class="et-exam-icon">💰</div>
+                            <div class="et-exam-name">Financial Aid</div>
+                            <div class="et-exam-full">FAST-NU Financial Aid Form</div>
+                            <span class="et-exam-badge">1 file available</span>
+                        </div>
                     </div>
                 </div>
             </div><!-- /uni-view-picker -->
 
             <!-- DLD VIEW -->
             <div class="net-view" id="uni-view-dld">
-                <button class="et-back-btn" onclick="showUniPicker()">← Back to University Notes</button>
+                <button class="et-back-btn" onclick="showUniPicker()">← Back to University Resources</button>
 
                 <h1 class="page-title" style="margin-bottom:4px;">🔌 Digital Logic Design (DLD)</h1>
                 <p class="page-subtitle" style="margin-bottom:24px;">Solved problems, notes &amp; key concepts for Digital Logic Design</p>
@@ -2093,7 +2130,7 @@
 
             <!-- CIRCUIT THEORY (LCA) VIEW -->
             <div class="net-view" id="uni-view-lca">
-                <button class="et-back-btn" onclick="showUniPicker()">← Back to University Notes</button>
+                <button class="et-back-btn" onclick="showUniPicker()">← Back to University Resources</button>
 
                 <h1 class="page-title" style="margin-bottom:4px;">⚡ Circuit Theory (LCA)</h1>
                 <p class="page-subtitle" style="margin-bottom:24px;">Solved problems, notes &amp; key concepts for Circuit Theory — RLC Circuits &amp; Op-Amps</p>
@@ -2161,9 +2198,59 @@
 
             </div><!-- /uni-view-lca -->
 
+            <!-- MERIT LIST VIEW -->
+            <div class="net-view" id="uni-view-meritlist">
+                <button class="et-back-btn" onclick="showUniPicker()">← Back to University Resources</button>
+
+                <h1 class="page-title" style="margin-bottom:4px;">📊 FAST-NU 1st Expected Merit List 2026</h1>
+                <p class="page-subtitle" style="margin-bottom:24px;">Expected merit list for FAST-NUCES admissions — 1st list, 2026</p>
+
+                <!-- PDF FILE -->
+                <div class="pdf-preview-card">
+                    <div class="pdf-preview-header" style="background:linear-gradient(90deg,#059669,#065f46);">
+                        <div class="pdf-preview-icon">📄</div>
+                        <div class="pdf-preview-meta">
+                            <div class="pdf-preview-title">FAST-NU 1st Expected Merit List 2026</div>
+                            <div class="pdf-preview-sub">FAST-NU · Expected Merit List · 2026 · PDF</div>
+                        </div>
+                        <a class="pdf-preview-dl" href="assets\Notes\Admissions_&_Forms/FAST_NU_1st_Expected_Merit_List_2026.pdf" target="_blank" rel="noopener noreferrer">
+                            <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M12 16l-4-4h3V4h2v8h3l-4 4z"/><path d="M4 18h16"/></svg>
+                            Download PDF
+                        </a>
+                    </div>
+                    <div class="pdf-embed-wrap">
+                        <iframe
+                            src="assets\Notes\Admissions_&_Forms//FAST_NU_1st_Expected_Merit_List_2026.pdf"
+                            title="FAST-NU 1st Expected Merit List 2026"
+                            loading="lazy">
+                            <div class="pdf-fallback">
+                                <p>PDF preview not supported in your browser. <a href="assets\Notes\Admissions_&_Forms/FAST_NU_1st_Expected_Merit_List_2026.pdf" target="_blank">Click here to open the PDF</a>.</p>
+                            </div>
+                        </iframe>
+                    </div>
+                </div>
+
+                <!-- About Merit List -->
+                <div class="net-info-section">
+                    <h2><span class="info-icon">❓</span> About This Merit List</h2>
+                    <p>This is the <strong>1st Expected Merit List</strong> for FAST-NUCES admissions 2026 — an estimate of the likely cut-off merit based on available data, intended to help applicants gauge their standing ahead of the official list. Always confirm your final status against the official merit list issued by FAST-NUCES.</p>
+                </div>
+
+                <!-- Closing statement -->
+                <div class="net-info-section" style="border-left: 3px solid #059669; background: linear-gradient(135deg, #ecfdf5, #ffffff);">
+                    <p style="font-size:15px; color:var(--ink-2); line-height:1.8; margin:0;">
+                        Keep an eye on the official FAST-NUCES admissions portal for the confirmed merit list and further admission instructions.
+                    </p>
+                    <p style="margin-top:14px; font-size:15px; color:#059669; font-weight:700; margin-bottom:0;">
+                        📊 Check your standing, plan your next step!
+                    </p>
+                </div>
+
+            </div><!-- /uni-view-meritlist -->
+
             <!-- FINANCIAL AID FORM VIEW -->
             <div class="net-view" id="uni-view-finaid">
-                <button class="et-back-btn" onclick="showUniPicker()">← Back to University Notes</button>
+                <button class="et-back-btn" onclick="showUniPicker()">← Back to University Resources</button>
 
                 <h1 class="page-title" style="margin-bottom:4px;">💰 FAST-NU Financial Aid Form</h1>
                 <p class="page-subtitle" style="margin-bottom:24px;">Official financial aid application form for FAST-NUCES students</p>
@@ -2176,18 +2263,18 @@
                             <div class="pdf-preview-title">FAST-NU Financial Aid Form</div>
                             <div class="pdf-preview-sub">FAST-NU · Financial Aid · Application Form · PDF</div>
                         </div>
-                        <a class="pdf-preview-dl" href="assets/Notes/Financial_Aid_Form_FAST_NU/Financial_Aid_Form.pdf" target="_blank" rel="noopener noreferrer">
+                        <a class="pdf-preview-dl" href="assets\Notes\Admissions_&_Forms/Financial_Aid_Form.pdf" target="_blank" rel="noopener noreferrer">
                             <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M12 16l-4-4h3V4h2v8h3l-4 4z"/><path d="M4 18h16"/></svg>
                             Download PDF
                         </a>
                     </div>
                     <div class="pdf-embed-wrap">
                         <iframe
-                            src="assets/Notes/Financial_Aid_Form_FAST_NU/Financial_Aid_Form.pdf"
+                            src="assets\Notes\Admissions_&_Forms/Financial_Aid_Form.pdf"
                             title="FAST-NU Financial Aid Form"
                             loading="lazy">
                             <div class="pdf-fallback">
-                                <p>PDF preview not supported in your browser. <a href="assets/Notes/Financial_Aid_Form_FAST_NU/Financial_Aid_Form.pdf" target="_blank">Click here to open the PDF</a>.</p>
+                                <p>PDF preview not supported in your browser. <a href="assets\Notes\Admissions_&_Forms/Financial_Aid_Form.pdf" target="_blank">Click here to open the PDF</a>.</p>
                             </div>
                         </iframe>
                     </div>
@@ -2767,7 +2854,7 @@
             document.querySelectorAll('.section-content').forEach(c =>
                 c.classList.toggle('active', c.id === 'section-uninotes'));
 
-            const uniViews = ['uni-view-picker', 'uni-view-dld', 'uni-view-lca', 'uni-view-finaid'];
+            const uniViews = ['uni-view-picker', 'uni-view-dld', 'uni-view-lca', 'uni-view-finaid', 'uni-view-meritlist'];
             if (parts[1] === 'dld') {
                 uniViews.forEach(id => document.getElementById(id).classList.remove('active'));
                 document.getElementById('uni-view-dld').classList.add('active');
@@ -2777,6 +2864,9 @@
             } else if (parts[1] === 'finaid') {
                 uniViews.forEach(id => document.getElementById(id).classList.remove('active'));
                 document.getElementById('uni-view-finaid').classList.add('active');
+            } else if (parts[1] === 'meritlist') {
+                uniViews.forEach(id => document.getElementById(id).classList.remove('active'));
+                document.getElementById('uni-view-meritlist').classList.add('active');
             } else {
                 uniViews.forEach(id => document.getElementById(id).classList.remove('active'));
                 document.getElementById('uni-view-picker').classList.add('active');
@@ -3191,6 +3281,10 @@
 
     function showFinAidView() {
         location.hash = 'uni/finaid';
+    }
+
+    function showMeritListView() {
+        location.hash = 'uni/meritlist';
     }
 
     function showUniPicker() {
