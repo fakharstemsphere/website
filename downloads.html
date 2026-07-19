@@ -1888,6 +1888,12 @@
                             <div class="et-exam-full">FAST-NU Financial Aid Form</div>
                             <span class="et-exam-badge">1 file available</span>
                         </div>
+                        <div class="et-exam-card" onclick="showScholarshipsView()">
+                            <div class="et-exam-icon">🎓</div>
+                            <div class="et-exam-name">Scholarships Guide</div>
+                            <div class="et-exam-full">Pakistan BS Scholarships & Financial Aid Guide 2026</div>
+                            <span class="et-exam-badge">1 file available</span>
+                        </div>
                     </div>
                 </div>
             </div><!-- /uni-view-picker -->
@@ -2297,6 +2303,56 @@
                 </div>
 
             </div><!-- /uni-view-finaid -->
+
+            <!-- SCHOLARSHIPS & FINANCIAL AID GUIDE VIEW -->
+            <div class="net-view" id="uni-view-scholarships">
+                <button class="et-back-btn" onclick="showUniPicker()">← Back to University Resources</button>
+
+                <h1 class="page-title" style="margin-bottom:4px;">🎓 Pakistan BS Scholarships & Financial Aid Guide 2026</h1>
+                <p class="page-subtitle" style="margin-bottom:24px;">Updated guide to scholarships & financial aid options for BS admissions in Pakistan</p>
+
+                <!-- PDF FILE -->
+                <div class="pdf-preview-card">
+                    <div class="pdf-preview-header" style="background:linear-gradient(90deg,#7c3aed,#4c1d95);">
+                        <div class="pdf-preview-icon">📄</div>
+                        <div class="pdf-preview-meta">
+                            <div class="pdf-preview-title">Pakistan BS Scholarships & Financial Aid Guide 2026 (Updated)</div>
+                            <div class="pdf-preview-sub">Scholarships & Financial Aid · BS Admissions · Updated 2026 · PDF</div>
+                        </div>
+                        <a class="pdf-preview-dl" href="assets\Notes\Admissions_&_Forms\Pakistan_BS_Scholarships_Financial_Aid_Guide_2026_Updated.pdf" target="_blank" rel="noopener noreferrer">
+                            <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M12 16l-4-4h3V4h2v8h3l-4 4z"/><path d="M4 18h16"/></svg>
+                            Download PDF
+                        </a>
+                    </div>
+                    <div class="pdf-embed-wrap">
+                        <iframe
+                            src="assets\Notes\Admissions_&_Forms\Pakistan_BS_Scholarships_Financial_Aid_Guide_2026_Updated.pdf"
+                            title="Pakistan BS Scholarships and Financial Aid Guide 2026 Updated"
+                            loading="lazy">
+                            <div class="pdf-fallback">
+                                <p>PDF preview not supported in your browser. <a href="assets\Notes\Admissions_&_Forms\Pakistan_BS_Scholarships_Financial_Aid_Guide_2026_Updated.pdf" target="_blank">Click here to open the PDF</a>.</p>
+                            </div>
+                        </iframe>
+                    </div>
+                </div>
+
+                <!-- About the Guide -->
+                <div class="net-info-section">
+                    <h2><span class="info-icon">❓</span> About This Guide</h2>
+                    <p>This is an <strong>updated guide to scholarships and financial aid options</strong> available to BS (undergraduate) students in Pakistan. It brings together need-based and merit-based scholarship programs, university-specific financial aid schemes, and general application guidance to help students find funding for their education.</p>
+                </div>
+
+                <!-- Closing statement -->
+                <div class="net-info-section" style="border-left: 3px solid #7c3aed; background: linear-gradient(135deg, #f5f3ff, #ffffff);">
+                    <p style="font-size:15px; color:var(--ink-2); line-height:1.8; margin:0;">
+                        Don't let finances hold back your education — explore every scholarship and financial aid option available to you and apply well ahead of deadlines.
+                    </p>
+                    <p style="margin-top:14px; font-size:15px; color:#7c3aed; font-weight:700; margin-bottom:0;">
+                        🎓 Fund your future, one application at a time!
+                    </p>
+                </div>
+
+            </div><!-- /uni-view-scholarships -->
 
         </div><!-- /section-uninotes -->
 
@@ -2857,7 +2913,7 @@
             document.querySelectorAll('.section-content').forEach(c =>
                 c.classList.toggle('active', c.id === 'section-uninotes'));
 
-            const uniViews = ['uni-view-picker', 'uni-view-dld', 'uni-view-lca', 'uni-view-finaid', 'uni-view-meritlist'];
+            const uniViews = ['uni-view-picker', 'uni-view-dld', 'uni-view-lca', 'uni-view-finaid', 'uni-view-meritlist', 'uni-view-scholarships'];
             if (parts[1] === 'dld') {
                 uniViews.forEach(id => document.getElementById(id).classList.remove('active'));
                 document.getElementById('uni-view-dld').classList.add('active');
@@ -2870,6 +2926,9 @@
             } else if (parts[1] === 'meritlist') {
                 uniViews.forEach(id => document.getElementById(id).classList.remove('active'));
                 document.getElementById('uni-view-meritlist').classList.add('active');
+            } else if (parts[1] === 'scholarships') {
+                uniViews.forEach(id => document.getElementById(id).classList.remove('active'));
+                document.getElementById('uni-view-scholarships').classList.add('active');
             } else {
                 uniViews.forEach(id => document.getElementById(id).classList.remove('active'));
                 document.getElementById('uni-view-picker').classList.add('active');
@@ -3288,6 +3347,10 @@
 
     function showMeritListView() {
         location.hash = 'uni/meritlist';
+    }
+
+    function showScholarshipsView() {
+        location.hash = 'uni/scholarships';
     }
 
     function showUniPicker() {
