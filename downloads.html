@@ -932,7 +932,83 @@
                 <h1 class="page-title" id="class-title">Select Class</h1>
                 <p class="page-subtitle">Choose a class to view available subjects.</p>
                 <div class="class-grid" id="class-grid"></div>
+                <div id="board-extra-category"></div>
             </div>
+
+            <!-- VIEW: RESULT GAZETTES (Federal Board) -->
+            <div class="view" id="view-fbise-gazette">
+                <button class="back-btn" id="back-to-classes-from-gazette">← Back to Classes</button>
+
+                <h1 class="page-title" style="margin-bottom:4px;">📋 Result Gazettes</h1>
+                <p class="page-subtitle" style="margin-bottom:24px;">Official FBISE SSC-I &amp; SSC-II (9th &amp; 10th Class) Result Gazette 2026</p>
+
+                <!-- PDF FILE — 9th Class -->
+                <div class="pdf-preview-card">
+                    <div class="pdf-preview-header" style="background:linear-gradient(90deg,#b45309,#78350f);">
+                        <div class="pdf-preview-icon">📋</div>
+                        <div class="pdf-preview-meta">
+                            <div class="pdf-preview-title">FBISE 9th Class Result Gazette 2026 (SSC Part-I)</div>
+                            <div class="pdf-preview-sub">Federal Board · SSC Part-I · Result Gazette 2026 · PDF</div>
+                        </div>
+                        <a class="pdf-preview-dl" href="assets/FBISE/Results/Gazette 2026/fbise-9th-class-result-gazette-2026-pdf-federal-board-ssc-part-1.pdf" target="_blank" rel="noopener noreferrer">
+                            <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M12 16l-4-4h3V4h2v8h3l-4 4z"/><path d="M4 18h16"/></svg>
+                            Download PDF
+                        </a>
+                    </div>
+                    <div class="pdf-embed-wrap">
+                        <iframe
+                            src="assets/FBISE/Results/Gazette 2026/fbise-9th-class-result-gazette-2026-pdf-federal-board-ssc-part-1.pdf"
+                            title="FBISE 9th Class Result Gazette 2026 SSC Part 1"
+                            loading="lazy">
+                            <div class="pdf-fallback">
+                                <p>PDF preview not supported in your browser. <a href="assets/FBISE/Results/Gazette 2026/fbise-9th-class-result-gazette-2026-pdf-federal-board-ssc-part-1.pdf" target="_blank">Click here to open the PDF</a>.</p>
+                            </div>
+                        </iframe>
+                    </div>
+                </div>
+
+                <!-- PDF FILE — 10th Class -->
+                <div class="pdf-preview-card">
+                    <div class="pdf-preview-header" style="background:linear-gradient(90deg,#b45309,#78350f);">
+                        <div class="pdf-preview-icon">📋</div>
+                        <div class="pdf-preview-meta">
+                            <div class="pdf-preview-title">FBISE 10th Class Result Gazette 2026 (SSC Part-II)</div>
+                            <div class="pdf-preview-sub">Federal Board · SSC Part-II · Result Gazette 2026 · PDF</div>
+                        </div>
+                        <a class="pdf-preview-dl" href="assets/FBISE/Results/Gazette 2026/federal-board-fbise-ssc-10th-class-result-gazette-2026.pdf" target="_blank" rel="noopener noreferrer">
+                            <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M12 16l-4-4h3V4h2v8h3l-4 4z"/><path d="M4 18h16"/></svg>
+                            Download PDF
+                        </a>
+                    </div>
+                    <div class="pdf-embed-wrap">
+                        <iframe
+                            src="assets/FBISE/Results/Gazette 2026/federal-board-fbise-ssc-10th-class-result-gazette-2026.pdf"
+                            title="FBISE 10th Class Result Gazette 2026 SSC Part 2"
+                            loading="lazy">
+                            <div class="pdf-fallback">
+                                <p>PDF preview not supported in your browser. <a href="assets/FBISE/Results/Gazette 2026/federal-board-fbise-ssc-10th-class-result-gazette-2026.pdf" target="_blank">Click here to open the PDF</a>.</p>
+                            </div>
+                        </iframe>
+                    </div>
+                </div>
+
+                <!-- About the Gazette -->
+                <div class="net-info-section">
+                    <h2><span class="info-icon">❓</span> About the Result Gazette</h2>
+                    <p>The <strong>Result Gazette</strong> is the official document issued by the <strong>Federal Board of Intermediate and Secondary Education (FBISE)</strong> listing the detailed subject-wise marks and results of all candidates for a given examination. It serves as an official record alongside individual result cards.</p>
+                </div>
+
+                <!-- Closing statement -->
+                <div class="net-info-section" style="border-left: 3px solid #b45309; background: linear-gradient(135deg, #fffbeb, #ffffff);">
+                    <p style="font-size:15px; color:var(--ink-2); line-height:1.8; margin:0;">
+                        Always cross-check your marks in the gazette against your official result card, and reach out to FBISE directly for any discrepancies.
+                    </p>
+                    <p style="margin-top:14px; font-size:15px; color:#b45309; font-weight:700; margin-bottom:0;">
+                        📋 Check your result, plan your next step!
+                    </p>
+                </div>
+
+            </div><!-- /view-fbise-gazette -->
 
             <!-- VIEW: SUBJECTS -->
             <div class="view" id="view-subjects">
@@ -3071,7 +3147,9 @@
         const cls   = parts[1] || null;
         const subj  = parts[2] || null;
 
-        if (board && cls && subj) {
+        if (board === 'fbise' && cls === 'gazette' && !subj) {
+            showFbiseGazette();
+        } else if (board && cls && subj) {
             showFiles(board, cls, subj);
         } else if (board && cls) {
             showSubjects(board, cls);
@@ -3080,6 +3158,17 @@
         } else {
             showBoards();
         }
+    }
+
+    function showFbiseGazette() {
+        const board = DATA['fbise'];
+        setActiveView('view-fbise-gazette');
+        setBreadcrumb([
+            { label: '🏠 Downloads', onClick: () => setRoute([]) },
+            { label: board.shortLabel, onClick: () => setRoute(['fbise']) },
+            { label: 'Result Gazettes', active: true }
+        ]);
+        document.getElementById('back-to-classes-from-gazette').onclick = () => setRoute(['fbise']);
     }
 
     /* ══════════════════════════════════
@@ -3149,6 +3238,32 @@
             card.onclick = () => setRoute([boardKey, key]);
             grid.appendChild(card);
         });
+
+        // Extra category section (e.g. Results & Gazettes for Federal Board)
+        const extra = document.getElementById('board-extra-category');
+        extra.innerHTML = '';
+        if (boardKey === 'fbise') {
+            extra.innerHTML = `
+                <div class="uni-category-block" style="margin-top:32px;">
+                    <div class="uni-category-heading">
+                        <div class="uch-icon">📋</div>
+                        <div class="uch-text">
+                            <h3>Results &amp; Gazettes</h3>
+                            <p>Official FBISE result gazettes by class</p>
+                        </div>
+                    </div>
+                    <div class="et-exams-grid">
+                        <div class="et-exam-card" id="fbise-gazette-card">
+                            <div class="et-exam-icon">📋</div>
+                            <div class="et-exam-name">Result Gazette 2026</div>
+                            <div class="et-exam-full">SSC Part-I &amp; Part-II (9th &amp; 10th Class) Result Gazette</div>
+                            <span class="et-exam-badge">2 files available</span>
+                        </div>
+                    </div>
+                </div>
+            `;
+            document.getElementById('fbise-gazette-card').onclick = () => setRoute([boardKey, 'gazette']);
+        }
 
         document.getElementById('back-to-boards').onclick = () => setRoute([]);
     }
