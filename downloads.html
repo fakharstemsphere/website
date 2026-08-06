@@ -1010,6 +1010,57 @@
 
             </div><!-- /view-fbise-gazette -->
 
+            <!-- VIEW: RESULT GAZETTES (Punjab Board) -->
+            <div class="view" id="view-punjab-gazette">
+                <button class="back-btn" id="back-to-classes-from-punjab-gazette">← Back to Classes</button>
+
+                <h1 class="page-title" style="margin-bottom:4px;">📋 Result Gazettes</h1>
+                <p class="page-subtitle" style="margin-bottom:24px;">Official BISE Punjab Boards Result Gazette 2026</p>
+
+                <!-- Google Drive Folder Embed -->
+                <div class="pdf-preview-card">
+                    <div class="pdf-preview-header" style="background:linear-gradient(90deg,#b45309,#78350f);">
+                        <div class="pdf-preview-icon">📋</div>
+                        <div class="pdf-preview-meta">
+                            <div class="pdf-preview-title">Punjab Boards Result Gazette 2026</div>
+                            <div class="pdf-preview-sub">Punjab Board · Result Gazette 2026 · Google Drive Folder</div>
+                        </div>
+                        <a class="pdf-preview-dl" href="https://drive.google.com/drive/folders/1w8RlT_-BHqyLb2hWLLfxFWUBrIlS4Y8u" target="_blank" rel="noopener noreferrer">
+                            <svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M12 16l-4-4h3V4h2v8h3l-4 4z"/><path d="M4 18h16"/></svg>
+                            Open on Google Drive
+                        </a>
+                    </div>
+                    <div class="pdf-embed-wrap">
+                        <iframe
+                            src="https://drive.google.com/embeddedfolderview?id=1w8RlT_-BHqyLb2hWLLfxFWUBrIlS4Y8u#list"
+                            title="Punjab Boards Result Gazette 2026"
+                            loading="lazy"
+                            style="height:420px;">
+                            <div class="pdf-fallback">
+                                <p>Folder preview not supported in your browser. <a href="https://drive.google.com/drive/folders/1w8RlT_-BHqyLb2hWLLfxFWUBrIlS4Y8u" target="_blank">Click here to open the folder on Google Drive</a>.</p>
+                            </div>
+                        </iframe>
+                    </div>
+                </div>
+
+                <!-- About the Gazette -->
+                <div class="net-info-section">
+                    <h2><span class="info-icon">❓</span> About the Result Gazette</h2>
+                    <p>The <strong>Result Gazette</strong> is the official document issued by the <strong>Boards of Intermediate and Secondary Education (BISE) Punjab</strong> listing the detailed subject-wise marks and results of all candidates for a given examination. It serves as an official record alongside individual result cards.</p>
+                </div>
+
+                <!-- Closing statement -->
+                <div class="net-info-section" style="border-left: 3px solid #b45309; background: linear-gradient(135deg, #fffbeb, #ffffff);">
+                    <p style="font-size:15px; color:var(--ink-2); line-height:1.8; margin:0;">
+                        Always cross-check your marks in the gazette against your official result card, and reach out to your respective Punjab board directly for any discrepancies.
+                    </p>
+                    <p style="margin-top:14px; font-size:15px; color:#b45309; font-weight:700; margin-bottom:0;">
+                        📋 Check your result, plan your next step!
+                    </p>
+                </div>
+
+            </div><!-- /view-punjab-gazette -->
+
             <!-- VIEW: SUBJECTS -->
             <div class="view" id="view-subjects">
                 <button class="back-btn" id="back-to-classes">← Back to Classes</button>
@@ -3164,6 +3215,8 @@
 
         if (board === 'fbise' && cls === 'gazette' && !subj) {
             showFbiseGazette();
+        } else if (board === 'punjab' && cls === 'gazette' && !subj) {
+            showPunjabGazette();
         } else if (board && cls && subj) {
             showFiles(board, cls, subj);
         } else if (board && cls) {
@@ -3184,6 +3237,17 @@
             { label: 'Result Gazettes', active: true }
         ]);
         document.getElementById('back-to-classes-from-gazette').onclick = () => setRoute(['fbise']);
+    }
+
+    function showPunjabGazette() {
+        const board = DATA['punjab'];
+        setActiveView('view-punjab-gazette');
+        setBreadcrumb([
+            { label: '🏠 Downloads', onClick: () => setRoute([]) },
+            { label: board.shortLabel, onClick: () => setRoute(['punjab']) },
+            { label: 'Result Gazettes', active: true }
+        ]);
+        document.getElementById('back-to-classes-from-punjab-gazette').onclick = () => setRoute(['punjab']);
     }
 
     /* ══════════════════════════════════
@@ -3278,6 +3342,27 @@
                 </div>
             `;
             document.getElementById('fbise-gazette-card').onclick = () => setRoute([boardKey, 'gazette']);
+        } else if (boardKey === 'punjab') {
+            extra.innerHTML = `
+                <div class="uni-category-block" style="margin-top:32px;">
+                    <div class="uni-category-heading">
+                        <div class="uch-icon">📋</div>
+                        <div class="uch-text">
+                            <h3>Results &amp; Gazettes</h3>
+                            <p>Official BISE Punjab result gazette</p>
+                        </div>
+                    </div>
+                    <div class="et-exams-grid">
+                        <div class="et-exam-card" id="punjab-gazette-card">
+                            <div class="et-exam-icon">📋</div>
+                            <div class="et-exam-name">Result Gazette 2026</div>
+                            <div class="et-exam-full">BISE Punjab Boards — Result Gazette 2026</div>
+                            <span class="et-exam-badge">View on Drive</span>
+                        </div>
+                    </div>
+                </div>
+            `;
+            document.getElementById('punjab-gazette-card').onclick = () => setRoute([boardKey, 'gazette']);
         }
 
         document.getElementById('back-to-boards').onclick = () => setRoute([]);
